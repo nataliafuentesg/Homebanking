@@ -1,0 +1,149 @@
+:root{
+    --color1: #1848a0;
+    --color2: #1c98ed;
+    --color3: #ffffff;    
+}
+
+/* navbar */
+#navbarMenu {
+
+    flex: 1;
+    display: flex !important;
+    gap: 2rem;
+    justify-content: space-between !important;    
+    padding-left: 2rem; 
+    padding-right: 2rem;
+    
+}
+
+a.nav-link{
+    
+    color: var(--color1) !important;
+    
+    border: none;
+    border-radius: 1rem;
+}
+
+a.nav-link:hover{
+    color: white !important;
+    background-color: var(--color1);
+    border: none;
+    border-radius: 1rem;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+/* BTN USER */
+
+#btnUser{
+    background-color: #ffffff !important;
+    color: var(--color1) !important;
+}
+
+.dropdown-item{
+    font-weight: bold !important;
+    font-size: 1rem;
+    color: #1848a0;
+}
+
+a.dropdown-item:hover{
+    color: white !important;
+    background-color: var(--color1);
+    border: none;
+    
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+/* welcome banner */
+
+.welcomeBanner {
+    background: rgb(9, 9, 121);
+    background: linear-gradient(90deg, rgba(9, 9, 121, 1) 0%, rgba(9, 9, 121, 0.835171568627451) 37%, rgba(95, 218, 241, 1) 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+/* cards */
+
+#cardData {
+    padding-top: 2rem;
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem; 
+    padding: 2rem;  
+
+}
+
+.cardInfo {
+
+    width: 20rem;
+    height: 13rem;
+    border-width: var(--color1);
+    border: #1848a0;
+    border-radius: 1rem;
+    flex: none;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    background: rgb(9, 9, 121);
+    color: white;
+}
+
+.card-title{
+    padding-left: 1rem;
+    padding-top: .5rem;
+    font-weight: lighter;
+
+}
+
+.btnCard{
+    padding-top: 1rem ;
+    display: flex;
+    justify-content: center;
+}
+
+.balance{
+    display: flex;
+    font-weight: bold;    
+    justify-content: center;
+    font-size: 2rem;
+}
+
+/* Table */
+
+tr, td{
+    background-color: #aed7f1; 
+}
+td{
+    color: #1848a0;
+}
+
+
+/* footer */
+
+footer{
+    background: rgb(9, 9, 121);
+    background: linear-gradient(90deg, rgba(9, 9, 121, 1) 0%, rgba(9, 9, 121, 0.835171568627451) 37%, rgba(95, 218, 241, 1) 100%);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 3rem;
+}
+p{
+    margin-top: 0 !important;
+    margin-bottom: 0;
+}
+.socialMedia{
+    display: flex;
+    gap: 1rem;
+    padding: none;
+    color: #1848a0;
+    padding-right: 2rem;
+}
