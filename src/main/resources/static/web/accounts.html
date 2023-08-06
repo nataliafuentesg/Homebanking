@@ -67,18 +67,20 @@
                     </div>
                 </div>
 
-                <a class="navbar-brand" href="#"><img src="./assets/images/logo.png" style="width: 12rem;" href="#"
-                        alt="Logo"></img>
+                <a class="navbar-brand" href="#"><img src="./assets/images/logo.png"
+                        style="width: 10rem; padding-right: 1rem;" href="#" alt="Logo"></img>
                 </a>
             </nav>
 
             <div class="welcomeBanner">
-                <div>
-                    <h1>{{ welcomeMessage }}</h1>
+                <div class="message">
+                    <div>
+                        <h1 class="text-wrap">{{ welcomeMessage }}</h1>
 
-                </div>
-                <div>
-                    <p>Local Time: {{ localTime }}</p>
+                    </div>
+                    <div>
+                        <p>Local Time: {{ localTime }}</p>
+                    </div>
                 </div>
             </div>
 
@@ -99,7 +101,8 @@
                                 </span>
                             </h5>
                             <div class="btnCard">
-                                <a href="#" style="background-color: white; color: #1848a0; padding: 0.2rem;" class="btn btn-primary">View Transactions</a>
+                                <a href="#" style="background-color: white; color: #1848a0; padding: 0.2rem;"
+                                    class="btn btn-primary">View Transactions</a>
                             </div>
 
                         </div>
@@ -110,84 +113,164 @@
             <section>
                 <div class="w-80 px-4">
                     <div class="d-flex justify-content-between">
-                        <h2>Recent Transactions</h2>
-                        <button type="button" class="btn" style="color: red;">View All <span><i class="bi bi-eye"></i></span></button>
+                        <h2 style="font-size: larger;">Recent Transactions</h2>
+                        <button type="button" class="btn" style="color: red;">View All <span><i
+                                    class="bi bi-eye"></i></span></button>
                     </div>
-    
-                    <div class= "table">
+
+                    <div class="table">
                         <table class="table table-blue table-hover">
-                                <tr>
-                                    <td><i class="bi bi-arrow-up-circle" style="color: rgb(103, 255, 103);"></i></td>
-                                    <td>Added</td>
-                                    <td> + $200.00 </td>
-                                    <td class="text-end"> <button type="button" class="btn">Info <span><i class="bi bi-eye"></i></span></button>
-                                    </td>
-                                    <td class="text-end"> <button type="button" class="btn">Query <span><i
-                                                    class="bi bi-question-circle"></i></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><i class="bi bi-arrow-down-circle" style="color: red;"></i></td>
-                                    <td>Withdrawal</td>
-                                    <td> - $400.00 </td>
-                                    <td class="text-end"> <button type="button" class="btn">Info <span><i class="bi bi-eye"></i></span></button>
-                                    </td>
-                                    <td class="text-end"> <button type="button" class="btn">Query <span><i
-                                                    class="bi bi-question-circle"></i></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><i class="bi bi-arrow-up-circle" style="color: rgb(103, 255, 103);"></i></td>
-                                    <td>Added</td>
-                                    <td> + $400.00 </td>
-                                    <td class="text-end"> <button type="button" class="btn">Info <span><i class="bi bi-eye"></i></span></button>
-                                    </td>
-                                    <td class="text-end"> <button type="button" class="btn">Query <span><i
-                                                    class="bi bi-question-circle"></i></span>
-                                    </td>
-                                </tr>
-    
-                                <tr>
-                                    <td><i class="bi bi-arrow-up-circle" style="color: rgb(103, 255, 103);"></i></td>
-                                    <td>Added</td>
-                                    <td> + $100.00 </td>
-                                    <td class="text-end"> <button type="button" class="btn">Info <span><i class="bi bi-eye"></i></span></button>
-                                    </td>
-                                    <td class="text-end"> <button type="button" class="btn">Query <span><i
-                                                    class="bi bi-question-circle"></i></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><i class="bi bi-arrow-down-circle" style="color: red;"></i></td>
-                                    <td>Withdrawal</td>
-                                    <td> - $300.00 </td>
-                                    <td class="text-end"> <button type="button" class="btn">Info <span><i class="bi bi-eye"></i></span></button>
-                                    </td>
-                                    <td class="text-end"> <button type="button" class="btn">Query <span><i
-                                                    class="bi bi-question-circle"></i></span>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td><i class="bi bi-arrow-up-circle" style="color: rgb(103, 255, 103);"></i></td>
+                                <td>Added</td>
+                                <td> + $200.00 </td>
+                                <td class="text-end"> <button type="button" class="btn" style="color: #1848a0;">Info
+                                        <span><i class="bi bi-eye"></i></span></button>
+                                </td>
+                                <td class="text-end" id='collapsable'> <button type="button" class="btn"
+                                        style="color: #1848a0;">Query <span><i class="bi bi-question-circle"></i></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="bi bi-arrow-down-circle" style="color: red;"></i></td>
+                                <td>Withdrawal</td>
+                                <td> - $400.00 </td>
+                                <td class="text-end"> <button type="button" class="btn" style="color: #1848a0;">Info
+                                        <span><i class="bi bi-eye"></i></span></button>
+                                </td>
+                                <td class="text-end" id='collapsable'> <button type="button" class="btn"
+                                        style="color: #1848a0;">Query <span><i class="bi bi-question-circle"></i></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="bi bi-arrow-up-circle" style="color: rgb(103, 255, 103);"></i></td>
+                                <td>Added</td>
+                                <td> + $400.00 </td>
+                                <td class="text-end"> <button type="button" class="btn" style="color: #1848a0;">Info
+                                        <span><i class="bi bi-eye"></i></span></button>
+                                </td>
+                                <td class="text-end" id='collapsable'> <button type="button" class="btn"
+                                        style="color: #1848a0;">Query <span><i class="bi bi-question-circle"></i></span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><i class="bi bi-arrow-up-circle" style="color: rgb(103, 255, 103);"></i></td>
+                                <td>Added</td>
+                                <td> + $100.00 </td>
+                                <td class="text-end"> <button type="button" class="btn" style="color: #1848a0;">Info
+                                        <span><i class="bi bi-eye"></i></span></button>
+                                </td>
+                                <td class="text-end" id='collapsable'> <button type="button" class="btn"
+                                        style="color: #1848a0;">Query <span><i class="bi bi-question-circle"></i></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="bi bi-arrow-down-circle" style="color: red;"></i></td>
+                                <td>Withdrawal</td>
+                                <td> - $300.00 </td>
+                                <td class="text-end"> <button type="button" class="btn" style="color: #1848a0;">Info
+                                        <span><i class="bi bi-eye"></i></span></button>
+                                </td>
+                                <td class="text-end" id='collapsable'> <button type="button" class="btn"
+                                        style="color: #1848a0;">Query <span><i class="bi bi-question-circle"></i></span>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
-                    </div>           
-                </div>                    
-                
+                    </div>
+                </div>
+
             </section>
 
         </main>
 
 
     </div>
-    <footer>
-        <p>©2023 MINDHUB BROTHERS.
-            All Rights Reserved.</p>
-        <div class="socialMedia">
-            <i class="bi bi-instagram"></i>
-            <i class="bi bi-facebook"></i>
-            <i class="bi bi-whatsapp"></i>
-            <i class="bi bi-linkedin"></i>
+
+    <footer id="footer" class="footer-1 p-3">
+        <div class="main-footer widgets-dark typo-light">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="widget subscribe no-box">
+                            <h5 class="widget-title" style="text-align: center;">Support <span></span></h5>
+                            <ul style="list-style-type:none;"> 
+
+                                
+                                <li>
+                                    <div class="thumb-content"><a href="#." style="color: white;">Site map</a></div>
+
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="#." style="color: white;">Online tracking & advertising</a></div>
+
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="#." style="color: white;">Cobrowser</a></div>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="widget no-box">
+                            <h5 class="widget-title" style="text-align: center;">Help<span></span></h5>
+                            <ul class="thumbnail-widget" style="list-style-type:none;">
+                                <li>
+                                    <div class="thumb-content"><a href="#." style="color: white;">Privacy & Security</a></div>
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="#." style="color: white;">Financial Education Center</a></div>
+                                </li>
+                                <li>
+                                    <div class="thumb-content"><a href="#." style="color: white;">FAQs </a></div>
+                                </li>                                
+                                <li>
+                                    <div class="thumb-content"><a href="#." style="color: white;">About</a></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 col-md-3" id="suscribe">
+                        <div class="widget no-box " style="justify-content: center;">
+                            <h5 class="widget-title" style="text-align: center;">Get Started<span></span></h5>
+                            <p style="text-align: center;">Stay in the loop with the latest financial insights and exclusive offers! Subscribe to our newsletter.</p>
+                            
+                        </div>
+                        <button type="button" class="btn btn-light">Suscribe Now</button>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+
+                        <div class="widget no-box" >
+                            <h5 class="widget-title" style="text-align: center;">Contact Us<span></span></h5>                            
+                            <ul class="social-footer2" style="list-style-type:none;">
+                                <li><a class="link" href="#" style="color: white; text-decoration:none"><i class="bi bi-instagram" style="font-size: 20px; color: #ffffff;"></i> Instagram</a></li>
+                                <li><a class="link" href="#" style="color: white; text-decoration:none"><i class="bi bi-facebook" style="font-size: 20px; color: #ffffff;"></i> Facebook</a></li>
+                                <li><a class="link" href="#" style="color: white; text-decoration:none"><i class="bi bi-whatsapp" style="font-size: 20px; color: #ffffff;"></i> Whatsapp</a></li>
+                                <li><a class="link" href="#" style="color: white; text-decoration:none"><i class="bi bi-linkedin" style="font-size: 20px; color: #ffffff;"></i> LinkedIn</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
-    </footer>
+
+        <div class="footer-copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center" style="padding-top: 1rem;">
+                        <p>Mindhub Brothers © 2023. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>  
 
 
 
