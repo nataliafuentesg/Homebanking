@@ -12,7 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
-@SpringBootApplication
+
 @Entity
 public class Account {
     @Id
