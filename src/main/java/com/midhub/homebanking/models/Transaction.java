@@ -15,7 +15,7 @@ public class Transaction {
 
     private double amount;
     private LocalDateTime date;
-    private TransactionType type;
+    private TransactionType transactionType;
 
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -47,12 +47,12 @@ public class Transaction {
         this.date = date;
     }
 
-    public TransactionType getType() {
-        return type;
+    public TransactionType gettransactionType() {
+        return transactionType;
     }
 
-    public void setType(TransactionType type) {
-        this.type = type;
+    public void settransactionType(TransactionType transactionType) {
+        this.transactionType = transactionType;
     }
 
     public Account getAccount() {
@@ -66,11 +66,11 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction( double amount, LocalDateTime date, TransactionType type, Account account) {
+    public Transaction( double amount, LocalDateTime date, TransactionType transactionType, Account account) {
 
         this.amount = amount;
         this.date = date;
-        this.type = type;
+        this.transactionType = transactionType;
         this.account = account;
     }
 }

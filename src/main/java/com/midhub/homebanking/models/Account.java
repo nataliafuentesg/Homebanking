@@ -24,6 +24,14 @@ public class Account {
     @JsonManagedReference
     Set<Transaction> transactions = new HashSet<>();
 
+    public Set<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(Set<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
     public Account(String number, LocalDate creationDate, Double balance) {
         this.number = number;
         this.creationDate = creationDate;

@@ -1,12 +1,12 @@
 
 
 let { createApp } = Vue
-console.log("Hola")
+console.log("Accounts")
 
 const options = {
     data() {
         return {
-            accounts : [], 
+            accounts : [],             
             firstName : "",  
             localTime: "",         
         }
@@ -15,11 +15,11 @@ const options = {
     created() {
         axios.get("http://localhost:8080/api/clients/1")
         .then(response => {
-            console.log(response)
+            console.log(response)            
             this.accounts = response.data.accounts;
             console.log(this.accounts)           
             this.firstName =response.data.firstName; 
-            console.log(this.firstName)
+            console.log(this.firstName)            
         })
         .catch(error => console.log(error));
 
