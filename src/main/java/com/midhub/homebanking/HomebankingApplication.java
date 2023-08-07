@@ -1,15 +1,20 @@
 package com.midhub.homebanking;
-
 import com.midhub.homebanking.models.Account;
 import com.midhub.homebanking.models.Client;
+import com.midhub.homebanking.models.Transaction;
+import com.midhub.homebanking.models.TransactionType;
 import com.midhub.homebanking.repositories.AccountRepository;
 import com.midhub.homebanking.repositories.ClientRepository;
+import com.midhub.homebanking.repositories.TransactionRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @SpringBootApplication
 public class HomebankingApplication {
@@ -20,7 +25,7 @@ public class HomebankingApplication {
 
 
 	@Bean
-	public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository) {
+	public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository) {
 		return (args) -> {
 			// save a couple of customers
 
@@ -52,6 +57,32 @@ public class HomebankingApplication {
 			accountRepository.save(account5);
 			accountRepository.save(account6);
 			accountRepository.save(account7);
+
+
+
+			Transaction transaction1 = new Transaction(100.0, LocalDateTime.now().minusHours(2), TransactionType.CREDIT, account1);
+			Transaction transaction2 = new Transaction(-50.0, LocalDateTime.now().minusHours(5), TransactionType.DEBIT, account1);
+			Transaction transaction3 = new Transaction(200.0, LocalDateTime.now().minusHours(3), TransactionType.CREDIT, account1);
+			Transaction transaction4 = new Transaction(-75.0, LocalDateTime.now().minusHours(1), TransactionType.DEBIT, account1);
+			Transaction transaction5 = new Transaction(200.0, LocalDateTime.now().minusHours(3), TransactionType.CREDIT, account1);
+			Transaction transaction6 = new Transaction(-75.0, LocalDateTime.now().minusHours(1), TransactionType.DEBIT, account1);
+			Transaction transaction7 = new Transaction(200.0, LocalDateTime.now().minusHours(3), TransactionType.CREDIT, account2);
+			Transaction transaction8 = new Transaction(-75.0, LocalDateTime.now().minusHours(1), TransactionType.DEBIT, account2);
+			Transaction transaction9 = new Transaction(200.0, LocalDateTime.now().minusHours(3), TransactionType.CREDIT, account2);
+			Transaction transaction10 = new Transaction(-75.0, LocalDateTime.now().minusHours(1), TransactionType.DEBIT, account2);
+
+
+			transactionRepository.save(transaction1);
+			transactionRepository.save(transaction2);
+			transactionRepository.save(transaction3);
+			transactionRepository.save(transaction4);
+			transactionRepository.save(transaction5);
+			transactionRepository.save(transaction6);
+			transactionRepository.save(transaction7);
+			transactionRepository.save(transaction8);
+			transactionRepository.save(transaction9);
+			transactionRepository.save(transaction10);
+
 		};
 	}
 }
