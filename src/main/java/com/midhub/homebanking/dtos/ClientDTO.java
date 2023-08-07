@@ -6,7 +6,7 @@ import com.midhub.homebanking.models.Client;
 
 import java.util.Set;
 
-@JsonPropertyOrder({"id", "firstName", "lastName", "email", "accounts"})
+@JsonPropertyOrder
 public class ClientDTO {
     private long id;
     private String firstName;
