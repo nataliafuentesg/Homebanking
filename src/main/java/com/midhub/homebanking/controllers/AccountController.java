@@ -1,7 +1,5 @@
 package com.midhub.homebanking.controllers;
-
 import com.midhub.homebanking.dtos.AccountDTO;
-import com.midhub.homebanking.dtos.ClientDTO;
 import com.midhub.homebanking.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

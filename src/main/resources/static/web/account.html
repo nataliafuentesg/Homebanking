@@ -93,7 +93,7 @@
                             <h5 class="card-title">Account number: <span> {{account.number}} </span></h5>
                             <h5 class="card-title">Balance: </h5>
                             <div class="balance">
-                                {{account.balance}}
+                                {{formatCurrency(account.balance)}}
                             </div>
                             <h5 class="card-title">Creation Date: <span> {{formatDate(account.creationDate)}}
                                 </span>
