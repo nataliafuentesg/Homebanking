@@ -1,27 +1,39 @@
-function extractAccountNumber(account) {
-    return parseInt(account.substr(3));
-}
+
 
 let { createApp } = Vue
-console.log("Accounts")
+console.log("Account")
 
 const options = {
     data() {
         return {
-            accounts : [],             
+            account : [], 
             firstName : "",  
-            localTime: "",         
+            localTime: "", 
+            transactions : [],  
+            activeClass: 'text-success',
+            errorClass: 'text-danger'      
         }
     },
 
     created() {
         axios.get("http://localhost:8080/api/clients/1")
         .then(response => {
-            console.log(response)            
-            this.accounts = response.data.accounts.sort((a, b) => extractAccountNumber(a.number) - extractAccountNumber(b.number));
+            console.log(response)
+            let account = response.data.accounts;
+            this.accounts = response.data.accounts;
             console.log(this.accounts)           
             this.firstName =response.data.firstName; 
-            console.log(this.firstName)            
+            console.log(this.firstName)
+            let id = location.search;
+            console.log(id) 
+            let idAccount = new URLSearchParams(id);
+            console.log(idAccount)   
+            let sku = idAccount.get('id');   
+            this.account = account.find( account =>  account.id == sku);
+            console.log(this.account)
+            this.transactions = this.account.transactions.sort((a, b) => new Date(b.date) - new Date(a.date));
+            console.log(this.transactions)
+            
         })
         .catch(error => console.log(error));
 
@@ -38,9 +50,8 @@ const options = {
 
     methods: {  
 
-        formatCurrency(balance) {
-            
-            return balance.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+        formatCurrency(amount) {            
+            return amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
         },
 
         formatDate(date) {
@@ -59,6 +70,12 @@ const options = {
             this.localTime = `${hours}:${minutes}:${seconds}`;
         },
 
+        formatTime(date) {
+            const formattedDate = new Date(date);
+            const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+            return formattedDate.toLocaleTimeString('en-US', options);
+        },
+
     }
 
 }
@@ -67,4 +84,3 @@ const options = {
 const app = createApp(options)
 
 app.mount('#app')
-

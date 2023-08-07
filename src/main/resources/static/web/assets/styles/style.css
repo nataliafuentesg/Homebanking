@@ -129,8 +129,10 @@ a.dropdown-item:hover{
 /* Table */
 
 
+
+
 td{
-    
+    color: #1848a0 !important;
     text-align: center;
 }
 
