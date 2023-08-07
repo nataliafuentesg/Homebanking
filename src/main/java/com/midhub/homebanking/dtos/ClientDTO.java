@@ -1,11 +1,10 @@
 package com.midhub.homebanking.dtos;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.midhub.homebanking.models.Account;
 import com.midhub.homebanking.models.Client;
 
 import java.util.Set;
 
-@JsonPropertyOrder
+
 public class ClientDTO {
     private long id;
     private String firstName;

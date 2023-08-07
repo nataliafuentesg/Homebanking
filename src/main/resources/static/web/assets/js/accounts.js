@@ -16,7 +16,7 @@ const options = {
         axios.get("http://localhost:8080/api/clients/1")
         .then(response => {
             console.log(response)
-            this.accounts = response.data.accounts;
+            this.accounts = response.data.accounts.sort((a, b) => b.number - a.number);
             console.log(this.accounts)           
             this.firstName =response.data.firstName; 
             console.log(this.firstName)

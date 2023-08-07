@@ -1,8 +1,7 @@
 package com.midhub.homebanking.dtos;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.midhub.homebanking.models.Account;
 import java.time.LocalDate;
-@JsonPropertyOrder
+
 public class AccountDTO {
     private long id;
     private String number;
