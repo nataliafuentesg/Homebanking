@@ -10,7 +10,7 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-@CrossOrigin
+
 @RequestMapping("/api")
 @RestController
 public class ClientController {
