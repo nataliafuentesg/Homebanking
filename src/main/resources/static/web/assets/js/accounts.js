@@ -1,4 +1,6 @@
-
+function extractAccountNumber(account) {
+    return parseInt(account.substr(3));
+}
 
 let { createApp } = Vue
 console.log("Hola")
@@ -16,7 +18,7 @@ const options = {
         axios.get("http://localhost:8080/api/clients/1")
         .then(response => {
             console.log(response)
-            this.accounts = response.data.accounts.sort((a, b) => b.number - a.number);
+            this.accounts = response.data.accounts.sort((a, b) => extractAccountNumber(a.number) - extractAccountNumber(b.number));
             console.log(this.accounts)           
             this.firstName =response.data.firstName; 
             console.log(this.firstName)
