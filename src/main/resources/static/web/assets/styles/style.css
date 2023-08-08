@@ -106,6 +106,18 @@ a.dropdown-item:hover{
     color: white;
 }
 
+.cardInfoAccount{
+    width: 20rem;
+    height: 10rem;
+    border-width: var(--color1);
+    border: #1848a0;
+    border-radius: 1rem;
+    flex: none;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    background: rgb(9, 9, 121);
+    color: white;
+}
+
 .card-title{
     padding-left: 1rem;
     padding-top: .5rem;
