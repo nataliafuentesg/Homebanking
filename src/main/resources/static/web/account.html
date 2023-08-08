@@ -93,13 +93,16 @@
                             <h5 class="card-title">Account number: <span> {{account.number}} </span></h5>
                             <h5 class="card-title">Balance: </h5>
                             <div class="balance">
-                                {{formatCurrency(account.balance)}}
+                                {{ account.balance ? formatCurrency(account.balance) : 'Loading...' }}
                             </div>
                             <h5 class="card-title">Creation Date: <span> {{formatDate(account.creationDate)}}
                                 </span>
                             </h5>
                         </div>
                     </div>
+                </template>
+                <template v-else>
+                    Data Loading...
                 </template>
             </div>
 
@@ -122,17 +125,17 @@
                                             'bi bi-arrow-down-circle': transaction.transactionType === 'DEBIT',
                                             [activeClass]: transaction.transactionType === 'CREDIT',
                                             [errorClass]: transaction.transactionType === 'DEBIT'
-                                          }" :style="{ 'font-weight': 'bold'  }" ></i>
+                                          }" :style="{ 'font-weight': 'bold'  }"></i>
                                         </td>
 
                                         <td :class="{
                                             [activeClass]: transaction.transactionType === 'CREDIT',
                                             [errorClass]: transaction.transactionType === 'DEBIT'
-                                          }" :style="{ 'font-weight': 'bold'  }">                                          
+                                          }" :style="{ 'font-weight': 'bold'  }">
                                             {{ transaction.transactionType }}
                                         </td>
                                         <td> {{formatCurrency(transaction.amount)}} </td>
-                                        <td>{{ formatDate(transaction.date) }}</td>            
+                                        <td>{{ formatDate(transaction.date) }}</td>
                                         <td>{{ formatTime(transaction.date) }}</td>
                                         <td class="text-end" id='collapsable'> <button type="button" class="btn"
                                                 style="color: #1848a0;"> Query <span><i

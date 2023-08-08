@@ -18,19 +18,19 @@ const options = {
     created() {
         axios.get("http://localhost:8080/api/clients/1")
         .then(response => {
-            console.log(response)
-            let account = response.data.accounts;
-            this.accounts = response.data.accounts;
-            console.log(this.accounts)           
+            console.log(response)      
+                      
             this.firstName =response.data.firstName; 
             console.log(this.firstName)
+
             let id = location.search;
             console.log(id) 
             let idAccount = new URLSearchParams(id);
             console.log(idAccount)   
             let sku = idAccount.get('id');   
-            this.account = account.find( account =>  account.id == sku);
+            this.account = response.data.accounts.find( account =>  account.id == sku);
             console.log(this.account)
+            
             this.transactions = this.account.transactions.sort((a, b) => new Date(b.date) - new Date(a.date));
             console.log(this.transactions)
             
