@@ -66,8 +66,7 @@
                     </div>
                 </div>
 
-                <a class="navbar-brand" href="#"><img src="./assets/images/logo.png"
-                         href="#" alt="Logo"></img>
+                <a class="navbar-brand" href="#"><img src="./assets/images/logo.png" href="#" alt="Logo"></img>
                 </a>
             </nav>
 
@@ -87,6 +86,7 @@
 
         <main class="p-2 flex-grow-1">
 
+
             <div id="cardData">
                 <template v-for="account in accounts">
                     <div class="cardInfo">
@@ -100,7 +100,8 @@
                                 </span>
                             </h5>
                             <div class="btnCard">
-                                <a :href="'./account.html?id=' + account.id" style="background-color: white; color: #1848a0; padding: 0.2rem;"
+                                <a :href="'./account.html?id=' + account.id"
+                                    style="background-color: white; color: #1848a0; padding: 0.2rem;"
                                     class="btn btn-primary">View Transactions</a>
                             </div>
 
@@ -108,6 +109,10 @@
                     </div>
                 </template>
             </div>
+
+
+
+
 
             <section>
                 <div class="w-80 px-4">
