@@ -137,10 +137,7 @@
                                         <td> {{formatCurrency(transaction.amount)}} </td>
                                         <td>{{ formatDate(transaction.date) }}</td>
                                         <td>{{ formatTime(transaction.date) }}</td>
-                                        <td class="text-end" id='collapsable'> <button type="button" class="btn"
-                                                style="color: #1848a0;"> Query <span><i
-                                                        class="bi bi-question-circle"></i></span>
-                                        </td>
+                                        <td> {{ transaction.description }} </td>                                     
                                     </tr>
 
                                 </template>

@@ -16,6 +16,7 @@ public class Transaction {
     private double amount;
     private LocalDateTime date;
     private TransactionType transactionType;
+    private String description;
 
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -63,14 +64,23 @@ public class Transaction {
         this.account = account;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public Transaction() {
     }
 
-    public Transaction( double amount, LocalDateTime date, TransactionType transactionType, Account account) {
+    public Transaction( double amount, LocalDateTime date, TransactionType transactionType, String descripiton, Account account) {
 
         this.amount = amount;
         this.date = date;
         this.transactionType = transactionType;
+        this.description = descripiton;
         this.account = account;
     }
 }
