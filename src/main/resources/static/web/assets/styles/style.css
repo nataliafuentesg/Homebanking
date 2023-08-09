@@ -41,6 +41,7 @@ a.nav-link:hover{
 img{
     width: 12rem !important;
 }
+
 /* BTN USER */
 
 #btnUser{
@@ -85,8 +86,105 @@ a.dropdown-item:hover{
 }
 
 
+/* loader */
+.loader {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  .jimu-primary-loading:before,
+  .jimu-primary-loading:after {
+    position: absolute;
+    top: 0;
+    content: '';
+  }
+  
+  .jimu-primary-loading:before {
+    left: -19.992px;
+  }
+  
+  .jimu-primary-loading:after {
+    left: 19.992px;
+    -webkit-animation-delay: 0.32s !important;
+    animation-delay: 0.32s !important;
+  }
+  
+  .jimu-primary-loading:before,
+  .jimu-primary-loading:after,
+  .jimu-primary-loading {
+    background: #076fe5;
+    -webkit-animation: loading-keys-app-loading 0.8s infinite ease-in-out;
+    animation: loading-keys-app-loading 0.8s infinite ease-in-out;
+    width: 13.6px;
+    height: 32px;
+  }
+  
+  .jimu-primary-loading {
+    text-indent: -9999em;
+    margin: auto;
+    position: absolute;
+    right: calc(50% - 6.8px);
+    top: calc(50% - 16px);
+    -webkit-animation-delay: 0.16s !important;
+    animation-delay: 0.16s !important;
+  }
+  
+  @-webkit-keyframes loading-keys-app-loading {
+  
+    0%,
+    80%,
+    100% {
+      opacity: .75;
+      box-shadow: 0 0 #076fe5;
+      height: 32px;
+    }
+  
+    40% {
+      opacity: 1;
+      box-shadow: 0 -8px #076fe5;
+      height: 40px;
+    }
+  }
+  
+  @keyframes loading-keys-app-loading {
+  
+    0%,
+    80%,
+    100% {
+      opacity: .75;
+      box-shadow: 0 0 #076fe5;
+      height: 32px;
+    }
+  
+    40% {
+      opacity: 1;
+      box-shadow: 0 -8px #076fe5;
+      height: 40px;
+    }
+}
+
+/* your accounts */
+
+.GFG {
+    color: var(--color1);
+    font-size: 50px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: var(--color2);
+}
+
+
+
 /* cards */
 
+.cardInfo:hover{
+    transform: scale(1.05);
+    border: #ffffff;
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.12), 0 4px 8px rgba(255, 255, 255, 0.06);
+    
+}
 
 
 #cardData {
@@ -147,9 +245,6 @@ a.dropdown-item:hover{
 
 /* Table */
 
-
-
-
 td{
     color: #1848a0 !important;
     text-align: center;
@@ -188,6 +283,13 @@ p{
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+}
+
+main {
+	display: flex;
+    flex-direction: column;	    	
+	min-height: 100vh;
+    justify-content: center;
 }
 
 @media only screen and (max-width: 450px) {    
