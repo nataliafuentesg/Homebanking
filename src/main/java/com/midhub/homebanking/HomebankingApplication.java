@@ -58,16 +58,16 @@ public class HomebankingApplication {
 
 
 
-			Transaction transaction1 = new Transaction(100.0, LocalDateTime.now().minusHours(2), TransactionType.CREDIT, "Credit Test", account1);
-			Transaction transaction2 = new Transaction(-50.0, LocalDateTime.now().minusHours(5), TransactionType.DEBIT, "Debit Test", account1);
-			Transaction transaction3 = new Transaction(200.0, LocalDateTime.now().minusHours(3), TransactionType.CREDIT, "Credit Test", account1);
-			Transaction transaction4 = new Transaction(-75.0, LocalDateTime.now().minusHours(1), TransactionType.DEBIT, "Debit Test", account1);
-			Transaction transaction5 = new Transaction(200.0, LocalDateTime.now().minusHours(3), TransactionType.CREDIT,"Credit Test", account1);
-			Transaction transaction6 = new Transaction(-75.0, LocalDateTime.now().minusHours(1), TransactionType.DEBIT, "Debit Test", account1);
-			Transaction transaction7 = new Transaction(200.0, LocalDateTime.now().minusHours(3), TransactionType.CREDIT, "Credit Test", account2);
-			Transaction transaction8 = new Transaction(-75.0, LocalDateTime.now().minusHours(1), TransactionType.DEBIT, "Debit Test", account2);
-			Transaction transaction9 = new Transaction(200.0, LocalDateTime.now().minusHours(3), TransactionType.CREDIT, "Credit Test", account2);
-			Transaction transaction10 = new Transaction(-75.0, LocalDateTime.now().minusHours(1), TransactionType.DEBIT, "Debit Test", account2);
+			Transaction transaction1 = new Transaction(100.0, LocalDateTime.now(), TransactionType.CREDIT, "Credit Test", account1);
+			Transaction transaction2 = new Transaction(-50.0, LocalDateTime.now(), TransactionType.DEBIT, "Debit Test", account1);
+			Transaction transaction3 = new Transaction(200.0, LocalDateTime.now(), TransactionType.CREDIT, "Credit Test", account1);
+			Transaction transaction4 = new Transaction(-75.0, LocalDateTime.now(), TransactionType.DEBIT, "Debit Test", account1);
+			Transaction transaction5 = new Transaction(200.0, LocalDateTime.now(), TransactionType.CREDIT,"Credit Test", account1);
+			Transaction transaction6 = new Transaction(-75.0, LocalDateTime.now(), TransactionType.DEBIT, "Debit Test", account1);
+			Transaction transaction7 = new Transaction(200.0, LocalDateTime.now(), TransactionType.CREDIT, "Credit Test", account2);
+			Transaction transaction8 = new Transaction(-75.0, LocalDateTime.now(), TransactionType.DEBIT, "Debit Test", account2);
+			Transaction transaction9 = new Transaction(200.0, LocalDateTime.now(), TransactionType.CREDIT, "Credit Test", account2);
+			Transaction transaction10 = new Transaction(-75.0, LocalDateTime.now(), TransactionType.DEBIT, "Debit Test", account2);
 
 
 			transactionRepository.save(transaction1);
