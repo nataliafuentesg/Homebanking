@@ -261,13 +261,23 @@ main {
 }
 
 /* home */
+
 /* header home */
 .header-blue {
     background: linear-gradient(135deg, #172a74, #21a9af);
     background-color: #184e8e;
-    padding-bottom: 80px;
-    font-family: 'Source Sans Pro', sans-serif;
+    padding-bottom: 30px;
+    
 }
+
+@media (min-width: 768px){
+    .navbar-expand-md .navbar-collapse {
+        display: flex!important;
+        flex-basis: auto;
+        justify-content: flex-end;
+    }
+}
+
 
 @media (min-width:768px) {
     .header-blue {
@@ -301,10 +311,10 @@ main {
     color: #f0f0f0;
 }
 
-/* .header-blue .navbar .navbar-collapse {
+.header-blue .navbar .navbar-collapse {
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     margin-top: .5rem;
-} */
+}
 
 @media (min-width:768px) {
     .header-blue .navbar .navbar-collapse {
@@ -404,6 +414,10 @@ main {
     transition: border-bottom-color 0.3s;
 }
 
+.device{
+    width: 25rem !important;
+}
+
 .header-blue .navbar .form-inline .search-field:focus {
     border-bottom: 1px solid #ccc;
 }
@@ -460,6 +474,14 @@ main {
     height: auto;
 }
 
+.header-blue .navbar .form-inline .search-field {
+    
+    border-bottom: 1px solid white !important;
+    
+}
+
+
+
 .header-blue .iphone-mockup .screen {
     position: absolute;
     width: 88%;
@@ -467,15 +489,15 @@ main {
     top: 12%;
     border-radius: 2px;
     left: 6%;
-    border: 1px solid #444;
-    background-color: #aaa;
+    /* border: 1px solid #444;
+    background-color: #aaa; */
     overflow: hidden;
-    background: url(../../assets/images/cards.png);
+    /* background: url(../../assets/images/cards.png); */
     background-size: cover;
     background-position: center;
 }
 
-.header-blue .iphone-mockup .screen:before {
+/* .header-blue .iphone-mockup .screen:before {
     content: '';
     background-color: #fff;
     position: absolute;
@@ -485,7 +507,7 @@ main {
     right: -60%;
     transform: rotate(-19deg);
     opacity: 0.2;
-}
+} */
 
 @media only screen and (max-width: 450px) {
     #collapsable {
