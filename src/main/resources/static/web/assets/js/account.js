@@ -31,7 +31,7 @@ const options = {
             this.account = response.data.accounts.find( account =>  account.id == sku);
             console.log(this.account)
             
-            this.transactions = this.account.transactions.sort((a, b) => new Date(b.date) - new Date(a.date));
+            this.transactions = this.account.transactions.sort((a, b) => b.id - a.id);
             console.log(this.transactions)
             
         })

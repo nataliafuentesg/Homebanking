@@ -136,8 +136,7 @@
                                             {{ transaction.transactionType }}
                                         </td>
                                         <td> {{formatCurrency(transaction.amount)}} </td>
-                                        <td>{{ formatDate(transaction.date) }}</td>
-                                        <td>{{ formatTime(transaction.date) }}</td>
+                                        <td>{{ formatDate(transaction.date) }} {{ formatTime(transaction.date) }}</td>                                        
                                         <td> {{ transaction.description }} </td>                                     
                                     </tr>
 
