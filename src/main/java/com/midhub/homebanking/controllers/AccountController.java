@@ -13,11 +13,8 @@ import static java.util.stream.Collectors.toList;
 @RequestMapping("/api")
 @RestController
 public class AccountController {
-    private final AccountRepository accountRepository;
     @Autowired
-    public AccountController(AccountRepository accountRepository) {
-        this.accountRepository = accountRepository;
-    }
+    private AccountRepository accountRepository;
 
     @RequestMapping("/accounts")
     public List<AccountDTO> getAccount() {

@@ -19,11 +19,11 @@ const options = {
     methods: {
 
         loadData() {
-            axios.get("http://localhost:8080/rest/clients")
+            axios.get("http://localhost:8080/api/clients")
                 .then(response => {
                     console.log(response)
                     console.log(response.data)
-                    this.clients = response.data._embedded.clients;
+                    this.clients = response.data;
                     console.log(this.clients)
                     this.jsonData = JSON.stringify(response.data, null, 1);
                 })
@@ -50,7 +50,7 @@ const options = {
                 email: this.email,
             };
 
-            axios.post('http://localhost:8080/rest/clients', newClient)
+            axios.post('http://localhost:8080/api/clients', newClient)
                 .then(response => {
                     console.log(response)
                     console.log(response.data);
