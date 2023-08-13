@@ -36,14 +36,13 @@
                     <table class="table table-dark table-striped">
                         <thead>
                             <tr>
-
                                 <td>Email</td>
                                 <td>First Name</td>
                                 <td>Last Name</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <template v-for="client in clients" :key="client.id">
+                            <template v-for="client in clients">
                                 <tr>
                                     <td>{{client.email}}</td>
                                     <td>{{client.firstName}}</td>

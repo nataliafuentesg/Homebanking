@@ -1,5 +1,8 @@
 package com.midhub.homebanking.dtos;
 import com.midhub.homebanking.models.Client;
+
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -10,6 +13,7 @@ public class ClientDTO {
     private String lastName;
     private String email;
     private Set<AccountDTO> accounts;
+    private List<ClientLoanDTO> loans;
 
     public ClientDTO(Client client) {
         this.id = client.getId();
@@ -17,6 +21,11 @@ public class ClientDTO {
         this.lastName = client.getLastName();
         this.email = client.getEmail();
         this.accounts = client.getAccounts().stream().map(AccountDTO::new).collect(Collectors.toSet());
+        Set<Long> addedLoanIds = new HashSet<>();
+        this.loans = client.getClientLoans().stream()
+                .filter(clientLoan -> addedLoanIds.add(clientLoan.getLoan().getId()))
+                .map(ClientLoanDTO::new)
+                .collect(Collectors.toList());
     }
 
     public long getId() {
@@ -48,5 +57,7 @@ public class ClientDTO {
         return accounts;
     }
 
-
+    public List<ClientLoanDTO> getLoans() {
+        return loans;
+    }
 }

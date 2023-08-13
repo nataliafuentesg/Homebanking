@@ -1,17 +1,14 @@
 package com.midhub.homebanking;
-import com.midhub.homebanking.models.Account;
-import com.midhub.homebanking.models.Client;
-import com.midhub.homebanking.models.Transaction;
-import com.midhub.homebanking.models.TransactionType;
-import com.midhub.homebanking.repositories.AccountRepository;
-import com.midhub.homebanking.repositories.ClientRepository;
-import com.midhub.homebanking.repositories.TransactionRepository;
+import com.midhub.homebanking.models.*;
+import com.midhub.homebanking.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 
 
 @SpringBootApplication
@@ -23,7 +20,7 @@ public class HomebankingApplication {
 
 
 	@Bean
-	public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository) {
+	public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository) {
 		return (args) -> {
 			// save a couple of customers
 
@@ -80,6 +77,28 @@ public class HomebankingApplication {
 			transactionRepository.save(transaction8);
 			transactionRepository.save(transaction9);
 			transactionRepository.save(transaction10);
+
+			List<Loan> loans = Arrays.asList(
+					new Loan("Hipotecario", 500000, Arrays.asList(12, 24, 36, 48, 60)),
+					new Loan("Personal", 100000, Arrays.asList(6, 12, 24)),
+					new Loan("Automotriz", 300000, Arrays.asList(6, 12, 24, 36))
+			);
+
+			loanRepository.saveAll(loans);
+
+			Loan Hipotecario = loanRepository.findByName("Hipotecario");
+			Loan Personal = loanRepository.findByName("Personal");
+			Loan Automotriz = loanRepository.findByName("Automotriz");
+
+			List<ClientLoan> clientLoans = Arrays.asList(
+					new ClientLoan(400000, 60, melbaMorel, Hipotecario),
+					new ClientLoan(50000, 12, melbaMorel, Personal),
+					new ClientLoan(100000, 24, quioneGalvis, Personal),
+					new ClientLoan(200000, 36, quioneGalvis, Automotriz)
+			);
+
+
+			clientLoanRepository.saveAll(clientLoans);
 
 		};
 	}
