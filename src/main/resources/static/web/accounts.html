@@ -131,7 +131,7 @@
                                     <h5 class="text-center text-md-left" style="color: #1848a0;">{{loan.loanName}}</h5>
                                     <ul class="d-md-flex flex-wrap text-capitalize g-4">
                                         <li class="mr-md-4" style="color: #1848a0;">
-                                            <i class="bi bi-cash-stack" style="color: #1848a0;"></i> Amount: {{loan.loanAmount}}
+                                            <i class="bi bi-cash-stack" style="color: #1848a0;"></i> Amount: {{formatCurrency(loan.loanAmount)}}
                                         </li>
                                         <li class="mr-md-4" style="color: #1848a0;">
                                             <i class="fa fa-usd"></i> Payments: {{loan.loanPayments}}
