@@ -1,16 +1,12 @@
 package com.midhub.homebanking.models;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Set;
 
-import static java.util.stream.Collectors.toList;
 
 @Entity
 public class Loan {
@@ -23,6 +19,10 @@ public class Loan {
 
     @ElementCollection
     private List<Integer> payments;
+
+    @OneToMany(mappedBy="loan", fetch=FetchType.EAGER)
+    @JsonManagedReference
+    private Set<ClientLoan> clientLoans = new HashSet<>();
 
     public long getId() {
         return id;
@@ -66,7 +66,7 @@ public class Loan {
         this.payments = payments;
     }
 
-    public Loan(String name, double maxAmount, List<Integer> payments, List<ClientLoan> clientLoans) {
+    public Loan(String name, double maxAmount, List<Integer> payments, Set<ClientLoan> clientLoans) {
         this.name = name;
         this.maxAmount = maxAmount;
         this.payments = payments;
@@ -78,19 +78,12 @@ public class Loan {
         clientLoans.add(clientLoan);
     }
 
-    @OneToMany(mappedBy="loan", fetch=FetchType.EAGER)
-    @JsonManagedReference
-    private List<ClientLoan> clientLoans = new ArrayList<>();
-
-    public List<ClientLoan> getClientLoans() {
+    public Set<ClientLoan> getClientLoans() {
         return clientLoans;
     }
 
-    public void setClientLoans(List<ClientLoan> clientLoans) {
+    public void setClientLoans(Set<ClientLoan> clientLoans) {
         this.clientLoans = clientLoans;
     }
 
-    public List<Client> getClients() {
-        return clientLoans.stream().map(sub -> sub.getClient()).collect(toList());
-    }
 }

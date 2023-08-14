@@ -79,22 +79,22 @@ public class HomebankingApplication {
 			transactionRepository.save(transaction10);
 
 			List<Loan> loans = Arrays.asList(
-					new Loan("Hipotecario", 500000, Arrays.asList(12, 24, 36, 48, 60)),
+					new Loan("Mortgage", 500000, Arrays.asList(12, 24, 36, 48, 60)),
 					new Loan("Personal", 100000, Arrays.asList(6, 12, 24)),
-					new Loan("Automotriz", 300000, Arrays.asList(6, 12, 24, 36))
+					new Loan("Car", 300000, Arrays.asList(6, 12, 24, 36))
 			);
 
 			loanRepository.saveAll(loans);
 
-			Loan Hipotecario = loanRepository.findByName("Hipotecario");
+			Loan Mortgage = loanRepository.findByName("Mortgage");
 			Loan Personal = loanRepository.findByName("Personal");
-			Loan Automotriz = loanRepository.findByName("Automotriz");
+			Loan Car = loanRepository.findByName("Car");
 
 			List<ClientLoan> clientLoans = Arrays.asList(
-					new ClientLoan(400000, 60, melbaMorel, Hipotecario),
+					new ClientLoan(400000, 60, melbaMorel, Mortgage),
 					new ClientLoan(50000, 12, melbaMorel, Personal),
 					new ClientLoan(100000, 24, quioneGalvis, Personal),
-					new ClientLoan(200000, 36, quioneGalvis, Automotriz)
+					new ClientLoan(200000, 36, quioneGalvis, Car)
 			);
 
 

@@ -6,7 +6,7 @@ import com.midhub.homebanking.models.TransactionType;
 
 import java.time.LocalDateTime;
 
-@JsonPropertyOrder
+
 public class TransactionDTO {
 
     private long id;

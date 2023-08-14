@@ -1,5 +1,4 @@
 package com.midhub.homebanking.dtos;
-
 import com.midhub.homebanking.models.ClientLoan;
 
 public class ClientLoanDTO {
@@ -21,9 +20,7 @@ public class ClientLoanDTO {
         return id;
     }
 
-    public long getLoanId() {
-        return loanId;
-    }
+    public long getLoanId() { return loanId; }
 
     public String getLoanName() {
         return loanName;

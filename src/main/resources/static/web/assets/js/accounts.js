@@ -8,7 +8,8 @@ console.log("Accounts")
 const options = {
     data() {
         return {
-            accounts : [],             
+            accounts : [],  
+            loans : [],           
             firstName : "",  
             localTime: "",         
         }
@@ -19,7 +20,9 @@ const options = {
         .then(response => {
             console.log(response)            
             this.accounts = response.data.accounts.sort((a, b) => extractAccountNumber(a.number) - extractAccountNumber(b.number));
-            console.log(this.accounts)           
+            console.log(this.accounts)
+            this.loans = response.data.loans
+            console.log(this.loans)           
             this.firstName =response.data.firstName; 
             console.log(this.firstName)            
         })
