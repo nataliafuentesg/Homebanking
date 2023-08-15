@@ -28,14 +28,6 @@ public class Client {
     @JsonManagedReference
     private Set<ClientLoan> clientLoans = new HashSet<>();
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
 
 
     public void addLoan(ClientLoan clientLoan) {
@@ -59,17 +51,17 @@ public class Client {
     public Client() { }
 
     public Client(String first, String last, String mail) {
-
         this.firstName = first;
         this.lastName = last;
         this.email = mail;
     }
 
-    public Client(String firstName, String lastName, String email, Set<Account> accounts) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.accounts = accounts;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -104,11 +96,5 @@ public class Client {
         this.accounts = accounts;
     }
 
-    public Client(String firstName, String lastName, String email, Set<Account> accounts, Set<ClientLoan> clientLoans) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.accounts = accounts;
-        this.clientLoans = clientLoans;
-    }
+
 }
