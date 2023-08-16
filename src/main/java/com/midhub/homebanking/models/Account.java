@@ -21,9 +21,23 @@ public class Account {
     private Double balance;
 
     @OneToMany(mappedBy="account", fetch=FetchType.EAGER)
-    @JsonManagedReference
     Set<Transaction> transactions = new HashSet<>();
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "client_id")
+    private Client client;
+    public Account(String number, LocalDate creationDate, Double balance) {
+        this.number = number;
+        this.creationDate = creationDate;
+        this.balance = balance;
 
+    }
+    public Account() {
+    }
+    @JsonIgnore
+    public Client getClient() {
+
+        return client;
+    }
     public Set<Transaction> getTransactions() {
         return transactions;
     }
@@ -32,25 +46,6 @@ public class Account {
         this.transactions = transactions;
     }
 
-    public Account(String number, LocalDate creationDate, Double balance) {
-        this.number = number;
-        this.creationDate = creationDate;
-        this.balance = balance;
-
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "client_id")
-    @JsonBackReference
-    private Client client;
-
-    public Account() {
-    }
-    @JsonIgnore
-    public Client getClient() {
-
-        return client;
-    }
 
     public void setClient(Client client) {
         this.client = client;

@@ -21,32 +21,10 @@ public class Client {
 
     private String email;
     @OneToMany(mappedBy="client", fetch=FetchType.EAGER)
-    @JsonManagedReference
-    Set<Account> accounts = new HashSet<>();
+    private Set<Account> accounts = new HashSet<>();
 
     @OneToMany(mappedBy = "client", fetch=FetchType.EAGER)
-    @JsonManagedReference
     private Set<ClientLoan> clientLoans = new HashSet<>();
-
-
-
-    public void addLoan(ClientLoan clientLoan) {
-        clientLoan.setClient(this);
-        clientLoans.add(clientLoan);
-    }
-    @JsonIgnore
-    public Set<ClientLoan> getClientLoans() {
-        return clientLoans;
-    }
-    public Set<Account> getAccounts() {
-        return accounts;
-    }
-
-
-    public void addAccount(Account account) {
-        account.setClient(this);
-        accounts.add(account);
-    }
 
     public Client() { }
 
@@ -54,6 +32,23 @@ public class Client {
         this.firstName = first;
         this.lastName = last;
         this.email = mail;
+    }
+
+    public void addLoan(ClientLoan clientLoan) {
+        clientLoan.setClient(this);
+        clientLoans.add(clientLoan);
+    }
+
+    public void addAccount(Account account) {
+        account.setClient(this);
+        accounts.add(account);
+    }
+    @JsonIgnore
+    public Set<ClientLoan> getClientLoans() {
+        return clientLoans;
+    }
+    public Set<Account> getAccounts() {
+        return accounts;
     }
 
     public long getId() {

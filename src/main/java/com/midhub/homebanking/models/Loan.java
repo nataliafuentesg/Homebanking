@@ -21,9 +21,29 @@ public class Loan {
     private List<Integer> payments;
 
     @OneToMany(mappedBy="loan", fetch=FetchType.EAGER)
-    @JsonManagedReference
     private Set<ClientLoan> clientLoans = new HashSet<>();
 
+    public Loan() {
+    }
+
+    public Loan( String name, double maxAmount, List<Integer> payments) {
+
+        this.name = name;
+        this.maxAmount = maxAmount;
+        this.payments = payments;
+    }
+
+    public Loan(String name, double maxAmount, List<Integer> payments, Set<ClientLoan> clientLoans) {
+        this.name = name;
+        this.maxAmount = maxAmount;
+        this.payments = payments;
+        this.clientLoans = clientLoans;
+    }
+
+    public void addClientLoan(ClientLoan clientLoan) {
+        clientLoan.setLoan(this);
+        clientLoans.add(clientLoan);
+    }
     public long getId() {
         return id;
     }
@@ -54,28 +74,6 @@ public class Loan {
 
     public void setPayments(List<Integer> payments) {
         this.payments = payments;
-    }
-
-    public Loan() {
-    }
-
-    public Loan( String name, double maxAmount, List<Integer> payments) {
-
-        this.name = name;
-        this.maxAmount = maxAmount;
-        this.payments = payments;
-    }
-
-    public Loan(String name, double maxAmount, List<Integer> payments, Set<ClientLoan> clientLoans) {
-        this.name = name;
-        this.maxAmount = maxAmount;
-        this.payments = payments;
-        this.clientLoans = clientLoans;
-    }
-
-    public void addClientLoan(ClientLoan clientLoan) {
-        clientLoan.setLoan(this);
-        clientLoans.add(clientLoan);
     }
 
     public Set<ClientLoan> getClientLoans() {

@@ -15,12 +15,10 @@ public class ClientLoan {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
-    @JsonBackReference
     private Client client;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "loan_id")
-    @JsonBackReference
     private Loan loan;
 
     public ClientLoan() {

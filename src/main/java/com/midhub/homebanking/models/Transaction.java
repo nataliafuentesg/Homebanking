@@ -21,8 +21,19 @@ public class Transaction {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "account_id")
-    @JsonBackReference
     private Account account;
+
+    public Transaction() {
+    }
+
+    public Transaction( double amount, LocalDateTime date, TransactionType transactionType, String descripiton, Account account) {
+
+        this.amount = amount;
+        this.date = date;
+        this.transactionType = transactionType;
+        this.description = descripiton;
+        this.account = account;
+    }
 
     public long getId() {
         return id;
@@ -72,15 +83,5 @@ public class Transaction {
         this.description = description;
     }
 
-    public Transaction() {
-    }
 
-    public Transaction( double amount, LocalDateTime date, TransactionType transactionType, String descripiton, Account account) {
-
-        this.amount = amount;
-        this.date = date;
-        this.transactionType = transactionType;
-        this.description = descripiton;
-        this.account = account;
-    }
 }
