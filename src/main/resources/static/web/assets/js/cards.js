@@ -6,7 +6,7 @@ const options = {
         return {
             cards: [],
             firstName: "",
-            localTime: "",
+            localTime: "",            
         }
     },
 
@@ -34,7 +34,8 @@ const options = {
         },
         debitCards() {
             return this.cards.filter(card => card.cardType === 'DEBIT');
-        }
+        },
+        
     },
 
     methods: {
@@ -59,6 +60,18 @@ const options = {
             const seconds = now.getSeconds().toString().padStart(2, "0");
             this.localTime = `${hours}:${minutes}:${seconds}`;
         },
+
+        formattedDate(date) {
+            const formattedDate = new Date(date);
+            const day = formattedDate.getDate().toString().padStart(2, "0");
+            const month = (formattedDate.getMonth() + 1).toString().padStart(2, "0");
+            const year = formattedDate.getFullYear().toString().slice(-2);
+            return `${month}/${year}`;
+        },
+
+        uppercaseName(nameclient) {
+            return nameclient.toUpperCase();
+          }
 
     }
    

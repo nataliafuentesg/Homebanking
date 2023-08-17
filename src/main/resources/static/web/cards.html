@@ -30,10 +30,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link active" style="background-color: #1848a0; color: white !important;"
-                            aria-current="page" href="./accounts.html"><i class="bi bi-wallet-fill"></i> Accounts
+                        <a class="nav-link active" href="./accounts.html"><i class="bi bi-wallet-fill"></i> Accounts
                         </a>
-                        <a class="nav-link" href="#"><i class="bi bi-credit-card"></i> Cards</a>
+                        <a class="nav-link active" style="background-color: #1848a0; color: white !important;" aria-current="page" href="#"><i class="bi bi-credit-card"></i> Cards</a>
                         <a class="nav-link" href="#"><i class="bi bi-cash-stack"></i> Loans</a>
                         <a class="nav-link" href="#"><i class="bi bi-arrow-left-right"></i> Transactions</a>
 
@@ -92,48 +91,8 @@
             <div class="containerCard">
                 <template v-if="cards.length > 0">
                     <template v-for="card in creditCards">
-                        <h2>Credit Cards</h2>
-                        <div class="cardBodyc">
-                            <div class="card-inner">
-                                <div class="frontCredit">
-                                    <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
-                                    <div class="cardChip">
-                                        <img src="https://i.ibb.co/G9pDnYJ/chip.png" class="chip">
-                                        <img src="https://i.ibb.co/WHZ3nRJ/visa.png" class="visa">
-                                    </div>
-                                    <div class="card-no">
-                                        <p>{{ card.number }}</p>
-                                    </div>
-                                    <div class="card-holder">
-                                        <p>CARD HOLDER</p>
-                                        <p>VALID TILL</p>
-                                    </div>
-                                    <div class="name">
-                                        <p>{{ card.cardHolder }}</p>
-                                        <p>{{ card.fromDate }}</p>
-                                    </div>
-                                </div>
-                                <div class="backCredit">
-                                    <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
-                                    <div class="bar"></div>
-                                    <div class="card-cvv">
-                                        <div>
-                                            <img src="https://i.ibb.co/S6JG8px/pattern.png">
-                                        </div>
-                                        <p>{{card.cvv}}</p>
-                                    </div>
-                                    <div class="signature">
-                                        <p>CUSTOMER SIGNATURE</p>
-                                        <img src="https://i.ibb.co/WHZ3nRJ/visa.png" width="80px">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </template>
-                    <template v-for="card in debitCards" >
-                        <h2>Debit Cards</h2>
-                        <div class="cardBodyc">
+                        <h2 style="text-align: left !important; color: #1848a0; font-weight: bold;">Credit Cards</h2>
+                        <div :class="['cardBodyc', card.cardColor]">
                             <div class="card-inner">
                                 <div class="frontDebit">
                                     <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
@@ -145,28 +104,44 @@
                                         <p>{{ card.number }}</p>
                                     </div>
                                     <div class="card-holder">
-                                        <p>CARD HOLDER</p>
-                                        <p>VALID TILL</p>
+                                        <p style="margin: 0;" >CARD HOLDER</p>
+                                        <p style="font-weight: bold; font-size: medium; margin: 0;">CVV: {{card.cvv}}</p>
+                                        <p style="margin: 0;" >VALID TILL</p>
                                     </div>
                                     <div class="name">
-                                        <p>{{ card.cardHolder }}</p>
-                                        <p>{{ card.fromDate }}</p>
+                                        <p style="margin: 0;"  style="margin: 0;">{{ uppercaseName (card.cardHolder) }}</p>
+                                        <p style="margin: 0;"  style="margin: 0;">{{ formattedDate (card.fromDate)  }}</p>
                                     </div>
-                                </div>
-                                <div class="backDebit">
+                                    
+                                </div>                                
+                            </div>
+                        </div>
+
+                    </template>
+                    <template v-for="card in debitCards" >
+                        <h2 style="text-align: left; color: #1848a0; font-weight: bold;">Debit Cards</h2>
+                        <div :class="['cardBodyc', card.cardColor]">
+                            <div class="card-inner">
+                                <div class="frontDebit">
                                     <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
-                                    <div class="bar"></div>
-                                    <div class="card-cvv">
-                                        <div>
-                                            <img src="https://i.ibb.co/S6JG8px/pattern.png">
-                                        </div>
-                                        <p>{{card.cvv}}</p>
+                                    <div class="cardChip">
+                                        <img src="https://i.ibb.co/G9pDnYJ/chip.png" class="chip">
+                                        <img src="https://i.ibb.co/WHZ3nRJ/visa.png" class="visa">
                                     </div>
-                                    <div class="signature">
-                                        <p>CUSTOMER SIGNATURE</p>
-                                        <img src="https://i.ibb.co/WHZ3nRJ/visa.png" width="80px">
+                                    <div class="card-no">
+                                        <p>{{ card.number }}</p>
                                     </div>
-                                </div>
+                                    <div class="card-holder">
+                                        <p style="margin: 0;">CARD HOLDER</p>
+                                        <p style="font-weight: bold; font-size: medium; margin: 0%;">CVV: {{card.cvv}}</p>
+                                        <p style="margin: 0;">VALID TILL</p>
+                                    </div>
+                                    <div class="name">
+                                        <p style="margin: 0;">{{ uppercaseName (card.cardHolder) }}</p>
+                                        <p style="margin: 0;">{{ formattedDate (card.fromDate) }}</p>
+                                    </div>
+                                    
+                                </div>                                
                             </div>
                         </div>
 
