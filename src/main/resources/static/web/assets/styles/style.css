@@ -38,7 +38,7 @@ a.nav-link:hover {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
-img {
+.logo {
     width: 12rem !important;
 }
 
@@ -270,20 +270,6 @@ main {
 
 }
 
-@media (min-width: 768px) {
-    .navbar-expand-md .navbar-collapse {
-        display: flex !important;
-        flex-basis: auto;
-        justify-content: flex-end;
-    }
-}
-
-
-@media (min-width:768px) {
-    .header-blue {
-        padding-bottom: 10px;
-    }
-}
 
 .header-blue .navbar {
     background: transparent;
@@ -293,13 +279,6 @@ main {
     border-radius: 0;
     box-shadow: none;
     border: none;
-}
-
-@media (min-width:768px) {
-    .header-blue .navbar {
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-    }
 }
 
 .header-blue .navbar .navbar-brand {
@@ -314,13 +293,6 @@ main {
 .header-blue .navbar .navbar-collapse {
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     margin-top: .5rem;
-}
-
-@media (min-width:768px) {
-    .header-blue .navbar .navbar-collapse {
-        border-color: transparent;
-        margin: 0;
-    }
 }
 
 .header-blue .navbar .navbar-collapse span .login {
@@ -346,20 +318,6 @@ main {
 .header-blue .navbar .navbar-nav>.show .dropdown-item {
     background: none;
     box-shadow: none;
-}
-
-@media (min-width: 768px) {
-    .header-blue .navbar-nav .nav-link {
-        padding-left: .7rem;
-        padding-right: .7rem;
-    }
-}
-
-@media (min-width: 992px) {
-    .header-blue .navbar-nav .nav-link {
-        padding-left: 1.2rem;
-        padding-right: 1.2rem;
-    }
 }
 
 .header-blue .navbar .navbar-nav>li>.dropdown-menu {
@@ -430,13 +388,6 @@ main {
     text-align: center;
 }
 
-@media (min-width:768px) {
-    .header-blue .hero {
-        margin-top: 60px;
-        text-align: left;
-    }
-}
-
 .header-blue .hero h1 {
     color: #fff;
     font-size: 40px;
@@ -446,13 +397,7 @@ main {
     line-height: 1.4;
 }
 
-@media (min-width:992px) {
-    .header-blue .hero h1 {
-        margin-top: 30px;
-        margin-bottom: 0;
-        line-height: 1.2;
-    }
-}
+
 
 .header-blue .hero p {
     color: rgba(255, 255, 255, 0.8);
@@ -497,23 +442,11 @@ main {
     background-position: center;
 }
 
-
-
-@media only screen and (max-width: 450px) {
-    #collapsable {
-        display: none !important;
-    }
-
-    img {
-        width: 8rem !important;
-    }
-}
-
 /* footer */
 
 .footer-10 {
     background: #1848a0;
-    padding: 0 0 4em 0;
+    padding: 0 0 1rem 0;
 }
 
 .footer-10 .border-top,
@@ -588,26 +521,6 @@ main {
     border-radius: 0;
 }
 
-.footer-10 .subscribe-form .form-group input::-webkit-input-placeholder {
-    /* Chrome/Opera/Safari */
-    color: rgba(0, 0, 0, 0.3) !important;
-}
-
-.footer-10 .subscribe-form .form-group input::-moz-placeholder {
-    /* Firefox 19+ */
-    color: rgba(0, 0, 0, 0.3) !important;
-}
-
-.footer-10 .subscribe-form .form-group input:-ms-input-placeholder {
-    /* IE 10+ */
-    color: rgba(0, 0, 0, 0.3) !important;
-}
-
-.footer-10 .subscribe-form .form-group input:-moz-placeholder {
-    /* Firefox 18- */
-    color: rgba(0, 0, 0, 0.3) !important;
-}
-
 .footer-10 .subscribe-form .form-group input:focus {
     outline: none !important;
     -webkit-box-shadow: none;
@@ -657,7 +570,7 @@ main {
 .btnsLine {
     display: flex;
     gap: 2rem;
-    justify-content: space-evenly;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 
@@ -672,186 +585,6 @@ main {
 
 #btnHome:hover {
     background-color: #002752;
-}
-
-
-/* cards home */
-
-.cards-wrapper {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap: wrap;
-    padding-bottom: 2rem;
-    gap: 2rem;
-}
-
-.card {
-
-    --bg-filter-opacity: 0.5;
-    background-image: linear-gradient(rgba(0, 0, 0, var(--bg-filter-opacity)), rgba(0, 0, 0, var(--bg-filter-opacity))), var(--bg-img);
-    height: 20rem;
-    width: 20em;
-    font-size: 1.2rem;
-    color: white;
-    border-radius: 1em;
-    padding: 1em;
-    display: flex;
-    align-items: flex-end;
-    background-size: cover;
-    background-position: center;
-    /* box-shadow: 0 0 5em -1em blue; */
-    transition: all, var(--transition-time);
-    position: relative;
-    overflow: hidden;
-    border: 10px solid var(--color2);
-    text-decoration: none;
-}
-
-.card:hover {
-    transform: rotate(0);
-}
-
-.card h1 {
-    margin: 0;
-    font-size: 1.5em;
-    line-height: 1.2em;
-}
-
-.card p {
-    font-size: 1rem;
-    margin-top: 0.5em;
-    line-height: 2em;
-}
-
-.card .tags {
-    display: flex;
-}
-
-.card .tags .tag {
-    font-size: 0.75em;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 0.3rem;
-    padding: 0 0.5em;
-    margin-right: 0.5em;
-    line-height: 1.5em;
-    transition: all, var(--transition-time);
-}
-
-.card:hover .tags .tag {
-    background: var(--color2);
-    color: white !important;
-}
-
-.card .date {
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 0.75em;
-    padding: 1em;
-    line-height: 1em;
-    opacity: .8;
-}
-
-.card:before,
-.card:after {
-    content: '';
-    transform: scale(0);
-    transform-origin: top left;
-    border-radius: 50%;
-    position: absolute;
-    left: -50%;
-    top: -50%;
-    z-index: -5;
-    transition: all, var(--transition-time);
-    transition-timing-function: ease-in-out;
-}
-
-.card:before {
-    background: #ddd;
-    width: 250%;
-    height: 250%;
-}
-
-.card:after {
-    background: var(--color1);
-    width: 200%;
-    height: 200%;
-}
-
-.card:hover {
-    color: white;
-}
-
-.card:hover:before,
-.card:hover:after {
-    transform: scale(1);
-}
-
-.card-grid-space .num {
-    font-size: 3em;
-    margin-bottom: 1.2rem;
-    margin-left: 1rem;
-}
-
-.info {
-    font-size: 1.2em;
-    display: flex;
-    padding: 1em 3em;
-    height: 3em;
-}
-
-.info img {
-    height: 3em;
-    margin-right: 0.5em;
-}
-
-.info h1 {
-    font-size: 1em;
-    font-weight: normal;
-}
-
-/* MEDIA QUERIES */
-@media screen and (max-width: 1285px) {
-    .cards-wrapper {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    .cards-wrapper {
-        grid-template-columns: 1fr;
-    }
-
-    .info {
-        justify-content: center;
-    }
-
-    .card-grid-space .num {
-        margin-left: 0;
-        text-align: center;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .cards-wrapper {
-        padding: 4rem 2rem;
-    }
-
-    .card {
-        max-width: calc(100vw - 4rem);
-    }
-}
-
-@media screen and (max-width: 450px) {
-    .info {
-        display: block;
-        text-align: center;
-    }
-
-    .info h1 {
-        margin: 0;
-    }
 }
 
 
@@ -870,25 +603,6 @@ main {
     color: #fff;
 }
 
-.career-form .form-control::-webkit-input-placeholder {
-    /* Chrome/Opera/Safari */
-    color: #fff;
-}
-
-.career-form .form-control::-moz-placeholder {
-    /* Firefox 19+ */
-    color: #fff;
-}
-
-.career-form .form-control:-ms-input-placeholder {
-    /* IE 10+ */
-    color: #fff;
-}
-
-.career-form .form-control:-moz-placeholder {
-    /* Firefox 18- */
-    color: #fff;
-}
 
 .career-form .custom-select {
     background-color: rgba(255, 255, 255, 0.2);
@@ -981,14 +695,6 @@ ul {
     border-radius: 10px;
 }
 
-@media (min-width: 992px) {
-    .job-overview {
-        position: -webkit-sticky;
-        position: sticky;
-        top: 70px;
-    }
-}
-
 .job-overview .job-detail ul {
     margin-bottom: 28px;
 }
@@ -1017,31 +723,6 @@ ul {
     padding: 10px 5px;
 }
 
-@media (min-width: 768px) {
-
-    .job-content ul li {
-        border-bottom: 0;
-        padding: 0;
-    }
-}
-
-@media (min-width: 768px) {
-    .d-md-flex {
-
-        display: flex !important;
-        gap: 1rem;
-        align-items: center;
-
-    }
-}
-
-@media (max-width: 768px) {
-    .filter-result .job-box {
-        margin: 1rem;
-
-    }
-}
-
 .job-content ul li i {
     font-size: 20px;
     position: relative;
@@ -1052,340 +733,260 @@ ul {
     margin-bottom: 30px;
 }
 
+/* credit cards */
 
-/* light cards */
-
-/* .light {
-    background: #f3f5f7;
-} */
-
-a,
-a:hover {
-    text-decoration: none;
-    transition: color 0.3s ease-in-out;
-}
-
-#pageHeaderTitle {
-    margin: 2rem 0;
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 2.5rem;
-}
-
-/* Cards */
-.postcard {
-    flex-wrap: wrap;
+.containerCard {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding-bottom: 2rem;
+}
 
-    box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
-    border-radius: 10px;
-    margin: 0 0 2rem 0;
-    overflow: hidden;
+.rowImg{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cardBodyc {
+    width: 500px;
+    height: 300px;
+    color: #fff;
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
     position: relative;
-    color: #ffffff;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
 
-    /* &.dark {
-        background-color: #18151f;
+.frontCredit, .backCredit {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(45deg, #0045c7, #70b3ff);
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    z-index: 1;
+    backface-visibility: hidden;
+}
+
+.frontDebit, .backDebit {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(45deg, #280744, #ff97f6);
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    z-index: 1;
+    backface-visibility: hidden;
+}
+
+.map-img {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+    z-index: -1;
+}
+.cardChip{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 3rem;
+}
+
+.chip{
+    height: 4rem;
+}
+
+.visa{
+    height: 2rem;
+}
+
+.card-no {
+    display: flex;
+    justify-content: center;
+    font-size: 35px;
+    padding-top: 2rem;
+    margin: none;
+    
+}
+
+.card-holder {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin: none;
+    
+}
+
+.name {
+    display: flex;
+    justify-content: space-between;
+    font-size: 22px;
+    margin: none;
+    
+}
+
+.bar {
+    background: #222;
+    margin-left: -30px;
+    margin-right: -30px;
+    height: 60px;
+    margin-top: 10px;
+}
+
+.card-cvv {
+    margin-top: 20px;
+}
+
+.card-cvv div {
+    flex: 1;
+}
+
+.card-cvv img {
+    width: 100%;
+    display: block;
+    line-height: 0;
+}
+
+.card-cvv p {
+    background: #fff;
+    color: #000;
+    font-size: 22px;
+    padding: 10px 20px;
+}
+
+.card-text {
+    margin-top: 30px;
+    font-size: 14px;
+}
+
+.signature {
+    margin-top: 30px;
+}
+
+.backCredit, .backDebit {
+    transform: rotateY(180deg);
+}
+
+.cardBodyc:hover .card-inner {
+    transform: rotateY(-180deg);
+}
+
+.infoCards{
+    display: flex;
+    gap: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+}
+
+/* Media Query */
+
+@media (min-width: 768px) {
+    .navbar-expand-md .navbar-collapse {
+        display: flex !important;
+        flex-basis: auto;
+        justify-content: flex-end;
+    }
+    .header-blue {
+        padding-bottom: 10px;
+    }
+    .header-blue .navbar {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+    .header-blue .navbar .navbar-collapse {
+        border-color: transparent;
+        margin: 0;
+    }
+    .header-blue .navbar-nav .nav-link {
+        padding-left: .7rem;
+        padding-right: .7rem;
+    }
+    .header-blue .hero {
+        margin-top: 60px;
+        text-align: left;
     }
 
-    &.light {
-        background-color: #e1e5ea;
-    } */
-
-    .t-dark {
-        color: #18151f;
+    .job-content ul li {
+        border-bottom: 0;
+        padding: 0;
     }
 
-    a {
-        color: inherit;
+    .d-md-flex {
+
+        display: flex !important;
+        gap: 1rem;
+        align-items: center;
+
     }
 
-    h1,
-    .h1 {
-        margin-bottom: 0.5rem;
-        font-weight: 500;
+    
+}
+
+
+@media (min-width: 992px) {
+    .header-blue .navbar-nav .nav-link {
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+    }
+    .header-blue .hero h1 {
+        margin-top: 30px;
+        margin-bottom: 0;
         line-height: 1.2;
     }
-
-    .small {
-        font-size: 80%;
-    }
-
-    .postcard__title {
-        font-size: 1.75rem;
-    }
-
-    .postcard__img {
-        max-height: 180px;
-        width: 100%;
-        object-fit: cover;
-        position: relative;
-    }
-
-    .postcard__img_link {
-        display: contents;
-    }
-
-    .postcard__bar {
-        width: 50px;
-        height: 10px;
-        margin: 10px 0;
-        border-radius: 5px;
-        background-color: #424242;
-        transition: width 0.2s ease;
-    }
-
-    .postcard__text {
-        padding: 1.5rem;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .postcard__preview-txt {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        text-align: justify;
-        height: 100%;
-    }
-
-    .postcard__tagbox {
-        display: flex;
-        flex-flow: row wrap;
-        font-size: 14px;
-        margin: 20px 0 0 0;
-        padding: 0;
-        justify-content: center;
-
-        .tag__item {
-            display: inline-block;
-            background: rgba(83, 83, 83, 0.4);
-            border-radius: 3px;
-            padding: 2.5px 10px;
-            margin: 0 5px 5px 0;
-            cursor: default;
-            user-select: none;
-            transition: background-color 0.3s;
-
-            &:hover {
-                /* background: rgba(83, 83, 83, 0.8); */
-            }
-        }
-    }
-
-    &:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background-image: linear-gradient(-70deg, #424242, transparent 50%);
-        opacity: 1;
-        border-radius: 10px;
-    }
-
-    &:hover .postcard__bar {
-        width: 100px;
+    .job-overview {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 70px;
     }
 }
 
-@media screen and (min-width: 769px) {
-    .postcard {
-        flex-wrap: inherit;
-
-        .postcard__title {
-            font-size: 2rem;
-        }
-
-        .postcard__tagbox {
-            justify-content: start;
-        }
-
-        .postcard__img {
-            max-width: 300px;
-            max-height: 100%;
-            transition: transform 0.3s ease;
-        }
-
-        .postcard__text {
-            padding: 3rem;
-            width: 100%;
-        }
-
-        .media.postcard__text:before {
-            content: "";
-            position: absolute;
-            display: block;
-            background: #18151f;
-            top: -20%;
-            height: 130%;
-            width: 55px;
-        }
-
-        &:hover .postcard__img {
-            transform: scale(1.1);
-        }
-
-        &:nth-child(2n+1) {
-            flex-direction: row;
-        }
-
-        &:nth-child(2n+0) {
-            flex-direction: row-reverse;
-        }
-
-        &:nth-child(2n+1) .postcard__text::before {
-            left: -12px !important;
-            transform: rotate(4deg);
-        }
-
-        &:nth-child(2n+0) .postcard__text::before {
-            right: -12px !important;
-            transform: rotate(-4deg);
-        }
-    }
-}
-
-@media screen and (min-width: 1024px) {
-    .postcard__text {
-        padding: 2rem 3.5rem;
+@media only screen and (max-width: 450px) {
+    #collapsable {
+        display: none !important;
     }
 
-    .postcard__text:before {
-        content: "";
-        position: absolute;
-        display: block;
-
-        top: -20%;
-        height: 130%;
-        width: 55px;
+    .logo {
+        width: 8rem !important;
     }
 
-
-    .postcard.light {
-        .postcard__text:before {
-            /* background: #e1e5ea; */
-        }
-    }
-}
-
-/* COLORS */
-/* .postcard .postcard__tagbox .green.play:hover {
-	background: $main-green;
-	color: black;
-}
-.green .postcard__title:hover {
-	color: $main-green;
-}
-.green .postcard__bar {
-	background-color: $main-green;
-}
-.green::before {
-	background-image: linear-gradient(
-		-30deg,
-		$main-green-rgb-015,
-		transparent 50%
-	);
-}
-.green:nth-child(2n)::before {
-	background-image: linear-gradient(30deg, $main-green-rgb-015, transparent 50%);
-}
-
-.postcard .postcard__tagbox .blue.play:hover {
-	background: $main-blue;
-}
-.blue .postcard__title:hover {
-	color: $main-blue;
-}
-.blue .postcard__bar {
-	background-color: $main-blue;
-}
-.blue::before {
-	background-image: linear-gradient(-30deg, $main-blue-rgb-015, transparent 50%);
-}
-.blue:nth-child(2n)::before {
-	background-image: linear-gradient(30deg, $main-blue-rgb-015, transparent 50%);
-}
-
-.postcard .postcard__tagbox .red.play:hover {
-	background: $main-red;
-}
-.red .postcard__title:hover {
-	color: $main-red;
-}
-.red .postcard__bar {
-	background-color: $main-red;
-}
-.red::before {
-	background-image: linear-gradient(-30deg, $main-red-rgb-015, transparent 50%);
-}
-.red:nth-child(2n)::before {
-	background-image: linear-gradient(30deg, $main-red-rgb-015, transparent 50%);
-}
-
-.postcard .postcard__tagbox .yellow.play:hover {
-	background: $main-yellow;
-	color: black;
-}
-.yellow .postcard__title:hover {
-	color: $main-yellow;
-} */
-/* .yellow .postcard__bar {
-	background-color: $main-yellow;
-} */
-.yellow::before {
-    background-image: linear-gradient(-30deg,
-
-            transparent 50%);
-}
-
-.yellow:nth-child(2n)::before {
-    background-image: linear-gradient(30deg,
-
-            transparent 50%);
-}
-
-@media screen and (min-width: 769px) {
-    .green::before {
-        background-image: linear-gradient(-80deg,
-
-                transparent 50%);
-    }
-
-    .green:nth-child(2n)::before {
-        background-image: linear-gradient(80deg,
-
-                transparent 50%);
-    }
-
-    .blue::before {
-        background-image: linear-gradient(-80deg,
-
-                transparent 50%);
-    }
-
-    .blue:nth-child(2n)::before {
-        background-image: linear-gradient(80deg, transparent 50%);
-    }
-
-    .red::before {
-        background-image: linear-gradient(-80deg, transparent 50%);
-    }
-
-    .red:nth-child(2n)::before {
-        background-image: linear-gradient(80deg, transparent 50%);
-    }
-
-    .yellow::before {
-        background-image: linear-gradient(-80deg,
+    .cardBodyc {
+        width: 330px;
                 
-                transparent 50%);
     }
 
-    .yellow:nth-child(2n)::before {
-        background-image: linear-gradient(80deg,
-
-                transparent 50%);
+    .containerCard{
+        align-items: start;
+        padding-left: 1rem;
     }
 }
+
+@media (max-width: 768px) {
+    .filter-result .job-box {
+        margin: 1rem;
+
+    }
+
+    .containerCard{
+        align-items: center;
+        padding: 0;
+    }
+    
+
+}
+

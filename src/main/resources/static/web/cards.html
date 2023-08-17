@@ -31,9 +31,9 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <a class="nav-link active" style="background-color: #1848a0; color: white !important;"
-                            aria-current="page" href="#"><i class="bi bi-wallet-fill"></i> Accounts
+                            aria-current="page" href="./accounts.html"><i class="bi bi-wallet-fill"></i> Accounts
                         </a>
-                        <a class="nav-link" href="./cards.html"><i class="bi bi-credit-card"></i> Cards</a>
+                        <a class="nav-link" href="#"><i class="bi bi-credit-card"></i> Cards</a>
                         <a class="nav-link" href="#"><i class="bi bi-cash-stack"></i> Loans</a>
                         <a class="nav-link" href="#"><i class="bi bi-arrow-left-right"></i> Transactions</a>
 
@@ -60,14 +60,16 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" style="font-weight: bold;" href="./assets/pages/index.html"><i
-                                            class="bi bi-box-arrow-in-right"></i> Log Out</a></li>
+                                <li><a class="dropdown-item" style="font-weight: bold;"
+                                        href="./assets/pages/index.html"><i class="bi bi-box-arrow-in-right"></i> Log
+                                        Out</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <a class="navbar-brand" href="#"><img src="./assets/images/logo.png" href="#" class="logo" alt="Logo"></img>
+                <a class="navbar-brand" href="#"><img src="./assets/images/logo.png" href="#" class="logo"
+                        alt="Logo"></img>
                 </a>
             </nav>
 
@@ -86,71 +88,93 @@
 
         <main class="p-2 flex-grow-1">
 
-            <h1 class="GFG" style="text-align: center; color: #1848a0; font-weight: bold;">Your Accounts</h1>
-            <div id="cardData" class="animate__animated animate__pulse">
-                <template v-if="accounts.length > 0" v-for="account in accounts">
-                    <div class="cardInfo">
-                        <div class="card-body">
-                            <h5 class="card-title">Account number: <span> {{account.number}} </span></h5>
-                            <h5 class="card-title">Balance: </h5>
-                            <div class="balance">
-                                {{formatCurrency(account.balance)}}
+            <h1 class="GFG" style="text-align: center; color: #1848a0; font-weight: bold;">Your Cards</h1>
+            <div class="containerCard">
+                <template v-if="cards.length > 0">
+                    <template v-for="card in creditCards">
+                        <h2>Credit Cards</h2>
+                        <div class="cardBodyc">
+                            <div class="card-inner">
+                                <div class="frontCredit">
+                                    <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
+                                    <div class="cardChip">
+                                        <img src="https://i.ibb.co/G9pDnYJ/chip.png" class="chip">
+                                        <img src="https://i.ibb.co/WHZ3nRJ/visa.png" class="visa">
+                                    </div>
+                                    <div class="card-no">
+                                        <p>{{ card.number }}</p>
+                                    </div>
+                                    <div class="card-holder">
+                                        <p>CARD HOLDER</p>
+                                        <p>VALID TILL</p>
+                                    </div>
+                                    <div class="name">
+                                        <p>{{ card.cardHolder }}</p>
+                                        <p>{{ card.fromDate }}</p>
+                                    </div>
+                                </div>
+                                <div class="backCredit">
+                                    <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
+                                    <div class="bar"></div>
+                                    <div class="card-cvv">
+                                        <div>
+                                            <img src="https://i.ibb.co/S6JG8px/pattern.png">
+                                        </div>
+                                        <p>{{card.cvv}}</p>
+                                    </div>
+                                    <div class="signature">
+                                        <p>CUSTOMER SIGNATURE</p>
+                                        <img src="https://i.ibb.co/WHZ3nRJ/visa.png" width="80px">
+                                    </div>
+                                </div>
                             </div>
-                            <h5 class="card-title">Creation Date: <span> {{formatDate(account.creationDate)}}
-                                </span>
-                            </h5>
-                            <div class="btnCard">
-                                <a :href="'./account.html?id=' + account.id"
-                                    style="background-color: white; color: #1848a0; padding: 0.4rem;"
-                                    class="btn btn-primary">View Transactions</a>
-                            </div>
-
                         </div>
-                    </div>
+
+                    </template>
+                    <template v-for="card in debitCards" >
+                        <h2>Debit Cards</h2>
+                        <div class="cardBodyc">
+                            <div class="card-inner">
+                                <div class="frontDebit">
+                                    <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
+                                    <div class="cardChip">
+                                        <img src="https://i.ibb.co/G9pDnYJ/chip.png" class="chip">
+                                        <img src="https://i.ibb.co/WHZ3nRJ/visa.png" class="visa">
+                                    </div>
+                                    <div class="card-no">
+                                        <p>{{ card.number }}</p>
+                                    </div>
+                                    <div class="card-holder">
+                                        <p>CARD HOLDER</p>
+                                        <p>VALID TILL</p>
+                                    </div>
+                                    <div class="name">
+                                        <p>{{ card.cardHolder }}</p>
+                                        <p>{{ card.fromDate }}</p>
+                                    </div>
+                                </div>
+                                <div class="backDebit">
+                                    <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
+                                    <div class="bar"></div>
+                                    <div class="card-cvv">
+                                        <div>
+                                            <img src="https://i.ibb.co/S6JG8px/pattern.png">
+                                        </div>
+                                        <p>{{card.cvv}}</p>
+                                    </div>
+                                    <div class="signature">
+                                        <p>CUSTOMER SIGNATURE</p>
+                                        <img src="https://i.ibb.co/WHZ3nRJ/visa.png" width="80px">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </template>
                 </template>
-                <template v-else>
-                    <div class="loader">
-                        <div class="justify-content-center jimu-primary-loading"></div>
-                    </div>
-                </template>
+
+
             </div>
-
-
-            <section>
-                <h1 class="GFG" style="text-align: center; color: #1848a0; font-weight: bold;">Loans</h1>
-                <template v-if = "loans.length > 0" v-for = "loan in loans">
-                    <div class="filter-result">
-                        <div class="job-box d-md-flex align-items-center justify-content-between mb-30 mr-50">
-                            <div class="job-left my-4 d-md-flex align-items-center flex-wrap">
-                                <div class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">
-                                    <span class="material-symbols-outlined" style="font-size: 40px;">
-                                        real_estate_agent
-                                    </span>
-                                </div>
-                                <div class="job-content">
-                                    <h5 class="text-center text-md-left" style="color: #1848a0;">{{loan.loanName}}</h5>
-                                    <ul class="d-md-flex flex-wrap text-capitalize g-4">
-                                        <li class="mr-md-4" style="color: #1848a0;">
-                                            <i class="bi bi-cash-stack" style="color: #1848a0;"></i> Amount: {{formatCurrency(loan.loanAmount)}}
-                                        </li>
-                                        <li class="mr-md-4" style="color: #1848a0;">
-                                            <i class="fa fa-usd"></i> Payments: {{loan.loanPayments}}
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="job-right my-4 flex-shrink-0">
-                                <a href="#" class="btn d-block w-100 d-sm-inline-block btn-light" style="background-color: #1848a0; color: white;">Pay now</a>
-                            </div>
-                        </div>
-                    </div>
-                </template>
-                <template v-else>
-                    You don´t have any loans
-                </template>
-            </section>
-
-
 
 
         </main>
@@ -269,9 +293,10 @@
             </div>
         </div>
     </footer>
-    
 
-    <script title="oNlineWebFonts" src="https://db.onlinewebfonts.com/animations/icons/187921.js" type="text/javascript"></script>
+
+    <script title="oNlineWebFonts" src="https://db.onlinewebfonts.com/animations/icons/187921.js"
+        type="text/javascript"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -289,7 +314,7 @@
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="./assets/js/accounts.js"></script>
+    <script src="./assets/js/cards.js"></script>
 </body>
 
 </html>

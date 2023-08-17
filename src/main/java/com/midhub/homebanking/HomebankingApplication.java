@@ -20,7 +20,12 @@ public class HomebankingApplication {
 
 
 	@Bean
-	public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository) {
+	public CommandLineRunner initData(ClientRepository clientRepository,
+									  AccountRepository accountRepository,
+									  TransactionRepository transactionRepository,
+									  LoanRepository loanRepository,
+									  ClientLoanRepository clientLoanRepository,
+									  CardRepository cardRepository) {
 		return (args) -> {
 			// save a couple of customers
 
@@ -99,6 +104,24 @@ public class HomebankingApplication {
 
 
 			clientLoanRepository.saveAll(clientLoans);
+
+			Card debitCardForMelba = new Card(melbaMorel.getFirstName() +" "+ melbaMorel.getLastName(),
+					CardType.DEBIT, CardColor.GOLD, "8990-1234-8907-4557", 567, LocalDate.now(),
+					LocalDate.now().plusYears(5), melbaMorel);
+			cardRepository.save(debitCardForMelba);
+
+
+			Card creditCardForMelba = new Card(melbaMorel.getFirstName() +" "+ melbaMorel.getLastName(),
+					CardType.CREDIT, CardColor.TITANIUM, "8990-1234-8907-8976", 997, LocalDate.now(),
+					LocalDate.now().plusYears(5), melbaMorel);
+			cardRepository.save(creditCardForMelba);
+
+			Card creditCardForQuione = new Card(quioneGalvis.getFirstName() +" "+ quioneGalvis.getLastName(),
+					CardType.CREDIT, CardColor.TITANIUM, "8990-1234-8907-1735", 997, LocalDate.now(),
+					LocalDate.now().plusYears(5), quioneGalvis);
+			cardRepository.save(creditCardForQuione);
+
+
 
 		};
 	}
