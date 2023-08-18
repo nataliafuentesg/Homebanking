@@ -858,7 +858,7 @@ ul {
     justify-content: space-between;
     gap: 1rem;
     padding-top: 2rem;
-    padding-bottom: 1rem;
+    padding-bottom: 3rem;
 }
 
 .bankAccountCard {
@@ -899,9 +899,16 @@ ul {
     padding-bottom: 3rem;
 }
 
-.verticalCards,
+
 .horizontalCards {
     width: 50%;
+}
+
+.verticalCards{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .GOLD {
@@ -945,6 +952,16 @@ ul {
             #ffffff 80%,
             #dedede 84%,
             #a1a1a1);
+}
+
+.cardBtn{
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+.loansInfo{
+    padding-top: 1rem;
+    padding-bottom: 4rem;
 }
 
 
