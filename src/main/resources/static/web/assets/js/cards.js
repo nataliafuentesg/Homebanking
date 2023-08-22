@@ -11,7 +11,7 @@ const options = {
     },
 
     created() {
-        axios.get("http://localhost:8080/api/clients/1")
+        axios.get("http://localhost:8080/api/clients/current")
             .then(response => {
                 console.log(response)
                 this.cards = response.data.cards;
@@ -71,7 +71,7 @@ const options = {
 
         uppercaseName(nameclient) {
             return nameclient.toUpperCase();
-          }
+        }
 
     }
    

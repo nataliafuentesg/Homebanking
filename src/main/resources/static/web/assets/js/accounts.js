@@ -16,7 +16,7 @@ const options = {
     },
 
     created() {
-        axios.get("http://localhost:8080/api/clients/1")
+        axios.get("http://localhost:8080/api/clients/current")
         .then(response => {
             console.log(response)            
             this.accounts = response.data.accounts.sort((a, b) => extractAccountNumber(a.number) - extractAccountNumber(b.number));
@@ -61,6 +61,18 @@ const options = {
             const seconds = now.getSeconds().toString().padStart(2, "0");
             this.localTime = `${hours}:${minutes}:${seconds}`;
         },
+
+        logout() {
+            axios.post('/api/logout')
+                .then(response => {
+                    if (response.status === 200) {
+                        window.location.href = '/web/assets/pages/index.html';
+                    }
+                })
+                .catch(error => {
+                    console.error('Logout failed:', error);
+                });
+        }
 
     }
 
