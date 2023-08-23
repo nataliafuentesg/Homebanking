@@ -109,8 +109,15 @@
                     </div>
                 </template>
                 <template v-else>
-                    <div class="loader">
-                        <div class="justify-content-center jimu-primary-loading"></div>
+                    <div class="cardEmpty">
+                        <div class="card-body">
+                            <h5 class="card-title">You don't have any accounts</h5>
+                            <div class="btnCard">
+                                <a  style="background-color: white; color: #1848a0; padding: 0.4rem;"
+                                    class="btn btn-primary">Open an account</a>
+                            </div>
+
+                        </div>
                     </div>
                 </template>
             </div>
@@ -146,7 +153,7 @@
                     </div>
                 </template>
                 <template v-else>
-                    You don´t have any loans
+                    <h2 style="color: #1848a0; text-align: center;">You don't have any loans</h2>
                 </template>
             </section>
 

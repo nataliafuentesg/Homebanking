@@ -16,7 +16,7 @@ const options = {
     },
 
     created() {
-        axios.get("http://localhost:8080/api/clients/1")
+        axios.get("http://localhost:8080/api/clients/current")
         .then(response => {
             console.log(response)      
                       
@@ -75,6 +75,18 @@ const options = {
             const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
             return formattedDate.toLocaleTimeString('en-US', options);
         },
+
+        logout() {
+            axios.post('/api/logout')
+                .then(response => {
+                    if (response.status === 200) {
+                        window.location.href = '/web/assets/pages/index.html';
+                    }
+                })
+                .catch(error => {
+                    console.error('Logout failed:', error);
+                });
+        }
 
     }
 

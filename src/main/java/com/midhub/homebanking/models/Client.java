@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 
@@ -125,4 +126,6 @@ public class Client {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 }

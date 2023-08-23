@@ -37,9 +37,14 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
 
             if (client != null) {
 
-                return new User(client.getEmail(), client.getPassword(),
+                if (inputName.equals("admin@mindhubbrothers.com")) {
+                    return new User(client.getEmail(), client.getPassword(),
+                            AuthorityUtils.createAuthorityList("ADMIN"));
+                } else {
+                    return new User(client.getEmail(), client.getPassword(),
 
-                        AuthorityUtils.createAuthorityList("CLIENT"));
+                            AuthorityUtils.createAuthorityList("CLIENT"));
+                }
 
             } else {
 

@@ -27,19 +27,22 @@ public class ClientController {
     }
     @RequestMapping("/clients/{id}")
     public ClientDTO getClient(@PathVariable Long id) {
-        return clientRepository.findById(id).map(ClientDTO::new).orElse(null);
+        return clientRepository
+                .findById(id)
+                .map(ClientDTO::new)
+                .orElse(null);
+    }
+
+    @RequestMapping("/clients/current")
+    public ClientDTO getAuthenticatedClient(Authentication authentication) {
+        return new ClientDTO(clientRepository.findByEmail(authentication.getName()));
     }
 
     @Autowired
 
     private PasswordEncoder passwordEncoder;
 
-    @RequestMapping("/clients/current")
-    public ClientDTO getAuthenticatedClient(Authentication authentication) {
-        String email = authentication.getName();
-        Client client = clientRepository.findByEmail(email);
-        return new ClientDTO(client);
-    }
+
 
 
 

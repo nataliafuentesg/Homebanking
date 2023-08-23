@@ -41,8 +41,12 @@ public class HomebankingApplication {
 			Client quioneGalvis = new Client("Quione", "Galvis", "quione@mindhub.com", "def456");
 			quioneGalvis.setPassword(passwordEncoder.encode(quioneGalvis.getPassword()));
 
+			Client admin = new Client("Admin", "User", "admin@mindhubbrothers.com", "admin");
+			admin.setPassword(passwordEncoder.encode(admin.getPassword()));
+
 			clientRepository.save(melbaMorel);
 			clientRepository.save(quioneGalvis);
+			clientRepository.save(admin);
 
 			Account account1 = new Account("VIN001", LocalDate.now(), 5000.0);
 			Account account2 = new Account("VIN002", LocalDate.now().plusDays(1), 7500.0);

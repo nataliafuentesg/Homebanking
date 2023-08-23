@@ -213,6 +213,21 @@ a.dropdown-item:hover {
     color: white;
 }
 
+.cardEmpty{
+    width: 20rem;
+    height: 13rem;
+    border-width: var(--color1);
+    border: #1848a0;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    background: rgb(9, 9, 121);
+    color: white;
+}
+
 .cardInfoAccount {
     width: 20rem;
     height: 10rem;
@@ -765,7 +780,7 @@ ul {
     transform-style: preserve-3d;
 }
 
-.frontCredit {
+.frontCredit , .frontDebit {
     width: 25rem;
     height: 15rem;
     position: absolute;
@@ -778,10 +793,11 @@ ul {
     backface-visibility: hidden;
 }
 
-.frontDebit {
+.frontnone {
     width: 25rem;
     height: 15rem;
     position: absolute;
+    background-color: #007bff;
     top: 0;
     left: 0;
     padding: 20px 30px;
