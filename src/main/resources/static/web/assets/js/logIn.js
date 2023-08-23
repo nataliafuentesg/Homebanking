@@ -8,7 +8,8 @@ const options = {
             lastName: '',
             email: '',
             password: '',
-            errorMessage: ''
+            errorMessage: '',
+            loginError: ''
         }
     },
 
@@ -22,14 +23,19 @@ const options = {
 
     methods: {
         login() {
-            const queryParams = `email=${encodeURIComponent(this.email)}&password=${encodeURIComponent(this.password)}`;
+            const loginData = `email=${(this.email)}&password=${(this.password)}`;
 
-            console.log(`/api/login?${queryParams}`);
-            axios.post(`/api/login?${queryParams}`)
+            console.log(`/api/login?${loginData}`);
+            axios.post(`/api/login?${loginData}`)
                 .then(response => {
                     if (response.status === 200) {
-                        window.location.href = '/web/accounts.html';
+                        if (this.email === 'admin@mindhubbrothers.com') {
+                           window.location.href = '/web/manager.html';
+                        } else {
+                            window.location.href = '/web/accounts.html';
+                        }
                     }
+                    
                 })
                 .catch(error => {
                    this.errorMessage = 'Login failed. Please check your credentials.';
@@ -38,8 +44,8 @@ const options = {
 
         register() {
 
-            const registrationData = `firstName=${encodeURIComponent(this.firstName)}&lastName=${encodeURIComponent(this.lastName)}
-                &email=${encodeURIComponent(this.email)}&password=${encodeURIComponent(this.password)}`;
+            const registrationData = `firstName=${(this.firstName)}&lastName=${(this.lastName)}
+                &email=${(this.email)}&password=${(this.password)}`;
             
             console.log(registrationData);
 
@@ -56,11 +62,18 @@ const options = {
                         }
                     })
                     .catch(loginError => {
+                        
                         console.error('Login after registration failed:', loginError);
                     });
                 })
+
                 console.log('/api/login', `email=${this.email}&password=${this.password}`)
                 .catch(error => {
+
+                    if (error.status === 403) {
+                        this.loginError = 'This email its already registered';
+                        console.error('Registration failed:', error);
+                    }
                     console.error('Registration failed:', error);
                 });
         }
