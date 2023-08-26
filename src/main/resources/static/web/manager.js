@@ -1,5 +1,7 @@
 let { createApp } = Vue
 
+console.log("manager")
+
 const options = {
     data() {
         return {
@@ -25,7 +27,7 @@ const options = {
                     console.log(response.data)
                     this.clients = response.data;
                     console.log(this.clients)
-                    this.jsonData = JSON.stringify(response.data, null, 1);
+                    
                 })
                 .catch(error => console.log(error));
         },

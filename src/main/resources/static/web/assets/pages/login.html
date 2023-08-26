@@ -94,11 +94,12 @@
                                                         <input type="password" class="form-style" placeholder="Password" v-model="password" required>
                                                         <i class="input-icon bi bi-lock"></i>
                                                     </div>
+                                                    
                                                     <button type="submit"
                                                         class="btn btnlogin mt-4">Register</button>
-                                                    <p v-if="loginError" style="color: #ffffff;">{{ loginError }}</p>
+                                                    
                                                 </form>
-                                                                                                
+                                                <p v-if="registrationError" style="color: #ffffff; font-weight: bold; padding-top: 0.5rem;">{{ registrationError }}</p>                                         
                                             </div>
                                         </div>
                                     </div>

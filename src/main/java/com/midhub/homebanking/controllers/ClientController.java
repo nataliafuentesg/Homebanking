@@ -1,6 +1,8 @@
 package com.midhub.homebanking.controllers;
 import com.midhub.homebanking.dtos.ClientDTO;
+import com.midhub.homebanking.models.Account;
 import com.midhub.homebanking.models.Client;
+import com.midhub.homebanking.repositories.AccountRepository;
 import com.midhub.homebanking.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,7 +11,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Random;
 
 import static java.util.stream.Collectors.toList;
 
@@ -19,6 +23,12 @@ import static java.util.stream.Collectors.toList;
 public class ClientController {
     @Autowired
     private ClientRepository clientRepository;
+
+    @Autowired
+    private AccountRepository accountRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     @RequestMapping("/clients")
@@ -38,16 +48,9 @@ public class ClientController {
 
     @RequestMapping("/clients/current")
     public ClientDTO getAuthenticatedClient(Authentication authentication) {
+
         return new ClientDTO(clientRepository.findByEmail(authentication.getName()));
     }
-
-    @Autowired
-
-    private PasswordEncoder passwordEncoder;
-
-
-
-
 
     @RequestMapping(path = "/clients", method = RequestMethod.POST)
     public ResponseEntity<Object> register(
@@ -68,12 +71,27 @@ public class ClientController {
             return new ResponseEntity<>("Name already in use", HttpStatus.FORBIDDEN);
 
         }
-        clientRepository.save(new Client(firstName, lastName, email, passwordEncoder.encode(password)));
+
+
+        Client newClient = new Client(firstName, lastName, email, passwordEncoder.encode(password));
+        clientRepository.save(newClient);
+
+        Account account = new Account("VIN-" + getRandomNumberUsingNextInt(10000000, 99999999), LocalDate.now(), 0.0);
+        account.setClient(newClient);
+        accountRepository.save(account);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
 
     }
 
+    private String generateAccountNumber() {
+        int accountNumber = getRandomNumberUsingNextInt(10000000, 99999999);
+        return "VIN-" + accountNumber;
+    }
+    private int getRandomNumberUsingNextInt(int min, int max) {
+        Random random = new Random();
+        return random.nextInt(max - min) + min;
+    }
 
 }
 

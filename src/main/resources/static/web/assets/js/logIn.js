@@ -9,7 +9,7 @@ const options = {
             email: '',
             password: '',
             errorMessage: '',
-            loginError: ''
+            registrationError: ''
         }
     },
 
@@ -66,15 +66,15 @@ const options = {
                         console.error('Login after registration failed:', loginError);
                     });
                 })
-
-                console.log('/api/login', `email=${this.email}&password=${this.password}`)
                 .catch(error => {
 
-                    if (error.status === 403) {
-                        this.loginError = 'This email its already registered';
+                    if (error.response && error.response.status === 403) {
+                        
+                        this.registrationError = 'This email is already registered.';
+                        console.error('email repeted');
+                    } else {
                         console.error('Registration failed:', error);
                     }
-                    console.error('Registration failed:', error);
                 });
         }
     }  

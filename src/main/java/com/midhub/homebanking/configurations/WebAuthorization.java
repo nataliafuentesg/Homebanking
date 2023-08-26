@@ -21,19 +21,24 @@ public class WebAuthorization {
     @Bean
     public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers(HttpMethod.POST, "/api/clients").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/clients/current/accounts").permitAll()
+                .antMatchers("/web/assets/pages/**", "/web/assets/images/**").permitAll()
+                .antMatchers("/web/assets/styles/**").permitAll()
+                .antMatchers("/web/assets/js/**").permitAll()
+
                 .antMatchers(HttpMethod.GET, "/api/clients").hasAuthority("ADMIN")
-                .antMatchers("/web/manager.html").hasAuthority("ADMIN")
+                .antMatchers("/web/manager.html", "/web/manager.js").hasAuthority("ADMIN")
                 .antMatchers("/h2-console/**").hasAuthority("ADMIN")
                 .antMatchers("/rest/**").hasAuthority("ADMIN")
                 .antMatchers("/web/accounts.html").hasAuthority("CLIENT")
+                .antMatchers("/api/clients/current").hasAuthority("CLIENT")
                 .antMatchers("/web/cards.html").hasAuthority("CLIENT")
                 .antMatchers("/web/account.html").hasAuthority("CLIENT")
-                .antMatchers(HttpMethod.POST, "/api/clients").permitAll()
-                .antMatchers("/web/assets/pages/**").permitAll()
-                .antMatchers("/web/assets/styles/**").permitAll()
-                .antMatchers("/web/assets/js/**").permitAll()
+
                 .antMatchers("/api/login").permitAll()
                 .antMatchers("/api/logout").authenticated()
+                .anyRequest().denyAll()
                 .and()
 
 

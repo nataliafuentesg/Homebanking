@@ -11,7 +11,8 @@ const options = {
             accounts : [],  
             loans : [],           
             firstName : "",  
-            localTime: "",         
+            localTime: "",  
+            canCreateAccount: false,       
         }
     },
 
@@ -24,7 +25,9 @@ const options = {
             this.loans = response.data.loans
             console.log(this.loans)           
             this.firstName =response.data.firstName; 
-            console.log(this.firstName)            
+            console.log(this.firstName)   
+            
+            this.canCreateAccount = response.data.accounts.length < 3;
         })
         .catch(error => console.log(error));
 
@@ -72,7 +75,21 @@ const options = {
                 .catch(error => {
                     console.error('Logout failed:', error);
                 });
-        }
+        },
+
+        createAccount() {
+            axios.post('/api/clients/current/accounts', {}, {
+              headers: { 'Content-Type': 'application/json' }
+            })
+            .then(response => {
+              if (response.status === 201) {
+                window.location.reload();
+              }
+            })
+            .catch(error => {
+              console.error('Error creating account:', error);
+            });
+          },
 
     }
 

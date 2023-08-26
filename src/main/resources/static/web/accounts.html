@@ -104,7 +104,6 @@
                                     style="background-color: white; color: #1848a0; padding: 0.4rem;"
                                     class="btn btn-primary">View Transactions</a>
                             </div>
-
                         </div>
                     </div>
                 </template>
@@ -120,6 +119,9 @@
                         </div>
                     </div>
                 </template>
+
+                <button @click="createAccount" v-if="canCreateAccount">Create Account</button>
+
             </div>
 
 
