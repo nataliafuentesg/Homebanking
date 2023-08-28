@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,17 +29,19 @@ public class CardController {
     private ClientRepository clientRepository;
 
     @RequestMapping(path = "/clients/current/cards", method = RequestMethod.POST)
-    public ResponseEntity<Object> newCard(@RequestParam CardType type, @RequestParam CardColor color,
-                                          Authentication authentication){
+    public ResponseEntity<Object> newCard(@RequestParam CardType type, @RequestParam CardColor color){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Client client = clientRepository.findByEmail(authentication.getName());
-        long existingCardsCount = cardRepository.countByClientAndType(client, type);
+
+        long existingCardsCount = cardRepository.countByClientAndCardType(client, type);
         if (existingCardsCount >= 3) {
             return new ResponseEntity<>("Maximum number of cards of this type reached", HttpStatus.FORBIDDEN);
         }
 
-        Card existingCardWithColor = cardRepository.findByClientAndColor(client, color);
-        if (existingCardWithColor != null) {
-            return new ResponseEntity<>("A card with this color already exists", HttpStatus.FORBIDDEN);
+        Card existingCardWithTypeAndColor = cardRepository.findByClientAndCardTypeAndCardcolor(client, type, color);
+        if (existingCardWithTypeAndColor != null) {
+            return new ResponseEntity<>("A card with this type and color already exists", HttpStatus.FORBIDDEN);
         }
 
         String cardNumber = generateCardNumber();
@@ -59,8 +62,10 @@ public class CardController {
     }
 
     private String generateCardNumber() {
-        int accountNumber = getRandomNumberUsingNextInt(10000000, 99999999);
-        return "VIN-" + accountNumber;
+        return getRandomNumberUsingNextInt(1000, 9999) + "-" +
+                getRandomNumberUsingNextInt(1000, 9999) + "-" +
+                getRandomNumberUsingNextInt(1000, 9999) + "-" +
+                getRandomNumberUsingNextInt(1000, 9999);
     }
 
     private int generateRandomCVV() {

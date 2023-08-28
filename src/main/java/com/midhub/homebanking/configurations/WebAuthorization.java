@@ -23,6 +23,7 @@ public class WebAuthorization {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/clients").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/clients/current/accounts").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/clients/current/cards").permitAll()
                 .antMatchers("/web/assets/pages/**", "/web/assets/images/**").permitAll()
                 .antMatchers("/web/assets/styles/**").permitAll()
                 .antMatchers("/web/assets/js/**").permitAll()
@@ -35,6 +36,7 @@ public class WebAuthorization {
                 .antMatchers("/api/clients/current").hasAuthority("CLIENT")
                 .antMatchers("/web/cards.html").hasAuthority("CLIENT")
                 .antMatchers("/web/account.html").hasAuthority("CLIENT")
+                .antMatchers("/web/create-Cards.html").hasAuthority("CLIENT")
 
                 .antMatchers("/api/login").permitAll()
                 .antMatchers("/api/logout").authenticated()

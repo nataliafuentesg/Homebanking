@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,16 +12,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./assets/styles/style.css">
-    <title> Your Cards </title>
+    <title> Create Cards | Mindhub Brothers</title>    
 </head>
-
 <body>
     <div id="app">
-
         <header>
             <nav class="navbar navbar-expand-lg" id="navbarMenu">
-
-
+    
+    
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -35,8 +32,8 @@
                         <a class="nav-link active" style="background-color: #1848a0; color: white !important;" aria-current="page" href="#"><i class="bi bi-credit-card"></i> Cards</a>
                         <a class="nav-link" href="#"><i class="bi bi-cash-stack"></i> Loans</a>
                         <a class="nav-link" href="#"><i class="bi bi-arrow-left-right"></i> Transactions</a>
-
-
+    
+    
                         <div class="nav-item dropdown">
                             <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -66,12 +63,12 @@
                         </div>
                     </div>
                 </div>
-
+    
                 <a class="navbar-brand" href="#"><img src="./assets/images/logo.png" href="#" class="logo"
                         alt="Logo"></img>
                 </a>
             </nav>
-
+    
             <div class="welcomeBanner">
                 <div class="message">
                     <div>
@@ -82,101 +79,27 @@
                     </div>
                 </div>
             </div>
-
+    
         </header>
-
-        <main class="p-2 flex-grow-1">
-
-            <h1 class="GFG" style="text-align: center; color: #1848a0; font-weight: bold;">Your Cards</h1>
-            <div class="containerCard">
-                <template v-if="cards.length > 0">
-                    <h2 style="text-align: left !important; color: #1848a0; font-weight: bold;">Credit Cards</h2>
-                    <template v-for="card in creditCards">                        
-                        <div :class="['cardBodyc', card.cardColor]">
-                            <div class="card-inner">
-                                <div class="frontDebit">
-                                    <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
-                                    <div class="cardChip">
-                                        <img src="https://i.ibb.co/G9pDnYJ/chip.png" class="chip">
-                                        <img src="https://i.ibb.co/WHZ3nRJ/visa.png" class="visa">
-                                    </div>
-                                    <div class="card-no">
-                                        <p>{{ card.number }}</p>
-                                    </div>
-                                    <div class="card-holder">
-                                        <p style="margin: 0;" >CARD HOLDER</p>
-                                        <p style="font-weight: bold; font-size: medium; margin: 0;">CVV: {{card.cvv}}</p>
-                                        <p style="margin: 0;" >VALID TILL</p>
-                                    </div>
-                                    <div class="name">
-                                        <p style="margin: 0;"  style="margin: 0;">{{ uppercaseName (card.cardHolder) }}</p>
-                                        <p style="margin: 0;"  style="margin: 0;">{{ formattedDate (card.fromDate)  }}</p>
-                                    </div>
-                                    
-                                </div>                                
-                            </div>
-                        </div>
-
-                    </template>
-
-                    <h2 style="text-align: left; color: #1848a0; font-weight: bold;">Debit Cards</h2>
-                    <template v-for="card in debitCards" >                        
-                        <div :class="['cardBodyc', card.cardColor]">
-                            <div class="card-inner">
-                                <div class="frontDebit">
-                                    <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
-                                    <div class="cardChip">
-                                        <img src="https://i.ibb.co/G9pDnYJ/chip.png" class="chip">
-                                        <img src="https://i.ibb.co/WHZ3nRJ/visa.png" class="visa">
-                                    </div>
-                                    <div class="card-no">
-                                        <p>{{ card.number }}</p>
-                                    </div>
-                                    <div class="card-holder">
-                                        <p style="margin: 0;">CARD HOLDER</p>
-                                        <p style="font-weight: bold; font-size: medium; margin: 0%;">CVV: {{card.cvv}}</p>
-                                        <p style="margin: 0;">VALID TILL</p>
-                                    </div>
-                                    <div class="name">
-                                        <p style="margin: 0;">{{ uppercaseName (card.cardHolder) }}</p>
-                                        <p style="margin: 0;">{{ formattedDate (card.fromDate) }}</p>
-                                    </div>
-                                    
-                                </div>                                
-                            </div>
-                        </div>
-                    </template>
-                </template>
-                <template v-else>
-                    <div class="cardBodyc">
-                        <div class="card-inner">
-                            <div class="frontnone">
-                                <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
-                                <div class="cardChip">
-                                    <img src="https://i.ibb.co/G9pDnYJ/chip.png" class="chip">
-                                    <img src="https://i.ibb.co/WHZ3nRJ/visa.png" class="visa">
-                                </div>
-                                <div class="card-no">
-                                    <p style="color: #ffffff;">You don't have any cards</p>
-                                </div>
-                                
-                                <div class="d-flex justify-content-center">
-                                    <a  style="background-color: white; color: #1848a0; padding: 0.4rem;"
-                                    class="btn btn-primary" href="./create-Cards.html">Create Card</a>
-                                </div>
-                                
-                            </div>                                
-                        </div>
-                    </div>
-                </template>
-
-
-            </div>
-
-
-        </main>
-
-
+        <main>
+            <form @submit.prevent="createCard">
+                <label for="type">Card Type:</label>
+                <select id="type" v-model="selectedType">
+                    <option value="DEBIT">DEBIT</option>
+                    <option value="CREDIT">CREDIT</option>
+                </select>
+                <br>
+                <label for="color">Card Color:</label>
+                <select id="color" v-model="selectedColor">
+                    <option value="SILVER">SILVER</option>
+                    <option value="GOLD">GOLD</option>
+                    <option value="PLATINUM">PLATINUM</option>
+                </select>
+                <br>
+                <button type="submit">Create</button>
+                <p v-if="errorMessage" style="color: red;">{{ errorMessage }}</p>
+            </form>
+        </main>    
     </div>
 
     <footer class="footer-10">
@@ -290,7 +213,7 @@
             </div>
         </div>
     </footer>
-
+    
 
     <script title="oNlineWebFonts" src="https://db.onlinewebfonts.com/animations/icons/187921.js"
         type="text/javascript"></script>
@@ -311,7 +234,6 @@
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="./assets/js/cards.js"></script>
+    <script src="./assets/js/create-Cards.js"></script>
 </body>
-
 </html>

@@ -48,7 +48,6 @@ public class ClientController {
 
     @RequestMapping("/clients/current")
     public ClientDTO getAuthenticatedClient(Authentication authentication) {
-
         return new ClientDTO(clientRepository.findByEmail(authentication.getName()));
     }
 
@@ -68,7 +67,7 @@ public class ClientController {
         }
         if (clientRepository.findByEmail(email) !=  null) {
 
-            return new ResponseEntity<>("Name already in use", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Email already in use", HttpStatus.FORBIDDEN);
 
         }
 
@@ -76,7 +75,12 @@ public class ClientController {
         Client newClient = new Client(firstName, lastName, email, passwordEncoder.encode(password));
         clientRepository.save(newClient);
 
-        Account account = new Account("VIN-" + getRandomNumberUsingNextInt(10000000, 99999999), LocalDate.now(), 0.0);
+        String accountNumber = generateAccountNumber();
+        while (accountRepository.findByNumber(accountNumber) !=  null) {
+            accountNumber = generateAccountNumber();
+        }
+
+        Account account = new Account(accountNumber, LocalDate.now(), 0.0);
         account.setClient(newClient);
         accountRepository.save(account);
 

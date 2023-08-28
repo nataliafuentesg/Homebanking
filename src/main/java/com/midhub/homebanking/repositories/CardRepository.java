@@ -5,11 +5,14 @@ import com.midhub.homebanking.models.CardColor;
 import com.midhub.homebanking.models.CardType;
 import com.midhub.homebanking.models.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+@RepositoryRestResource
 public interface CardRepository extends JpaRepository<Card, Long> {
-    long countByClientAndType(Client client, CardType type);
+    Card findByClientAndCardTypeAndCardcolor(Client client, CardType cardType, CardColor cardcolor);
+    long countByClientAndCardType(Client client, CardType cardType);
 
-    Card findByClientAndColor(Client client, CardColor color);
 
-    Card findByNumber(String cardNumber);
+
+   Card findByNumber(String cardNumber);
 }

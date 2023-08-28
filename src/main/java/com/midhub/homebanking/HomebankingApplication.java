@@ -36,10 +36,9 @@ public class HomebankingApplication {
 			// save a couple of customers
 
 
-			Client melbaMorel = new Client("Melba", "Morel", "melba@mindhub.com", "abc123");
-			melbaMorel.setPassword(passwordEncoder.encode(melbaMorel.getPassword()));
-			Client quioneGalvis = new Client("Quione", "Galvis", "quione@mindhub.com", "def456");
-			quioneGalvis.setPassword(passwordEncoder.encode(quioneGalvis.getPassword()));
+			Client melbaMorel = new Client("Melba", "Morel", "melba@mindhub.com", passwordEncoder.encode("abc123"));
+			Client quioneGalvis = new Client("Quione", "Galvis", "quione@mindhub.com", passwordEncoder.encode("def456"));
+
 
 			Client admin = new Client("Admin", "User", "admin@mindhubbrothers.com", "admin");
 			admin.setPassword(passwordEncoder.encode(admin.getPassword()));
