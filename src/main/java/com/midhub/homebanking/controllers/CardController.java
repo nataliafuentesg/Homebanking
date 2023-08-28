@@ -1,5 +1,4 @@
 package com.midhub.homebanking.controllers;
-
 import com.midhub.homebanking.models.Card;
 import com.midhub.homebanking.models.CardColor;
 import com.midhub.homebanking.models.CardType;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,9 +27,9 @@ public class CardController {
     private ClientRepository clientRepository;
 
     @RequestMapping(path = "/clients/current/cards", method = RequestMethod.POST)
-    public ResponseEntity<Object> newCard(@RequestParam CardType type, @RequestParam CardColor color){
+    public ResponseEntity<Object> newCard(@RequestParam CardType type, @RequestParam CardColor color,
+                                          Authentication authentication){
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Client client = clientRepository.findByEmail(authentication.getName());
 
         Card existingCardWithTypeAndColor = cardRepository.findByClientAndCardTypeAndCardcolor(client, type, color);
@@ -39,12 +37,11 @@ public class CardController {
             return new ResponseEntity<>("A card with this type and color already exists", HttpStatus.FORBIDDEN);
         }
 
-        String cardNumber = generateCardNumber();
+        String cardNumber;
         String cardHolder = client.getFirstName() + " " + client.getLastName();
         int cvv = generateRandomCVV();
         LocalDate startDate = LocalDate.now();
         LocalDate expirationDate = startDate.plusYears(5);
-
         do {
             cardNumber = generateCardNumber();
         } while (cardRepository.findByNumber(cardNumber) != null);
@@ -52,7 +49,7 @@ public class CardController {
         Card card = new Card(cardHolder, type, color, cardNumber, cvv, startDate, expirationDate, client);
         cardRepository.save(card);
 
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>("Card Created Successfully",HttpStatus.CREATED);
 
     }
 

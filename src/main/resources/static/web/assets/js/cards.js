@@ -6,7 +6,8 @@ const options = {
         return {
             cards: [],
             firstName: "",
-            localTime: "",            
+            localTime: "",   
+            canCreateCard: false,         
         }
     },
 
@@ -17,6 +18,7 @@ const options = {
                 this.cards = response.data.cards;
                 this.firstName = response.data.firstName;
                 console.log(this.firstName)
+                this.canCreateCard = response.data.cards.length < 6;
             })
             .catch(error => console.log(error));
 

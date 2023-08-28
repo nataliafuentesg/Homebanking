@@ -8,7 +8,8 @@ const options = {
             selectedColor: 'SILVER',
             errorMessage: '',
             firstName : '',
-            localTime : ''           
+            localTime : '' ,
+                      
         }
     },
 
@@ -16,9 +17,9 @@ const options = {
         axios.get("http://localhost:8080/api/clients/current")
             .then(response => {
                 console.log(response)               
-                this.firstName = response.data.firstName;
-                
+                this.firstName = response.data.firstName;                
                 console.log(this.firstName)
+                
                 
             })
             .catch(error => console.log(error));
@@ -47,16 +48,12 @@ const options = {
         },
 
         createCard() {
-            // const dataCard = {
-            //     type: this.selectedType,
-            //     color: this.selectedColor
-            // }
-
+            
             const dataCard = `type=${(this.selectedType)}&color=${(this.selectedColor)}`;
             console.log(dataCard)
 
             axios.post('/api/clients/current/cards', dataCard, {
-                headers: { 'Content-Type': 'application/json' }
+                headers: {'content-type': 'application/x-www-form-urlencoded'}
               })
                 .then(response => {
                     if (response.status === 201) {
@@ -67,7 +64,7 @@ const options = {
                     if (error.response && error.response.status === 403) {
                         console.log(error.response)
                         console.log(error.response.status)
-                        this.errorMessage = 'You have reached the maximum number of cards.';
+                        this.errorMessage = error.response.data
                     } else {
                         console.log(error.response)
                         this.errorMessage = 'Error creating card.';
