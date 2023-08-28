@@ -34,11 +34,6 @@ public class CardController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Client client = clientRepository.findByEmail(authentication.getName());
 
-        long existingCardsCount = cardRepository.countByClientAndCardType(client, type);
-        if (existingCardsCount >= 3) {
-            return new ResponseEntity<>("Maximum number of cards of this type reached", HttpStatus.FORBIDDEN);
-        }
-
         Card existingCardWithTypeAndColor = cardRepository.findByClientAndCardTypeAndCardcolor(client, type, color);
         if (existingCardWithTypeAndColor != null) {
             return new ResponseEntity<>("A card with this type and color already exists", HttpStatus.FORBIDDEN);
