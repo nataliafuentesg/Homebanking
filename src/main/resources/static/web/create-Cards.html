@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,14 +13,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./assets/styles/style.css">
-    <title> Create Cards | Mindhub Brothers</title>    
+    <title> Create Cards | Mindhub Brothers</title>
 </head>
+
 <body>
     <div id="app">
         <header>
             <nav class="navbar navbar-expand-lg" id="navbarMenu">
-    
-    
+
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -29,11 +31,12 @@
                     <div class="navbar-nav">
                         <a class="nav-link active" href="./accounts.html"><i class="bi bi-wallet-fill"></i> Accounts
                         </a>
-                        <a class="nav-link active" style="background-color: #1848a0; color: white !important;" aria-current="page" href="#"><i class="bi bi-credit-card"></i> Cards</a>
+                        <a class="nav-link active" style="background-color: #1848a0; color: white !important;"
+                            aria-current="page" href="#"><i class="bi bi-credit-card"></i> Cards</a>
                         <a class="nav-link" href="#"><i class="bi bi-cash-stack"></i> Loans</a>
                         <a class="nav-link" href="#"><i class="bi bi-arrow-left-right"></i> Transactions</a>
-    
-    
+
+
                         <div class="nav-item dropdown">
                             <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -56,19 +59,19 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" style="font-weight: bold;" @click="logout"><i 
-                                        class="bi bi-box-arrow-in-right" ></i> Log
+                                <li><a class="dropdown-item" style="font-weight: bold;" @click="logout"><i
+                                            class="bi bi-box-arrow-in-right"></i> Log
                                         Out</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-    
+
                 <a class="navbar-brand" href="#"><img src="./assets/images/logo.png" href="#" class="logo"
                         alt="Logo"></img>
                 </a>
             </nav>
-    
+
             <div class="welcomeBanner">
                 <div class="message">
                     <div>
@@ -79,27 +82,66 @@
                     </div>
                 </div>
             </div>
-    
+
         </header>
+
         <main>
-            <form @submit.prevent="createCard">
-                <label for="type">Card Type:</label>
-                <select id="type" v-model="selectedType">
-                    <option value="DEBIT">DEBIT</option>
-                    <option value="CREDIT">CREDIT</option>
-                </select>
+            <h1 class="GFG" style="text-align: center; color: #1848a0; font-weight: bold;">Create Your Card</h1>
+
+
+
+            <form class="container pt-4 pb-5">
+                <div class="cardType">
+                    <label for="type">Card Type:</label>
+                    <select class="selector" id="type" v-model="selectedType">
+                        <option value="DEBIT">DEBIT</option>
+                        <option value="CREDIT">CREDIT</option>
+                    </select>
+                </div>
+
                 <br>
-                <label for="color">Card Color:</label>
-                <select id="color" v-model="selectedColor">
-                    <option value="SILVER">SILVER</option>
-                    <option value="GOLD">GOLD</option>
-                    <option value="TITANIUM">TITANIUM</option>
-                </select>
+                <div class="cardType">
+                    <label for="color">Card Color:</label>
+                    <select class="selector" id="color" v-model="selectedColor">
+                        <option value="SILVER">SILVER</option>
+                        <option value="GOLD">GOLD</option>
+                        <option value="TITANIUM">TITANIUM</option>
+                    </select>
+                </div>
+
                 <br>
-                <button type="submit">Create</button>
+                <div class="btnCreateCard">
+                    <button class="btnStyle" type="button" data-bs-toggle="modal"
+                        data-bs-target="#confirmModal">Create</button>
+                </div>
+
                 <p v-if="errorMessage" style="color: red;">{{ errorMessage }}</p>
             </form>
-        </main>    
+
+            <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmModalLabel">Confirm Card Creation</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to create a new card with the selected type and color?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary" id="confirmCreate" @click = "createCard">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </main>
+
     </div>
 
     <footer class="footer-10">
@@ -213,7 +255,9 @@
             </div>
         </div>
     </footer>
-    
+
+
+
 
     <script title="oNlineWebFonts" src="https://db.onlinewebfonts.com/animations/icons/187921.js"
         type="text/javascript"></script>
@@ -227,13 +271,14 @@
                 $(this).removeClass('show');
                 $(this).find('.dropdown-menu').removeClass('show');
             });
-        });
+        });        
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>    
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="./assets/js/create-Cards.js"></script>
 </body>
+
 </html>

@@ -60,15 +60,8 @@ const options = {
                         window.location.href = '/web/cards.html';
                     }
                 })
-                .catch(error => {
-                    if (error.response && error.response.status === 403) {
-                        console.log(error.response)
-                        console.log(error.response.status)
-                        this.errorMessage = error.response.data
-                    } else {
-                        console.log(error.response)
-                        this.errorMessage = 'Error creating card.';
-                    }
+                .catch(error => {                    
+                    this.errorMessage = error.response.data                    
                 });
         },
 

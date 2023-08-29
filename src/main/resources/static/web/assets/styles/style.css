@@ -213,7 +213,7 @@ a.dropdown-item:hover {
     color: white;
 }
 
-.cardEmpty{
+.cardEmpty {
     width: 20rem;
     height: 13rem;
     border-width: var(--color1);
@@ -780,7 +780,8 @@ ul {
     transform-style: preserve-3d;
 }
 
-.frontCredit , .frontDebit {
+.frontCredit,
+.frontDebit {
     width: 25rem;
     height: 15rem;
     position: absolute;
@@ -983,16 +984,17 @@ ul {
 
 
 /* Log In Form */
-#formText{
+#formText {
     font-weight: 600;
     color: white;
 }
-h6 span{
+
+h6 span {
     padding: 0 20px;
     font-size: larger;
     font-weight: 700;
     color: var(--color1);
-  }
+}
 
 .section {
     position: relative;
@@ -1166,12 +1168,54 @@ h6 span{
     box-shadow: 0 8px 24px 0 rgba(16, 39, 112, .2);
 }
 
-.creditCardsContainer{
+.creditCardsContainer {
     display: flex;
     justify-content: center;
     gap: 1rem;
     flex-wrap: wrap;
 }
+
+.cardType {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--color1);
+    font-weight: bold;
+    font-size: larger;
+}
+
+.selector {
+    width: 20rem;
+    border-radius: .5rem;
+    color: var(--color1);
+    border-color: var(--color1);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    padding: 0.5rem;
+}
+
+.btnCreateCard {
+    display: flex;
+    justify-content: center;
+}
+
+.btnStyle {
+    background-color: var(--color1);
+    color: white;
+    font-weight: bold;
+    font-size: larger;
+    border: none;
+    width: 20rem;
+    border-radius: .5rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    padding: 0.5rem;
+}
+
+.btnStyle:hover {
+    background-color: white;
+    color: var(--color1);
+    border: var(--color1);
+}
+
 
 
 /* Media Query */
