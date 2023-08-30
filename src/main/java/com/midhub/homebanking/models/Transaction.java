@@ -35,6 +35,8 @@ public class Transaction {
         this.account = account;
     }
 
+
+
     public long getId() {
         return id;
     }
