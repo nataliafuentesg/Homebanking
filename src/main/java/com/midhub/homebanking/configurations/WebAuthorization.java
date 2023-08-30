@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @EnableWebSecurity
-
 @Configuration
 public class WebAuthorization {
 
