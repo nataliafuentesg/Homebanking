@@ -171,10 +171,23 @@ a.dropdown-item:hover {
 /* your accounts */
 
 .GFG {
+    padding-top: 2rem;
     color: var(--color1);
     font-size: 50px;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: var(--color2);
+    color: white;
+  text-shadow: 0 1px 0 #f1f0f0,
+               0 2px 0 #cad1d8,
+               0 3px 0 #afaeb8,
+               0 4px 0 #a8a5b8,
+               0 5px 0 #979ca7,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+
 }
 
 
@@ -651,7 +664,8 @@ main {
 }
 
 .filter-result .job-box {
-    margin: 4rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
     background: #fff;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     border-radius: 10px;
@@ -1193,7 +1207,35 @@ h6 span {
     padding: 0.5rem;
 }
 
-.btnCreateCard {
+.selector1{
+    border-radius: .5rem;
+    color: var(--color1);
+    border-color: var(--color1);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    padding: 0.5rem;
+}
+
+.btnCreateCard1 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: #1848a0; 
+    color: white ;
+    padding: 0.4rem;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    font-size: large;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+.btnCreateCard1:hover{
+    background-color: var(--color2);
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+.btnCreateCard{
     display: flex;
     justify-content: center;
 }
@@ -1216,7 +1258,50 @@ h6 span {
     border: var(--color1);
 }
 
+.btnStyle1 {
+    background-color: white;
+    width: 100;
+    color: var(--color1);
+    font-weight: bold;
+    font-size: larger;
+    border: none;
+    border-radius: .5rem;
+    box-shadow: rgba(255, 255, 255, 0.25) 0px 6px 12px -2px, rgba(255, 255, 255, 0.3) 0px 3px 7px -3px;
+    padding: 0.5rem;
+}
 
+.btnStyle1:hover {
+    background-color: var(--color2);
+    color: white;
+    border: var(--color1);
+}
+
+.btnCardsCreate{
+    width: 100;
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+}
+
+.transferForm{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 60%;
+    background-color: var(--color1);
+    color: white;
+    font-weight: bolder;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+#transferDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 /* Media Query */
 
@@ -1264,6 +1349,7 @@ h6 span {
 
     }
 
+    
 
 }
 
@@ -1353,6 +1439,10 @@ h6 span {
     .filter-result .job-box {
         margin: 1rem;
 
+    }
+
+    .transferForm{
+        width: 100%;
     }
 
     .containerCard {

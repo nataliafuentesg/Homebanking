@@ -89,14 +89,13 @@
         <main class="p-2 flex-grow-1">
 
             <h1 class="GFG" style="text-align: center; color: #1848a0; font-weight: bold;">Your Cards</h1>
-            <div class="d-flex justify-content-center">
-                <a style="background-color: #1848a0; color: white ; padding: 0.4rem;"
-                class="btn btn-primary" href="./create-Cards.html" v-if="canCreateCard" class="btnCreateCard">Create New Card</a>
+            <div class="btnCardsCreate">
+                <a href="./create-Cards.html" v-if="canCreateCard" class="btnCreateCard1">Create New Card</a>
             </div>
            
             <div class="containerCard">
                 <template v-if="cards.length > 0">
-                    <h2 style="text-align: left !important; color: #1848a0; font-weight: bold;">Credit Cards</h2>
+                    <h2 class="GFG" style="text-align: left !important; color: #1848a0; font-weight: bold;">Credit Cards</h2>
                     <div class="creditCardsContainer">
                         <template v-for="card in creditCards">
 
@@ -133,7 +132,7 @@
                     </div>
 
 
-                    <h2 style="text-align: left; color: #1848a0; font-weight: bold;">Debit Cards</h2>
+                    <h2 class="GFG" style="text-align: left; color: #1848a0; font-weight: bold;">Debit Cards</h2>
                     <div class="creditCardsContainer">
                         <template v-for="card in debitCards">
                             <div :class="['cardBodyc', card.cardColor]">

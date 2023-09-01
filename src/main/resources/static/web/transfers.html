@@ -32,10 +32,10 @@
                     <div class="navbar-nav">
                         <a class="nav-link active" href="./accounts.html"><i class="bi bi-wallet-fill"></i> Accounts
                         </a>
-                        <a class="nav-link active" style="background-color: #1848a0; color: white !important;"
-                            aria-current="page" href="./cards.html"><i class="bi bi-credit-card"></i> Cards</a>
+                        <a class="nav-link active" href="./cards.html"><i class="bi bi-credit-card"></i> Cards</a>
                         <a class="nav-link" href="#"><i class="bi bi-cash-stack"></i> Loans</a>
-                        <a class="nav-link" href="#"><i class="bi bi-arrow-left-right"></i> Transactions</a>
+                        <a class="nav-link" href="#" style="background-color: #1848a0; color: white !important;"
+                        aria-current="page"><i class="bi bi-arrow-left-right"></i> Transactions</a>
 
 
                         <div class="nav-item dropdown">
@@ -86,36 +86,44 @@
 
         </header>
         <main>
-            <h1>Transfer Funds</h1>
+            <h1 class="GFG" style="text-align: center; color: #1848a0; font-weight: bold; padding-bottom: 1rem;">Transfer Funds</h1>
+            <div class="container" id="transferDiv">
+                <div class="transferForm">
+                    <label for="transferType">Transfer Type:</label>
+                    <select class="selector1" id="transferType" v-model="transferType">
+                        <option value="OWN">Transfer to Own Account</option>
+                        <option value="THIRD_PARTY">Transfer to Third Party Account</option>
+                    </select>
 
-            <label for="transferType">Transfer Type:</label>
-            <select id="transferType" v-model="transferType">
-                <option value="OWN">Transfer to Own Account</option>
-                <option value="THIRD_PARTY">Transfer to Third Party Account</option>
-            </select>
+                    <label for="fromAccountNumber">From Account:</label>
+                    <select class="selector1" id="fromAccountNumber" v-model="fromAccountNumber">
+                        <option v-for="account in accounts" :value="account.number">{{ account.number }}</option>
+                    </select>
 
-            <label for="fromAccountNumber">From Account:</label>
-            <select id="fromAccountNumber" v-model="fromAccountNumber">
-                <option v-for="account in accounts" :value="account.number">{{ account.number }}</option>
-            </select>
+                    <label v-if="transferType === 'OWN'" for="toAccountNumber">To Account:</label>
+                    <select class="selector1" v-if="transferType === 'OWN'" id="toAccountNumber" v-model="toAccountNumber">
+                        <option v-for="account in accounts" :value="account.number">{{ account.number }}</option>
+                    </select>
 
-            <label v-if="transferType === 'OWN'" for="toAccountNumber">To Account:</label>
-            <select v-if="transferType === 'OWN'" id="toAccountNumber" v-model="toAccountNumber">
-                <option v-for="account in accounts" :value="account.number">{{ account.number }}</option>
-            </select>
+                    <label v-if="transferType === 'THIRD_PARTY'" for="toAccountNumber">Third Party Account:</label>
+                    <input class="selector1" v-if="transferType === 'THIRD_PARTY'" id="toAccountNumber" v-model="toAccountNumber"
+                        type="text">
 
-            <label v-if="transferType === 'THIRD_PARTY'" for="toAccountNumber">Third Party Account:</label>
-            <input v-if="transferType === 'THIRD_PARTY'" id="toAccountNumber" v-model="toAccountNumber" type="text">
+                    <label for="amount">Amount:</label>
+                    <input class="selector1" id="amount" v-model="amount" type="number">
 
-            <label for="amount">Amount:</label>
-            <input id="amount" v-model="amount" type="number">
+                    <label for="description">Description:</label>
+                    <input class="selector1" id="description" v-model="description" type="text">
+                    <div class="btnCreateCard">
+                        <button class="btnStyle1" @click="makeTransfer">Transfer</button>
+                    </div>
+                    
 
-            <label for="description">Description:</label>
-            <input id="description" v-model="description" type="text">
+                    <p>{{ resultMessage }}</p>
+                </div>
 
-            <button @click="makeTransfer">Transfer</button>
+            </div>
 
-            <p>{{ resultMessage }}</p>
         </main>
 
     </div>
