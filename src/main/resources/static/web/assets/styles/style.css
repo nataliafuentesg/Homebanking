@@ -1193,7 +1193,6 @@ h6 span {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: var(--color1);
     font-weight: bold;
     font-size: larger;
 }
@@ -1241,8 +1240,8 @@ h6 span {
 }
 
 .btnStyle {
-    background-color: var(--color1);
-    color: white;
+    background-color: white;
+    color: var(--color1);
     font-weight: bold;
     font-size: larger;
     border: none;
@@ -1253,8 +1252,8 @@ h6 span {
 }
 
 .btnStyle:hover {
-    background-color: white;
-    color: var(--color1);
+    background-color: var(--color2);
+    color: white;
     border: var(--color1);
 }
 
@@ -1301,6 +1300,18 @@ h6 span {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+
+#cardCreate{
+    background-color: var(--color1);
+    color: white !important;
+    font-weight: bolder;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    width: 25rem;
 }
 
 /* Media Query */
@@ -1428,6 +1439,9 @@ h6 span {
     .infoCards {
 
         gap: .5rem;
+        display: flex;
+        flex-direction: column;
+        width: 100;
 
     }
 
