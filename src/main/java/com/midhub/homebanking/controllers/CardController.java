@@ -5,6 +5,8 @@ import com.midhub.homebanking.models.CardType;
 import com.midhub.homebanking.models.Client;
 import com.midhub.homebanking.repositories.CardRepository;
 import com.midhub.homebanking.repositories.ClientRepository;
+import com.midhub.homebanking.services.CardService;
+import com.midhub.homebanking.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,17 +24,17 @@ import java.util.Random;
 public class CardController {
 
     @Autowired
-    private CardRepository cardRepository;
+    private CardService cardService;
     @Autowired
-    private ClientRepository clientRepository;
+    private ClientService clientService;
 
     @RequestMapping(path = "/clients/current/cards", method = RequestMethod.POST)
     public ResponseEntity<Object> newCard(@RequestParam CardType type, @RequestParam CardColor color,
                                           Authentication authentication){
 
-        Client client = clientRepository.findByEmail(authentication.getName());
+        Client client = clientService.findByEmail(authentication.getName());
 
-        Card existingCardWithTypeAndColor = cardRepository.findByClientAndCardTypeAndCardcolor(client, type, color);
+        Card existingCardWithTypeAndColor = cardService.findByClientAndCardTypeAndCardcolor(client, type, color);
         if (existingCardWithTypeAndColor != null) {
             return new ResponseEntity<>("A card with this type and color already exists", HttpStatus.FORBIDDEN);
         }
@@ -44,10 +46,10 @@ public class CardController {
         LocalDate expirationDate = startDate.plusYears(5);
         do {
             cardNumber = generateCardNumber();
-        } while (cardRepository.findByNumber(cardNumber) != null);
+        } while (cardService.findByNumber(cardNumber) != null);
 
         Card card = new Card(cardHolder, type, color, cardNumber, cvv, startDate, expirationDate, client);
-        cardRepository.save(card);
+        cardService.saveCard(card);
 
         return new ResponseEntity<>("Card Created Successfully",HttpStatus.CREATED);
 

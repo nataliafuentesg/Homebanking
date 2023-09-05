@@ -1,10 +1,10 @@
 package com.midhub.homebanking.controllers;
-
 import com.midhub.homebanking.dtos.ClientDTO;
 import com.midhub.homebanking.dtos.LoanApplicationDTO;
 import com.midhub.homebanking.dtos.LoanDTO;
 import com.midhub.homebanking.models.*;
 import com.midhub.homebanking.repositories.*;
+import com.midhub.homebanking.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,37 +26,37 @@ import static java.util.stream.Collectors.toList;
 public class LoanApplicationController {
 
     @Autowired
-    private LoanRepository loanRepository;
+    private LoanService loanService;
 
     @Autowired
-    private ClientLoanRepository clientLoanRepository;
+    private ClientLoanService clientLoanService;
 
     @Autowired
-    private AccountRepository accountRepository;
+    private AccountService accountService;
 
     @Autowired
-    private TransactionRepository transactionRepository;
+    private TransactionService transactionService;
 
     @Autowired
-    private ClientRepository clientRepository;
+    private ClientService clientService;
 
     @Transactional
     @RequestMapping(path = "/clients/current/loans", method = RequestMethod.POST)
     public ResponseEntity<Object> applyForLoan(@RequestBody LoanApplicationDTO loanApplication, Authentication authentication) {
 
-        Client client = clientRepository.findByEmail(authentication.getName());
+        Client client = clientService.findByEmail(authentication.getName());
 
         if (!isValidLoanApplication(loanApplication)) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid loan application data.");
         }
 
-        Optional<Loan> loanOptional = loanRepository.findById(loanApplication.getLoanId());
+        Optional<Loan> loanOptional = loanService.findById(loanApplication.getLoanId());
 
         if (loanOptional.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Loan not found.");
         }
 
-        boolean clientHasLoanOfSameType = clientLoanRepository.existsByClientAndLoanId(client, loanApplication.getLoanId());
+        boolean clientHasLoanOfSameType = clientLoanService.existsByClientAndLoanId(client, loanApplication.getLoanId());
 
         if (clientHasLoanOfSameType) {
             return new ResponseEntity<>("Client already has a loan of the same type", HttpStatus.BAD_REQUEST);
@@ -74,7 +74,7 @@ public class LoanApplicationController {
         }
 
 
-        Account destinationAccount = accountRepository.findByNumber(loanApplication.getDestinationAccountNumber());
+        Account destinationAccount = accountService.findByNumber(loanApplication.getDestinationAccountNumber());
 
         if (destinationAccount == null ) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Destination account not found.");
@@ -90,15 +90,15 @@ public class LoanApplicationController {
 
 
         ClientLoan clientLoan = new ClientLoan(loanAmount, loanApplication.getInstallments(), client , loan);
-        clientLoanRepository.save(clientLoan);
+        clientLoanService.saveClientLoan(clientLoan);
 
 
         Transaction creditTransaction = new Transaction(loanApplication.getAmount(), LocalDateTime.now(), TransactionType.CREDIT, loan.getName() + " loan approved", destinationAccount);
-        transactionRepository.save(creditTransaction);
+        transactionService.saveTransaction(creditTransaction);
 
 
         destinationAccount.setBalance(destinationAccount.getBalance() + loanAmount);
-        accountRepository.save(destinationAccount);
+        accountService.saveAccount(destinationAccount);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
@@ -111,10 +111,7 @@ public class LoanApplicationController {
 
     @RequestMapping("/loans")
     public List<LoanDTO> getLoans() {
-        return loanRepository.findAll()
-                .stream()
-                .map(LoanDTO::new)
-                .collect(toList());
+        return loanService.getLoans();
     }
 
 }

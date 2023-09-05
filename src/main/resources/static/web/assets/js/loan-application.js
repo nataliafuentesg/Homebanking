@@ -11,7 +11,7 @@ const options = {
             selectedDestinationAccount: null,
             loanTypes: [],
             accounts: [],
-            //estimatedMonthlyPayment: 0.0,
+            resultMessage: '',
             firstName: '',
 
 
@@ -83,7 +83,7 @@ const options = {
         },        
 
         submitLoanApplication() {
-
+            
             const loanData = {
                 loanId: this.selectedLoanType,
                 amount: this.loanAmount,
@@ -94,13 +94,14 @@ const options = {
 
             axios.post('/api/clients/current/loans', loanData)
                 .then(response => {                    
-                    console.log('Loan application submitted successfully:', response.data);                    
+                    this.resultMessage = response.data ;                   
                 })
                 .catch(error => {
                    
-                    console.error('Error submitting loan application:', error);
+                    this.resultMessage = error.response.data ;
+                    this.errorMessage = '';
                     
-                });
+                });               
         },      
         
         getInstallments(selectedLoanType) {

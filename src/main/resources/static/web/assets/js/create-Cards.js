@@ -61,8 +61,10 @@ const options = {
                     }
                 })
                 .catch(error => {                    
-                    this.errorMessage = error.response.data                    
+                    this.errorMessage = error.response.data;
                 });
+
+                
         },
 
         logout() {
