@@ -93,7 +93,8 @@ const options = {
             console.log(loanData)
 
             axios.post('/api/clients/current/loans', loanData)
-                .then(response => {                    
+                .then(response => {            
+                    window.location.href = '/web/accounts.html';        
                     this.resultMessage = response.data ;                   
                 })
                 .catch(error => {

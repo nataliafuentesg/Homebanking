@@ -89,8 +89,31 @@
         <main class="p-2 flex-grow-1">
 
             <h1 class="GFG" style="text-align: center; color: #1848a0; font-weight: bold;">Your Cards</h1>
-            <div class="btnCardsCreate">
-                <a href="./create-Cards.html" v-if="canCreateCard" class="btnCreateCard1">Create New Card</a>
+            <div class="cardToCreate">
+                <!-- <a href="./create-Cards.html" v-if="canCreateCard" class="btnCreateCard1">Create New Card</a> -->
+                <template v-if="canCreateCard">
+                    <div class="cardBodyc" >
+                        <div class="card-inner">
+                            <div class="frontnone">
+                                <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
+                                <div class="cardChip">
+                                    <img src="https://i.ibb.co/G9pDnYJ/chip.png" class="chip">
+                                    <img src="https://i.ibb.co/WHZ3nRJ/visa.png" class="visa">
+                                </div>
+                                <div class="card-no">
+                                    <p style="color: #ffffff;">Create a New Card</p>
+                                </div>
+    
+                                <div class="d-flex justify-content-center">
+                                    <a style="background-color: white; color: #1848a0; padding: 0.4rem;"
+                                        class="btn btn-primary" href="./create-Cards.html">Create Card</a>
+                                </div>
+    
+                            </div>
+                        </div>
+                    </div>
+                </template>
+                
             </div>
            
             <div class="containerCard">
@@ -164,28 +187,9 @@
                     </div>
                     
                 </template>
-                <template v-else>
-                    <div class="cardBodyc">
-                        <div class="card-inner">
-                            <div class="frontnone">
-                                <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
-                                <div class="cardChip">
-                                    <img src="https://i.ibb.co/G9pDnYJ/chip.png" class="chip">
-                                    <img src="https://i.ibb.co/WHZ3nRJ/visa.png" class="visa">
-                                </div>
-                                <div class="card-no">
-                                    <p style="color: #ffffff;">You don't have any cards</p>
-                                </div>
-
-                                <div class="d-flex justify-content-center">
-                                    <a style="background-color: white; color: #1848a0; padding: 0.4rem;"
-                                        class="btn btn-primary" href="./create-Cards.html">Create Card</a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </template>
+                <!-- <template v-else>
+                    
+                </template> -->
 
 
             </div>

@@ -12,7 +12,8 @@ const options = {
             loans : [],           
             firstName : "",  
             localTime: "",  
-            canCreateAccount: false,       
+            canCreateAccount: false,   
+            canApplyForLoan : false    
         }
     },
 
@@ -28,6 +29,7 @@ const options = {
             console.log(this.firstName)   
             
             this.canCreateAccount = response.data.accounts.length < 3;
+            this.canApplyForLoan = response.data.loans.length < 3;
         })
         .catch(error => console.log(error));
 

@@ -61,7 +61,8 @@ const options = {
                 headers: {'content-type': 'application/x-www-form-urlencoded'}
               })
                 .then(response => {
-                    if (response.status === 201) {
+                    if (response.status === 201) { 
+                        window.location.href = '/web/accounts.html';
                         this.resultMessage = 'Transfer successful.';                        
                     } else {
                         this.resultMessage = 'Transfer failed.';

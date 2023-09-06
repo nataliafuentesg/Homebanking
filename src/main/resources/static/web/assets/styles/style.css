@@ -1285,7 +1285,7 @@ h6 span {
 .transferForm{
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+   
     width: 60%;
     background-color: var(--color1);
     color: white;
@@ -1314,6 +1314,11 @@ h6 span {
     width: 25rem;
 }
 
+
+.cardToCreate{
+    display: flex;
+    justify-content: center;
+}
 /* Media Query */
 
 @media (min-width: 768px) {

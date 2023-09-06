@@ -93,35 +93,63 @@
                     <select class="selector1" id="transferType" v-model="transferType">
                         <option value="OWN">Transfer to Own Account</option>
                         <option value="THIRD_PARTY">Transfer to Third Party Account</option>
-                    </select>
+                    </select><br>
 
                     <label for="fromAccountNumber">From Account:</label>
                     <select class="selector1" id="fromAccountNumber" v-model="fromAccountNumber">
                         <option v-for="account in accounts" :value="account.number">{{ account.number }}</option>
-                    </select>
+                    </select><br>
 
                     <label v-if="transferType === 'OWN'" for="toAccountNumber">To Account:</label>
                     <select class="selector1" v-if="transferType === 'OWN'" id="toAccountNumber" v-model="toAccountNumber">
                         <option v-for="account in accounts" :value="account.number">{{ account.number }}</option>
-                    </select>
+                    </select><br>
 
                     <label v-if="transferType === 'THIRD_PARTY'" for="toAccountNumber">Third Party Account:</label>
                     <input class="selector1" v-if="transferType === 'THIRD_PARTY'" id="toAccountNumber" v-model="toAccountNumber"
-                        type="text">
+                        type="text"><br>
 
                     <label for="amount">Amount:</label>
-                    <input class="selector1" id="amount" v-model="amount" type="number">
+                    <input class="selector1" id="amount" v-model="amount" type="number"><br>
 
                     <label for="description">Description:</label>
-                    <input class="selector1" id="description" v-model="description" type="text">
-                    <div class="btnCreateCard">
-                        <button class="btnStyle1" @click="makeTransfer">Transfer</button>
-                    </div>
+                    <input class="selector1" id="description" v-model="description" type="text"><br>
                     
+                    <div class="btnCreateCard">
+                        <button class="btnStyle" data-bs-toggle="modal"
+                            data-bs-target="#confirmModal">Transfer</button>
+                    </div>           
 
-                    <p>{{ resultMessage }}</p>
+                    
                 </div>
 
+            </div>
+
+            <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmModalLabel">Confirm Transfer</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to Tranfer?
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary" id="confirmCreate"
+                                 @click="makeTransfer">Transfer</button>
+
+                                <div v-if="resultMessage" class="alert alert-danger">
+                                    {{ resultMessage }}
+                                </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </main>

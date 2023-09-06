@@ -177,8 +177,24 @@
                         </div>
                     </div>
                 </template>
-                <template v-else>
-                    <h2 style="color: #1848a0; text-align: center;">You don't have any loans</h2>
+                <template v-if="canApplyForLoan">
+                    <div class="filter-result">
+                        <div class="job-box d-md-flex align-items-center justify-content-between mb-30 mr-50">
+                            <div class="job-left my-4 d-md-flex align-items-center flex-wrap">
+                                <div class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">
+                                    <span class="material-symbols-outlined" style="font-size: 40px;">
+                                        real_estate_agent
+                                    </span>
+                                </div>
+                                <div class="job-content">
+                                    <h5 class="text-center text-md-left" style="color: #1848a0; font-weight: bolder;">Apply For a Loan</h5>                                    
+                                </div>
+                            </div>
+                            <div class="job-right my-4 flex-shrink-0">
+                                <a href="./loan-application.html" class="btn d-block w-100 d-sm-inline-block btn-light" style="background-color: #1848a0; color: white;">Apply Here</a>
+                            </div>
+                        </div>
+                    </div>
                 </template>
             </section>
 
