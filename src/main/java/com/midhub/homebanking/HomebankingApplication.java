@@ -17,15 +17,16 @@ import java.util.List;
 @SpringBootApplication
 public class HomebankingApplication {
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+
+	/*@Autowired
+	private PasswordEncoder passwordEncoder;*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(HomebankingApplication.class, args);
 	}
 
 
-	@Bean
+	/*@Bean
 	public CommandLineRunner initData(ClientRepository clientRepository,
 									  AccountRepository accountRepository,
 									  TransactionRepository transactionRepository,
@@ -123,5 +124,5 @@ public class HomebankingApplication {
 
 
 		};
-	}
+	}*/
 }

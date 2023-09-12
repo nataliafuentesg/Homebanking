@@ -52,12 +52,9 @@ const options = {
         estimatedMonthlyPayment() {
             console.log('Calculating estimated monthly payment...');
             if (this.selectedLoanType && this.installments && this.loanAmount) {
-                // Assuming interest rate is 20% divided by 12 (for monthly payments)
                 const interestRate = 0.20 / this.installments;
                 const numberOfPayments = this.installments;
                 const principal = this.loanAmount;
-
-                // Formula to calculate monthly payment
                 const x = Math.pow(1 + interestRate, numberOfPayments);
                 return (principal * x * interestRate) / (x - 1);
             } else {
