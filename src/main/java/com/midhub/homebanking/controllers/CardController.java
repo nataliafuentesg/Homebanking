@@ -11,12 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.Random;
 
 @RequestMapping("/api")
@@ -48,11 +46,31 @@ public class CardController {
             cardNumber = generateCardNumber();
         } while (cardService.findByNumber(cardNumber) != null);
 
-        Card card = new Card(cardHolder, type, color, cardNumber, cvv, startDate, expirationDate, client);
+        Card card = new Card(cardHolder, type, color, cardNumber, cvv, startDate, expirationDate, client, true);
         cardService.saveCard(card);
 
         return new ResponseEntity<>("Card Created Successfully",HttpStatus.CREATED);
 
+    }
+
+    @PostMapping("/clients/current/cards/{cardId}/deactivate")
+    public ResponseEntity<Object> deactivateCard(@PathVariable Long cardId, Authentication authentication) {
+        Optional<Card> cardOptional = cardService.findById(cardId);
+
+        if (cardOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Card not found.");
+        }
+
+        Card card = cardOptional.get();
+        Client client = clientService.findByEmail(authentication.getName());
+
+        if (!card.getClient().equals(client)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Card does not belong to the authenticated client.");
+        }
+        card.setActivated(false);
+        cardService.saveCard(card);
+
+        return ResponseEntity.status(HttpStatus.OK).body("Card deactivated successfully.");
     }
 
     private String generateCardNumber() {

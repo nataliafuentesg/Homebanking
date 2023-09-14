@@ -9,6 +9,8 @@ import com.midhub.homebanking.services.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class CardServiceImplement implements CardService {
     @Autowired
@@ -22,11 +24,17 @@ public class CardServiceImplement implements CardService {
 
     @Override
     public Card findByNumber(String cardNumber) {
+
         return cardRepository.findByNumber(cardNumber);
     }
 
     @Override
     public void saveCard(Card card) {
         cardRepository.save(card);
+    }
+
+    @Override
+    public Optional<Card> findById(Long cardId) {
+        return cardRepository.findById(cardId);
     }
 }

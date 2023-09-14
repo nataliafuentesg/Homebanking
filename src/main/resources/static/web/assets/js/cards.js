@@ -75,6 +75,17 @@ const options = {
             return nameclient.toUpperCase();
         },
 
+        deactivateCard(cardId) {
+            
+            axios.post(`/api/clients/current/cards/${cardId}/deactivate`)
+                .then(response => {
+                    console.log(response)
+                })
+                .catch(error => {
+                    console.log(error)
+                });
+        },
+
         logout() {
             axios.post('/api/logout')
                 .then(response => {
