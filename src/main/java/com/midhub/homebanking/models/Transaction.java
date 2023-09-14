@@ -17,6 +17,8 @@ public class Transaction {
     private LocalDateTime date;
     private TransactionType transactionType;
     private String description;
+    private double current_balance;
+    private boolean activated = true;
 
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -26,13 +28,15 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction( double amount, LocalDateTime date, TransactionType transactionType, String descripiton, Account account) {
+    public Transaction( double amount, LocalDateTime date, TransactionType transactionType, String descripiton, Account account, Double current_balance) {
 
         this.amount = amount;
         this.date = date;
         this.transactionType = transactionType;
         this.description = descripiton;
         this.account = account;
+        this.current_balance = account.getBalance() + amount;
+
     }
 
 
@@ -85,5 +89,19 @@ public class Transaction {
         this.description = description;
     }
 
+    public double getCurrent_balance() {
+        return current_balance;
+    }
 
+    public void setCurrent_balance(double current_balance) {
+        this.current_balance = current_balance;
+    }
+
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
 }

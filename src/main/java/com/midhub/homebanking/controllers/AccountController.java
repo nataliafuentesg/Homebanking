@@ -2,8 +2,10 @@ package com.midhub.homebanking.controllers;
 import com.midhub.homebanking.dtos.AccountDTO;
 import com.midhub.homebanking.models.Account;
 import com.midhub.homebanking.models.Client;
+import com.midhub.homebanking.models.Transaction;
 import com.midhub.homebanking.repositories.AccountRepository;
 import com.midhub.homebanking.repositories.ClientRepository;
+import com.midhub.homebanking.repositories.TransactionRepository;
 import com.midhub.homebanking.services.AccountService;
 import com.midhub.homebanking.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
 
@@ -27,6 +30,9 @@ public class AccountController {
 
     @Autowired
     private ClientService clientService;
+
+    @Autowired
+    private TransactionRepository transactionRepository;
 
     @RequestMapping("/accounts")
     public List<AccountDTO> getAccounts() {
@@ -66,7 +72,36 @@ public class AccountController {
 
     }
 
-    private String generateAccountNumber() {
+    @PatchMapping("/{accountNumber}/deactivate")
+    @PutMapping ("/api/accounts/{id}")
+    public ResponseEntity<String> deleteAccount(Authentication authentication,@PathVariable long id) {
+
+        Client client = clientService.findByEmail(authentication.getName());
+        Account account = accountService.findById(id);
+
+        if (client == null) {
+            return new ResponseEntity<>("You can't delete an account because you're not a client.", HttpStatus.FORBIDDEN);
+        }
+        if (account == null) {
+            return new ResponseEntity<>("Account not found", HttpStatus.NOT_FOUND);
+        }
+        if (account.getBalance() != 0.0) {
+            return new ResponseEntity<>("The account can't be deleted because it has a balance different from 0.", HttpStatus.FORBIDDEN);
+        }
+
+        account.setActivated(false);
+        accountService.saveAccount(account);
+
+        List<Transaction> transactions = transactionRepository.findByAccountId(id);
+        transactions.forEach(transaction -> {
+            transaction.setActivated(false);
+            transactionRepository.save(transaction);
+        });
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
+private String generateAccountNumber() {
         int accountNumber = getRandomNumberUsingNextInt(10000000, 99999999);
         return "VIN-" + accountNumber;
     }

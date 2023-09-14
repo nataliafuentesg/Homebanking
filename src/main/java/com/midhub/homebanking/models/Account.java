@@ -20,15 +20,17 @@ public class Account {
 
     private Double balance;
 
+    private boolean activated = true;
     @OneToMany(mappedBy="account", fetch=FetchType.EAGER)
     Set<Transaction> transactions = new HashSet<>();
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
     private Client client;
-    public Account(String number, LocalDate creationDate, Double balance) {
+    public Account(String number, LocalDate creationDate, Double balance, boolean activated) {
         this.number = number;
         this.creationDate = creationDate;
         this.balance = balance;
+        this.activated = activated;
 
     }
     public Account() {
@@ -79,7 +81,16 @@ public class Account {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
 
+    public boolean isActivated() {
+        return activated;
+    }
 
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
 }
 

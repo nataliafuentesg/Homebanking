@@ -14,4 +14,7 @@ public interface AccountService {
     List<AccountDTO> getAccounts();
 
     AccountDTO getAccount(Long id);
+
+
+    Account findById(long id);
 }

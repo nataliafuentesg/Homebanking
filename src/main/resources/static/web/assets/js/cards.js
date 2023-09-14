@@ -76,14 +76,18 @@ const options = {
         },
 
         deactivateCard(cardId) {
-            
-            axios.post(`/api/clients/current/cards/${cardId}/deactivate`)
-                .then(response => {
-                    console.log(response)
-                })
-                .catch(error => {
-                    console.log(error)
-                });
+            axios
+              .post(`/api/clients/current/cards/${cardId}/deactivate`)
+              .then(response => {
+                const cardIndex = this.cards.findIndex(card => card.id === cardId);
+                if (cardIndex !== -1) {
+                  this.cards[cardIndex].activated = false;
+                }
+                console.log(response);
+              })
+              .catch(error => {
+                console.log(error);
+              });
         },
 
         logout() {

@@ -35,7 +35,8 @@
                         <a class="nav-link active" style="background-color: #1848a0; color: white !important;"
                             aria-current="page" href="#"><i class="bi bi-credit-card"></i> Cards</a>
                         <a class="nav-link" href="./loan-application.html"><i class="bi bi-cash-stack"></i> Loans</a>
-                        <a class="nav-link" href="./transfers.html"><i class="bi bi-arrow-left-right"></i> Transactions</a>
+                        <a class="nav-link" href="./transfers.html"><i class="bi bi-arrow-left-right"></i>
+                            Transactions</a>
 
 
                         <div class="nav-item dropdown">
@@ -92,7 +93,7 @@
             <div class="cardToCreate">
                 <!-- <a href="./create-Cards.html" v-if="canCreateCard" class="btnCreateCard1">Create New Card</a> -->
                 <template v-if="canCreateCard">
-                    <div class="cardBodyc" >
+                    <div class="cardBodyc">
                         <div class="card-inner">
                             <div class="frontnone">
                                 <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
@@ -103,55 +104,56 @@
                                 <div class="card-no">
                                     <p style="color: #ffffff;">Create a New Card</p>
                                 </div>
-    
+
                                 <div class="d-flex justify-content-center">
                                     <a style="background-color: white; color: #1848a0; padding: 0.4rem;"
                                         class="btn btn-primary" href="./create-Cards.html">Create Card</a>
                                 </div>
-    
+
                             </div>
                         </div>
                     </div>
                 </template>
-                
+
             </div>
-           
+
             <div class="containerCard">
                 <template v-if="cards.length > 0">
-                    <h2 class="GFG" style="text-align: left !important; color: #1848a0; font-weight: bold;">Credit Cards</h2>
+                    <h2 class="GFG" style="text-align: left !important; color: #1848a0; font-weight: bold;">Credit Cards
+                    </h2>
                     <div class="creditCardsContainer">
                         <template v-for="card in creditCards">
-
-                            <div :class="['cardBodyc', card.cardColor]">
-                                <div class="card-inner">
-                                    <div class="frontDebit">
-                                        <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
-                                        <div class="cardChip">
-                                            <img src="https://i.ibb.co/G9pDnYJ/chip.png" class="chip">
-                                            <img src="https://i.ibb.co/WHZ3nRJ/visa.png" class="visa">
+                            <div v-if="card.activated">
+                                <div :class="['cardBodyc', card.cardColor]">
+                                    <div class="card-inner">
+                                        <div class="frontDebit">
+                                            <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
+                                            <div class="cardChip">
+                                                <img src="https://i.ibb.co/G9pDnYJ/chip.png" class="chip">
+                                                <img src="https://i.ibb.co/WHZ3nRJ/visa.png" class="visa">
+                                            </div>
+                                            <div class="card-no">
+                                                <p>{{ card.number }}</p>
+                                            </div>
+                                            <div class="card-holder">
+                                                <p style="margin: 0;">CARD HOLDER</p>
+                                                <p style="font-weight: bold; font-size: medium; margin: 0;">CVV:
+                                                    {{card.cvv}}</p>
+                                                <p style="margin: 0;">VALID TILL</p>
+                                            </div>
+                                            <div class="name">
+                                                <p style="margin: 0;" style="margin: 0;">{{ uppercaseName (card.cardHolder)
+                                                    }}</p>
+                                                <p style="margin: 0;" style="margin: 0;">{{ formattedDate (card.fromDate) }}
+                                                </p>
+                                            </div>
+                                            <button @click="deactivateCard(card.id)"
+                                                class="btn btn-danger">Deactivate</button>
+    
                                         </div>
-                                        <div class="card-no">
-                                            <p>{{ card.number }}</p>
-                                        </div>
-                                        <div class="card-holder">
-                                            <p style="margin: 0;">CARD HOLDER</p>
-                                            <p style="font-weight: bold; font-size: medium; margin: 0;">CVV:
-                                                {{card.cvv}}</p>
-                                            <p style="margin: 0;">VALID TILL</p>
-                                        </div>
-                                        <div class="name">
-                                            <p style="margin: 0;" style="margin: 0;">{{ uppercaseName (card.cardHolder)
-                                                }}</p>
-                                            <p style="margin: 0;" style="margin: 0;">{{ formattedDate (card.fromDate) }}
-                                            </p>
-                                        </div>
-                                        <button @click="deactivateCard(card.id)" class="btn btn-danger">Deactivate</button>
-
                                     </div>
                                 </div>
                             </div>
-
-
                         </template>
                     </div>
 
@@ -159,41 +161,43 @@
                     <h2 class="GFG" style="text-align: left; color: #1848a0; font-weight: bold;">Debit Cards</h2>
                     <div class="creditCardsContainer">
                         <template v-for="card in debitCards">
-                            <div :class="['cardBodyc', card.cardColor]">
-                                <div class="card-inner">
-                                    <div class="frontDebit">
-                                        <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
-                                        <div class="cardChip">
-                                            <img src="https://i.ibb.co/G9pDnYJ/chip.png" class="chip">
-                                            <img src="https://i.ibb.co/WHZ3nRJ/visa.png" class="visa">
-                                        </div>
-                                        <div class="card-no">
-                                            <p>{{ card.number }}</p>
-                                        </div>
-                                        <div class="card-holder">
-                                            <p style="margin: 0;">CARD HOLDER</p>
-                                            <p style="font-weight: bold; font-size: medium; margin: 0%;">CVV: {{card.cvv}}
-                                            </p>
-                                            <p style="margin: 0;">VALID TILL</p>
-                                        </div>
-                                        <div class="name">
-                                            <p style="margin: 0;">{{ uppercaseName (card.cardHolder) }}</p>
-                                            <p style="margin: 0;">{{ formattedDate (card.fromDate) }}</p>
-                                        </div>
+                            <div v-if="card.activated">
+                                <div :class="['cardBodyc', card.cardColor]">
+                                    <div class="card-inner">
+                                        <div class="frontDebit">
+                                            <img src="https://i.ibb.co/PYss3yv/map.png" class="map-img">
+                                            <div class="cardChip">
+                                                <img src="https://i.ibb.co/G9pDnYJ/chip.png" class="chip">
+                                                <img src="https://i.ibb.co/WHZ3nRJ/visa.png" class="visa">
+                                            </div>
+                                            <div class="card-no">
+                                                <p>{{ card.number }}</p>
+                                            </div>
+                                            <div class="card-holder">
+                                                <p style="margin: 0;">CARD HOLDER</p>
+                                                <p style="font-weight: bold; font-size: medium; margin: 0%;">CVV:
+                                                    {{card.cvv}}
+                                                </p>
+                                                <p style="margin: 0;">VALID TILL</p>
+                                            </div>
+                                            <div class="name">
+                                                <p style="margin: 0;">{{ uppercaseName (card.cardHolder) }}</p>
+                                                <p style="margin: 0;">{{ formattedDate (card.fromDate) }}</p>
+                                            </div>
+                                            <button @click="deactivateCard(card.id)" class="btn btn-danger">Deactivate</button>
     
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </template>
-                    </div>
+                            
                     
+                        </template>
+                        
+                    </div>
                 </template>
             </div>
-
-
         </main>
-
-
     </div>
 
     <footer class="footer-10">
@@ -253,7 +257,8 @@
                             <ul class="list-unstyled">
                                 <li><a href="./assets/pages/commingSoon.html" class="d-block">FAQs</a></li>
                                 <li><a href="./assets/pages/commingSoon.html" class="d-block">Site map</a></li>
-                                <li><a href="./assets/pages/commingSoon.html" class="d-block">Financial Education</a></li>
+                                <li><a href="./assets/pages/commingSoon.html" class="d-block">Financial Education</a>
+                                </li>
                                 <li><a href="./assets/pages/commingSoon.html" class="d-block">Security</a></li>
                             </ul>
                         </div>

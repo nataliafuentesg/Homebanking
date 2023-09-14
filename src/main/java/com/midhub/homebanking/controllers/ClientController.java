@@ -76,7 +76,7 @@ public class ClientController {
             accountNumber = generateAccountNumber();
         }
 
-        Account account = new Account(accountNumber, LocalDate.now(), 0.0);
+        Account account = new Account(accountNumber, LocalDate.now(), 0.0, true);
         account.setClient(newClient);
         accountService.saveAccount(account);
 

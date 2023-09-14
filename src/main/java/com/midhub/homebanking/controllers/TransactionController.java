@@ -58,8 +58,8 @@ public class TransactionController {
 
         LocalDateTime transactionDate = LocalDateTime.now();
 
-        Transaction debitTransaction = new Transaction(-amount, transactionDate, TransactionType.DEBIT, description , fromAccount);
-        Transaction creditTransaction = new Transaction(amount, transactionDate, TransactionType.CREDIT, description , toAccount);
+        Transaction debitTransaction = new Transaction(-amount, transactionDate, TransactionType.DEBIT, description , fromAccount, fromAccount.getBalance() - amount);
+        Transaction creditTransaction = new Transaction(amount, transactionDate, TransactionType.CREDIT, description , toAccount, toAccount.getBalance() + amount);
 
         fromAccount.setBalance(fromAccount.getBalance() - amount);
         toAccount.setBalance(toAccount.getBalance() + amount);
