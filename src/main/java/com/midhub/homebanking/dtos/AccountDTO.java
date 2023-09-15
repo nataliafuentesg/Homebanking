@@ -1,6 +1,8 @@
 package com.midhub.homebanking.dtos;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.midhub.homebanking.models.Account;
+import com.midhub.homebanking.models.AccountType;
+
 import java.time.LocalDate;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -13,6 +15,7 @@ public class AccountDTO {
     private Double balance;
 
     private Set<TransactionDTO> transactions;
+    private AccountType accountType;
     private boolean activated;
 
     public AccountDTO(Account account) {
@@ -22,6 +25,7 @@ public class AccountDTO {
         this.balance = account.getBalance();
         this.transactions = account.getTransactions().stream().map(TransactionDTO::new).collect(Collectors.toSet());
         this.activated = account.isActivated();
+        this.accountType = account.getAccountType();
     }
 
     public long getId() {
@@ -52,5 +56,9 @@ public class AccountDTO {
 
     public boolean isActivated() {
         return activated;
+    }
+
+    public AccountType getAccountType() {
+        return accountType;
     }
 }

@@ -23,10 +23,20 @@ public class LoanServiceImplement implements LoanService {
     }
 
     @Override
+    public Loan findByName(String name) {
+        return loanRepository.findByName(name);
+    }
+
+    @Override
     public List<LoanDTO> getLoans() {
         return loanRepository.findAll()
                 .stream()
                 .map(LoanDTO::new)
                 .collect(toList());
+    }
+
+    @Override
+    public void saveLoan(Loan loan) {
+        loanRepository.save(loan);
     }
 }

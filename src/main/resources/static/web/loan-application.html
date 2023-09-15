@@ -136,6 +136,7 @@
                         class="selector1">
                         <option v-for="account in accounts" :value="account.number">{{ account.number }}</option>
                     </select><br>
+                    <p>Interest Rate: <span>{{ selectedLoanInterest }}</span></p>
 
                     <p>Estimated Monthly Payment: <span id="monthly-payment">{{ formatCurrency(estimatedMonthlyPayment)
                             }}</span></p>

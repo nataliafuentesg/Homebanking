@@ -1,6 +1,7 @@
 package com.midhub.homebanking.controllers;
 import com.midhub.homebanking.dtos.AccountDTO;
 import com.midhub.homebanking.models.Account;
+import com.midhub.homebanking.models.AccountType;
 import com.midhub.homebanking.models.Client;
 import com.midhub.homebanking.models.Transaction;
 import com.midhub.homebanking.repositories.AccountRepository;
@@ -46,7 +47,7 @@ public class AccountController {
 
 
     @RequestMapping(path = "/clients/current/accounts", method = RequestMethod.POST)
-    public ResponseEntity<Object> newAccount(Authentication authentication) {
+    public ResponseEntity<Object> newAccount(@RequestParam AccountType accountType, Authentication authentication) {
 
         Client client = clientService.findByEmail(authentication.getName());
 
@@ -63,6 +64,7 @@ public class AccountController {
         Account newAccount = new Account();
         newAccount.setNumber(accountNumber);
         newAccount.setCreationDate(LocalDate.now());
+        newAccount.setAccountType(accountType);
         newAccount.setBalance(0.0);
         newAccount.setClient(client);
 
@@ -73,7 +75,6 @@ public class AccountController {
     }
 
     @PatchMapping("/{accountNumber}/deactivate")
-    @PutMapping ("/api/accounts/{id}")
     public ResponseEntity<String> deleteAccount(Authentication authentication,@PathVariable long id) {
 
         Client client = clientService.findByEmail(authentication.getName());

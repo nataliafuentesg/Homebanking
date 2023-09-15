@@ -7,16 +7,14 @@ import com.midhub.homebanking.models.TransactionType;
 import com.midhub.homebanking.repositories.AccountRepository;
 import com.midhub.homebanking.repositories.TransactionRepository;
 import com.midhub.homebanking.services.AccountService;
+import com.midhub.homebanking.services.CardService;
 import com.midhub.homebanking.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 
@@ -29,8 +27,11 @@ public class TransactionController {
     @Autowired
     private TransactionService transactionService;
 
+    @Autowired
+    private CardService cardService;
+
     @Transactional
-    @RequestMapping(path = "/clients/current/transactions", method = RequestMethod.POST)
+    @RequestMapping(path = "/clients/current/transactions/accounts", method = RequestMethod.POST)
     public ResponseEntity<Object> Transaction(@RequestParam String fromAccountNumber,
                                               @RequestParam String toAccountNumber,
                                               @RequestParam Double amount,
@@ -71,6 +72,12 @@ public class TransactionController {
         accountService.saveAccount(toAccount);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
+
+    }
+
+    @Transactional
+    @PostMapping("/transaction/payment")
+    public ResponseEntity<Object> Payments(@RequestBody Transaction transaction){
 
     }
 }

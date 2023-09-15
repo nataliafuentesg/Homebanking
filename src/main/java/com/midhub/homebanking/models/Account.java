@@ -11,6 +11,7 @@ import java.util.Set;
 
 @Entity
 public class Account {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
@@ -19,6 +20,7 @@ public class Account {
     private LocalDate creationDate;
 
     private Double balance;
+    private AccountType accountType;
 
     private boolean activated = true;
     @OneToMany(mappedBy="account", fetch=FetchType.EAGER)
@@ -26,11 +28,12 @@ public class Account {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
     private Client client;
-    public Account(String number, LocalDate creationDate, Double balance, boolean activated) {
+    public Account(String number, LocalDate creationDate, Double balance, boolean activated, AccountType accountType) {
         this.number = number;
         this.creationDate = creationDate;
         this.balance = balance;
         this.activated = activated;
+        this.accountType = accountType;
 
     }
     public Account() {
@@ -91,6 +94,14 @@ public class Account {
 
     public void setActivated(boolean activated) {
         this.activated = activated;
+    }
+
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
     }
 }
 
