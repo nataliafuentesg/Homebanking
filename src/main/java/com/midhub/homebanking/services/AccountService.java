@@ -13,6 +13,8 @@ public interface AccountService {
 
     List<AccountDTO> getAccounts();
 
+    List<Account> getAllAccounts();
+
     AccountDTO getAccount(Long id);
 
 

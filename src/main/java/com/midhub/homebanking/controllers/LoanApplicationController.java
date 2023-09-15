@@ -10,10 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -86,7 +83,7 @@ public class LoanApplicationController {
         }
 
 
-        double loanAmount = loanApplication.getAmount() * 1.2;
+        double loanAmount = loanApplication.getAmount() + ((loanApplication.getAmount() * loanApplication.getInterestRate())/100);
 
 
         ClientLoan clientLoan = new ClientLoan(loanAmount, loanApplication.getInstallments(), client , loan);
@@ -112,6 +109,29 @@ public class LoanApplicationController {
     @RequestMapping("/loans")
     public List<LoanDTO> getLoans() {
         return loanService.getLoans();
+    }
+
+    @PostMapping("/loans")
+    public ResponseEntity<Object> createLoan(@RequestBody Loan loan, Authentication authentication) {
+        Client client = clientService.findByEmail(authentication.getName());
+        Loan existingLoan = loanService.findByName(loan.getName());
+
+        if (existingLoan != null) {
+            return ResponseEntity.badRequest().body("Loan type with that name already exists.");
+        }
+
+        if (loan.getMaxAmount() < 1000 ) {
+            return ResponseEntity.badRequest().body("Loan amount is not within the allowed range.");
+        }
+
+        if (loan.getPayments() == null || loan.getPayments().size() < 2) {
+            return ResponseEntity.badRequest().body("The 'installments' array must have at least two elements.");
+        }
+
+        loanService.saveLoan(loan);
+
+        return new ResponseEntity<>("Loan Created Successfully",HttpStatus.CREATED);
+
     }
 
 }

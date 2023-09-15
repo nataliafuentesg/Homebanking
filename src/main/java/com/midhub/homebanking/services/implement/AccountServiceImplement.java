@@ -33,6 +33,11 @@ public class AccountServiceImplement implements AccountService {
     }
 
     @Override
+    public List<Account> getAllAccounts() {
+        return accountRepository.findAll().stream().collect(toList());
+    }
+
+    @Override
     public AccountDTO getAccount(Long id) {
         return accountRepository.findById(id).map(AccountDTO::new).orElse(null);
     }

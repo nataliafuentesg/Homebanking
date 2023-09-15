@@ -1,6 +1,7 @@
 package com.midhub.homebanking.controllers;
 import com.midhub.homebanking.dtos.ClientDTO;
 import com.midhub.homebanking.models.Account;
+import com.midhub.homebanking.models.AccountType;
 import com.midhub.homebanking.models.Client;
 import com.midhub.homebanking.repositories.AccountRepository;
 import com.midhub.homebanking.repositories.ClientRepository;
@@ -76,7 +77,7 @@ public class ClientController {
             accountNumber = generateAccountNumber();
         }
 
-        Account account = new Account(accountNumber, LocalDate.now(), 0.0, true);
+        Account account = new Account(accountNumber, LocalDate.now(), 0.0, true, AccountType.SAVINGS);
         account.setClient(newClient);
         accountService.saveAccount(account);
 

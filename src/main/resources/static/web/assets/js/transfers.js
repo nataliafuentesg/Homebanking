@@ -57,7 +57,7 @@ const options = {
 
             console.log(`fromAccountNumber=${(this.fromAccountNumber)}&toAccountNumber=${(this.toAccountNumber)}&amount=${(parseFloat(this.amount))}&description=${(this.description)}`)
 
-            axios.post('/api/clients/current/transactions', transferData,{
+            axios.post('/api/clients/current/transactions/accounts', transferData,{
                 headers: {'content-type': 'application/x-www-form-urlencoded'}
               })
                 .then(response => {

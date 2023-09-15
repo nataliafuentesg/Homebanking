@@ -7,6 +7,7 @@ public class LoanApplicationDTO {
     private double amount;
     private int installments;
     private String destinationAccountNumber;
+    private double interestRate;
 
     public long getLoanId() {
         return loanId;
@@ -38,5 +39,13 @@ public class LoanApplicationDTO {
 
     public void setDestinationAccountNumber(String destinationAccountNumber) {
         this.destinationAccountNumber = destinationAccountNumber;
+    }
+
+    public double getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(double interestRate) {
+        this.interestRate = interestRate;
     }
 }

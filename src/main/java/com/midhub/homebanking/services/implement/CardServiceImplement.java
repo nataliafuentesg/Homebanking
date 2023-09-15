@@ -7,6 +7,7 @@ import com.midhub.homebanking.models.Client;
 import com.midhub.homebanking.repositories.CardRepository;
 import com.midhub.homebanking.services.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -37,4 +38,6 @@ public class CardServiceImplement implements CardService {
     public Optional<Card> findById(Long cardId) {
         return cardRepository.findById(cardId);
     }
+
+
 }

@@ -53,7 +53,7 @@ public class CardController {
 
     }
 
-    @PostMapping("/clients/current/cards/{cardId}/deactivate")
+    @PatchMapping("/clients/current/cards/{cardId}/deactivate")
     public ResponseEntity<Object> deactivateCard(@PathVariable Long cardId, Authentication authentication) {
         Optional<Card> cardOptional = cardService.findById(cardId);
 

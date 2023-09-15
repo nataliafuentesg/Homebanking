@@ -7,11 +7,13 @@ public class ClientLoanDTO {
     private String loanName;
     private double loanAmount;
     private int loanPayments;
+    private double interestRate;
 
     public ClientLoanDTO(ClientLoan clientLoan) {
         this.id = clientLoan.getId();
         this.loanId = clientLoan.getLoan().getId();
         this.loanName = clientLoan.getLoan().getName();
+        this.interestRate = clientLoan.getLoan().getInterestRate();
         this.loanAmount = clientLoan.getAmount();
         this.loanPayments = clientLoan.getPayments();
     }
