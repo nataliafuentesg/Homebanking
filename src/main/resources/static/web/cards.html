@@ -184,7 +184,10 @@
                                                 <p style="margin: 0;">{{ uppercaseName (card.cardHolder) }}</p>
                                                 <p style="margin: 0;">{{ formattedDate (card.fromDate) }}</p>
                                             </div>
-                                            <button @click="deactivateCard(card.id)" class="btn btn-danger">Deactivate</button>
+                                            <div>
+                                                <button @click="deactivateCard(card.id)" class="btn btn-danger">Deactivate</button>
+
+                                            </div>
     
                                         </div>
                                     </div>
