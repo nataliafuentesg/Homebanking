@@ -7,6 +7,8 @@ import com.midhub.homebanking.services.ClientLoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ClientLoanServiceImplement implements ClientLoanService {
     @Autowired
@@ -15,6 +17,11 @@ public class ClientLoanServiceImplement implements ClientLoanService {
     @Override
     public boolean existsByClientAndLoanId(Client client, Long id) {
         return clientLoanRepository.existsByClientAndLoanId(client , id);
+    }
+
+    @Override
+    public Optional<ClientLoan> findById(Long id) {
+        return clientLoanRepository.findById(id);
     }
 
     @Override

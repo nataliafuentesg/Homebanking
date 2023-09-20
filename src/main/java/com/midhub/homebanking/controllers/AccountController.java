@@ -74,7 +74,7 @@ public class AccountController {
 
     }
 
-    @PatchMapping("/{accountNumber}/deactivate")
+    @PatchMapping("/clients/current/accounts/{accountNumber}/deactivate")
     public ResponseEntity<String> deleteAccount(Authentication authentication,@PathVariable long id) {
 
         Client client = clientService.findByEmail(authentication.getName());

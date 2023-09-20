@@ -65,6 +65,18 @@ const options = {
                 })
                 .catch(error => console.error('Error:', error));
         },
+        
+        logout() {
+            axios.post('/api/logout')
+                .then(response => {
+                    if (response.status === 200) {
+                        window.location.href = '/web/assets/pages/index.html';
+                    }
+                })
+                .catch(error => {
+                    console.error('Logout failed:', error);
+                });
+        }
 
     }
 }

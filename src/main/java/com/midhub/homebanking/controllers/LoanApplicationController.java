@@ -1,7 +1,5 @@
 package com.midhub.homebanking.controllers;
-import com.midhub.homebanking.dtos.ClientDTO;
-import com.midhub.homebanking.dtos.LoanApplicationDTO;
-import com.midhub.homebanking.dtos.LoanDTO;
+import com.midhub.homebanking.dtos.*;
 import com.midhub.homebanking.models.*;
 import com.midhub.homebanking.repositories.*;
 import com.midhub.homebanking.services.*;
@@ -38,7 +36,7 @@ public class LoanApplicationController {
     private ClientService clientService;
 
     @Transactional
-    @RequestMapping(path = "/clients/current/loans", method = RequestMethod.POST)
+    @PostMapping("/clients/current/loans")
     public ResponseEntity<Object> applyForLoan(@RequestBody LoanApplicationDTO loanApplication, Authentication authentication) {
 
         Client client = clientService.findByEmail(authentication.getName());
@@ -86,7 +84,7 @@ public class LoanApplicationController {
         double loanAmount = loanApplication.getAmount() + ((loanApplication.getAmount() * loanApplication.getInterestRate())/100);
 
 
-        ClientLoan clientLoan = new ClientLoan(loanAmount, loanApplication.getInstallments(), client , loan);
+        ClientLoan clientLoan = new ClientLoan(loanApplication.getAmount(), loanApplication.getInstallments(),loanApplication.getInstallments(), loanAmount, client , loan);
         clientLoanService.saveClientLoan(clientLoan);
 
 
@@ -133,5 +131,49 @@ public class LoanApplicationController {
         return new ResponseEntity<>("Loan Created Successfully",HttpStatus.CREATED);
 
     }
+    @Transactional
+    @PostMapping("/clients/current/loans/pay-installment")
+    public ResponseEntity<Object> payInstallment(@RequestParam Long idLoan, @RequestParam String account, Authentication authentication) {
+
+
+        if (authentication == null) {
+            return new ResponseEntity<>("Client must be authenticated", HttpStatus.FORBIDDEN);
+        }
+        if (idLoan == null) {
+            return new ResponseEntity<>("Missing loan information", HttpStatus.FORBIDDEN);
+        }
+        if (account.isBlank()) {
+            return new ResponseEntity<>("Missing account", HttpStatus.FORBIDDEN);
+        }
+
+        Client client = clientService.findByEmail(authentication.getName());
+        Account accToPay = accountService.findByNumber(account);
+        Optional<ClientLoan> clientLoanOptional = clientLoanService.findById(idLoan);
+        ClientLoan clientLoan = clientLoanOptional.get();
+
+        Double payment = clientLoan.getAmount() / clientLoan.getPayments();
+        if (client == null) {
+            return new ResponseEntity<>("Client doesn't exist", HttpStatus.FORBIDDEN);
+        }
+        if (accToPay == null) {
+            return new ResponseEntity<>("Account doesn't exist", HttpStatus.FORBIDDEN);
+        }
+        if (accToPay.getBalance() < payment) {
+            return new ResponseEntity<>("Insufficient amount", HttpStatus.FORBIDDEN);
+        }
+        if (clientLoan.getRemainAmount() <= 0) {
+            return new ResponseEntity<>("Fully paid loan", HttpStatus.FORBIDDEN);
+        }
+        Transaction newTransaction = new Transaction(payment, LocalDateTime.now(), TransactionType.DEBIT, "Loan Payment" ,accToPay,accToPay.getBalance() - payment);
+        accToPay.setBalance(accToPay.getBalance() - payment);
+        clientLoan.setRemainPayments(clientLoan.getRemainPayments() - 1);
+        clientLoan.setRemainAmount(clientLoan.getRemainAmount() - payment);
+
+        accountService.saveAccount(accToPay);
+        clientLoanService.saveClientLoan(clientLoan);
+        transactionService.saveTransaction(newTransaction);
+        return new ResponseEntity<>("Installment paid successfully", HttpStatus.OK);
+    }
+
 
 }

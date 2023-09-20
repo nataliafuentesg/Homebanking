@@ -136,6 +136,13 @@
                             </button>
                         </div>
                         <div class="modal-body">
+                            <div class="cardType">
+                                <label for="accountType">Select Account Type:</label>
+                                <select class="selector" id="type" v-model="accountType">
+                                    <option value="SAVINGS">SAVINGS</option>
+                                    <option value="CHECKING">CHECKING</option>                                    
+                                </select>
+                            </div>
                             Are you sure you want to create a new account?
                         </div>
                         <div class="modal-footer">

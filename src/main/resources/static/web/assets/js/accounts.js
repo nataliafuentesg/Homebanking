@@ -13,7 +13,8 @@ const options = {
             firstName : "",  
             localTime: "",  
             canCreateAccount: false,   
-            canApplyForLoan : false    
+            canApplyForLoan : false,   
+            accountType : ''
         }
     },
 
@@ -80,8 +81,9 @@ const options = {
         },
 
         createAccount() {
-            axios.post('/api/clients/current/accounts', {}, {
-              headers: { 'Content-Type': 'application/json' }
+            const data = `accountType=${(this.accountType)}`
+            axios.post('/api/clients/current/accounts', data, {
+                headers: {'content-type': 'application/x-www-form-urlencoded'}
             })
             .then(response => {
               if (response.status === 201) {

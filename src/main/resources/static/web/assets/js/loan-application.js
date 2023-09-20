@@ -58,29 +58,15 @@ const options = {
                 }
             }
 
-            return 0.0; // You can change this to any default value you prefer
+            return 0.0; 
         },
 
         estimatedMonthlyPayment() {
             console.log(this.selectedLoanType)
             console.log('Calculating estimated monthly payment...');
             if (this.selectedLoanType && this.installments && this.loanAmount) {
-                const annualInterestRateDecimal = this.selectedLoanInterest / 100;
-
-                // Calcula la tasa de interés diaria
-                const dailyInterestRate = (annualInterestRateDecimal / 360) * this.loanAmount;
-
-                // Calcula el número de días en un mes promedio (30 días)
-                const daysInMonth = 30;
-
-                // Calcula el interés mensual
-                const monthlyInterest = dailyInterestRate * daysInMonth;
-
-                // Restituye la estimación del pago mensual
-                const numberOfPayments = this.installments;
-                const principal = this.loanAmount;
-                const x = Math.pow(1 + monthlyInterest, numberOfPayments);
-                return (principal * x * monthlyInterest) / (x - 1);
+                const toPay = ((this.loanAmount * this.selectedLoanInterest)/100)/this.installments;                
+                return toPay;
             } else {
                 return 0.0;
             }
