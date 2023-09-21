@@ -20,6 +20,7 @@ public class WebAuthorization {
     @Bean
     public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers(HttpMethod.POST, "/transaction/payment").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/clients").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/clients/current/accounts").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/clients/current/cards").permitAll()
@@ -28,7 +29,7 @@ public class WebAuthorization {
                 .antMatchers(HttpMethod.POST, "/api/clients/current/loans/pay-installment").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/api/clients/current/cards/deactivate", "/api/clients/current/accounts/deactivate").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/loans").hasAuthority("ADMIN")
-                .antMatchers(HttpMethod.POST, "/transaction/payment").permitAll()
+
                 .antMatchers("/web/assets/pages/**", "/web/assets/images/**").permitAll()
                 .antMatchers("/web/assets/styles/**").permitAll()
                 .antMatchers("/web/assets/js/**").permitAll()
@@ -63,7 +64,7 @@ public class WebAuthorization {
         http.formLogin().successHandler((req, res, auth) -> clearAuthenticationAttributes(req));
         http.formLogin().failureHandler((req, res, exc) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED));
         http.logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
-
+        http.cors();
         return http.build();
     }
 

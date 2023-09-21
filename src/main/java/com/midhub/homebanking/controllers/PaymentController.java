@@ -28,7 +28,7 @@ public class PaymentController {
     private CardService cardService;
     @Transactional
     @PostMapping("/payment")
-    @CrossOrigin(origins = "http://127.0.0.1:5500")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<Object> Payments(@RequestBody PaymentDTO payment){
         if (payment.getNumber().length() != 19) {
             return new ResponseEntity<>("Invalid Card Number", HttpStatus.FORBIDDEN);

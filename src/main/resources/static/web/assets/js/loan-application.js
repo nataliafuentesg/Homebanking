@@ -120,10 +120,7 @@ const options = {
         },
 
         getInstallments(selectedLoanType) {
-            // Find the loan type by its ID
             const loanType = this.loanTypes.find(loan => loan.id === selectedLoanType);
-
-            // Return the installments array of the selected loan type
             return loanType ? loanType.payments : [];
         },
 
