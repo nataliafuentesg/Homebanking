@@ -29,8 +29,7 @@ dependencies {
 	implementation 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.apache.pdfbox:pdfbox:2.0.25'
-	implementation group: 'com.lowagie', name: 'itext', version: '2.1.7'
+
 }
 
 tasks.named('test') {

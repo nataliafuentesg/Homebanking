@@ -72,6 +72,10 @@ const options = {
             }
         },
 
+        activeAccounts() {
+            return this.accounts.filter(account => account.activated);
+          }
+
        
 
     },

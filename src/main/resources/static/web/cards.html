@@ -139,8 +139,8 @@
                                                 <p style="margin: 0;">CARD HOLDER</p>
                                                 <p style="font-weight: bold; font-size: medium; margin: 0;">CVV:
                                                     {{card.cvv}}</p>
-                                                <p style="margin: 0;">VALID TILL</p>
-                                            </div>
+                                                    <p style="margin: 0;" :class="{ 'text-red': card.expired }">{{ card.expired ? 'EXPIRED' : 'VALID TILL' }}</p>
+                                                </div>
                                             <div class="name">
                                                 <p style="margin: 0;" style="margin: 0;">{{ uppercaseName (card.cardHolder)
                                                     }}</p>
@@ -149,7 +149,6 @@
 
                                             </div>
                                             <div>
-                                                <p v-if="card.expired" style="color: red; font-weight: bold;">Expired</p>
                                                 <button 
                                                 class="btn btn-danger" @click="deactivateCard(card.id)" ><i class="bi bi-trash"></i></button>
                                             </div>

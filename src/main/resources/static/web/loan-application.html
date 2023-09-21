@@ -134,7 +134,7 @@
                     <label for="destination-account">Destination Account: </label>
                     <select v-model="selectedDestinationAccount" id="destination-account" name="destination-account"
                         class="selector1">
-                        <option v-for="account in accounts" :value="account.number">{{ account.number }}</option>
+                        <option v-for="account in activeAccounts" :value="account.number">{{ account.number }}</option>
                     </select><br>
                     <p>Interest Rate: <span>{{ selectedLoanInterest }}</span></p>
 

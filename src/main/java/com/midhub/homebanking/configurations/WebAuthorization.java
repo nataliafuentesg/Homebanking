@@ -28,7 +28,7 @@ public class WebAuthorization {
                 .antMatchers(HttpMethod.POST, "/api/clients/current/loans/pay-installment").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/api/clients/current/cards/deactivate", "/api/clients/current/accounts/deactivate").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/loans").hasAuthority("ADMIN")
-                .antMatchers(HttpMethod.POST, "/api/transaction/payment").permitAll()
+                .antMatchers(HttpMethod.POST, "/transaction/payment").permitAll()
                 .antMatchers("/web/assets/pages/**", "/web/assets/images/**").permitAll()
                 .antMatchers("/web/assets/styles/**").permitAll()
                 .antMatchers("/web/assets/js/**").permitAll()

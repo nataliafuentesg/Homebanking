@@ -36,7 +36,10 @@ const options = {
     computed: {
         welcomeMessage() {
             return `¡Welcome back, ${this.firstName}!`;
-        }
+        },
+        activeAccounts() {
+            return this.accounts.filter(account => account.activated);
+          }
 
 
     },

@@ -1533,7 +1533,7 @@ h6 span {
 
 .cardLoan:hover .icon i {
     background: linear-gradient(90deg, rgba(9, 9, 121, 1) 0%, rgba(9, 9, 121, 0.835171568627451) 37%, rgba(95, 218, 241, 1) 100%);
-    -webkit-background-clip: text;
+   
     -webkit-text-fill-color: transparent;
     opacity: 1;
     transition: all 0.3s ease;

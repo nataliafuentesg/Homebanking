@@ -46,6 +46,10 @@ const options = {
           return `¡Welcome back, ${this.firstName}!`;
         },
 
+        activeAccounts() {
+            return this.accounts.filter(account => account.activated);
+          }
+
         
     },
 
@@ -111,7 +115,7 @@ const options = {
                 console.log(response);
               })
               .catch(error => {
-                console.log(error);
+                this.resultMessage = error.response.data ;
               });
         },
 
@@ -128,7 +132,7 @@ const options = {
                 console.log(response);
               })
               .catch(error => {
-                console.log(error);
+                this.resultMessage = error.response.data;
               });
         }
 
