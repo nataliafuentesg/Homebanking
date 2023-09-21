@@ -35,7 +35,8 @@
                         </a>
                         <a class="nav-link" href="./cards.html"><i class="bi bi-credit-card"></i> Cards</a>
                         <a class="nav-link" href="./loan-application.html"><i class="bi bi-cash-stack"></i> Loans</a>
-                        <a class="nav-link" href="./transfers.html"><i class="bi bi-arrow-left-right"></i> Transactions</a>
+                        <a class="nav-link" href="./transfers.html"><i class="bi bi-arrow-left-right"></i>
+                            Transactions</a>
 
 
                         <div class="nav-item dropdown">
@@ -67,7 +68,8 @@
                     </div>
                 </div>
 
-                <a class="navbar-brand" href="#"><img src="./assets/images/logo.png" href="#" class="logo" alt="Logo"></img>
+                <a class="navbar-brand" href="#"><img src="./assets/images/logo.png" href="#" class="logo"
+                        alt="Logo"></img>
                 </a>
             </nav>
 
@@ -88,21 +90,29 @@
 
             <h1 class="GFG" style="text-align: center; color: #1848a0; font-weight: bold;">Your Accounts</h1>
             <div id="cardData" class="animate__animated animate__pulse">
+
                 <template v-if="accounts.length > 0" v-for="account in accounts">
-                    <div class="cardInfo">
-                        <div class="card-body">
-                            <h5 class="card-title">Account number: <span> {{account.number}} </span></h5>
-                            <h5 class="card-title">Balance: </h5>
-                            <div class="balance">
-                                {{formatCurrency(account.balance)}}
-                            </div>
-                            <h5 class="card-title">Creation Date: <span> {{formatDate(account.creationDate)}}
-                                </span>
-                            </h5>
-                            <div class="btnCard">
-                                <a :href="'./account.html?id=' + account.id"
-                                    style="background-color: white; color: #1848a0; padding: 0.4rem;"
-                                    class="btn btn-primary">View Transactions</a>
+                    <div v-if="account.activated">
+                        <div class="cardInfo">
+                            <div class="card-body">
+                                <h5 class="card-title">Account number: <span> {{account.number}} </span></h5>
+                                <h5 class="card-title">Balance: </h5>
+                                <div class="balance">
+                                    {{formatCurrency(account.balance)}}
+                                </div>
+                                <h5 class="card-title">Creation Date: <span> {{formatDate(account.creationDate)}}
+                                    </span>
+                                </h5>
+                                <div class="btnsAccounts">
+                                    <div class="btnCard">
+                                        <a :href="'./account.html?id=' + account.id"
+                                            style="background-color: white; color: #1848a0; padding: 0.4rem;"
+                                            class="btn btn-primary">View Transactions</a>
+                                    </div>
+                                    <button class="btn btn-danger" @click="deactivateAccount(account.id)"><i
+                                            class="bi bi-trash"></i></button>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -112,17 +122,17 @@
                         <div class="card-body">
                             <h5 class="card-title">You don't have any accounts</h5>
                             <div class="btnCard">
-                                <a  style="background-color: white; color: #1848a0; padding: 0.4rem;"
+                                <a style="background-color: white; color: #1848a0; padding: 0.4rem;"
                                     class="btn btn-primary">Open an account</a>
                             </div>
                         </div>
                     </div>
-                </template>               
+                </template>
 
             </div>
             <div class="btnCreateCard">
                 <button v-if="canCreateAccount" class="btnStyle" data-bs-toggle="modal"
-                data-bs-target="#confirmModal">Create Account</button>
+                    data-bs-target="#confirmModal">Create Account</button>
             </div>
 
             <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel"
@@ -140,24 +150,23 @@
                                 <label for="accountType">Select Account Type:</label>
                                 <select class="selector" id="type" v-model="accountType">
                                     <option value="SAVINGS">SAVINGS</option>
-                                    <option value="CHECKING">CHECKING</option>                                    
+                                    <option value="CHECKING">CHECKING</option>
                                 </select>
                             </div>
                             Are you sure you want to create a new account?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary" id="confirmCreate" @click="createAccount">Create</button>
+                            <button type="submit" class="btn btn-primary" id="confirmCreate"
+                                @click="createAccount">Create</button>
                         </div>
                     </div>
                 </div>
             </div>
-            
-
 
             <section>
                 <h1 class="GFG" style="text-align: center; color: #1848a0; font-weight: bold;">Loans</h1>
-                <template v-if = "loans.length > 0" v-for = "loan in loans">
+                <template v-if="loans.length > 0" v-for="loan in loans">
                     <div class="filter-result">
                         <div class="job-box d-md-flex align-items-center justify-content-between mb-30 mr-50">
                             <div class="job-left my-4 d-md-flex align-items-center flex-wrap">
@@ -169,21 +178,66 @@
                                 <div class="job-content">
                                     <h5 class="text-center text-md-left" style="color: #1848a0;">{{loan.loanName}}</h5>
                                     <ul class="d-md-flex flex-wrap text-capitalize g-4">
+                                        <!-- <li class="mr-md-4" style="color: #1848a0;">
+                                            <i class="bi bi-cash-stack" style="color: #1848a0;"></i> Amount:
+                                            {{formatCurrency(loan.loanAmount)}}
+                                        </li> -->
                                         <li class="mr-md-4" style="color: #1848a0;">
-                                            <i class="bi bi-cash-stack" style="color: #1848a0;"></i> Amount: {{formatCurrency(loan.loanAmount)}}
+                                            <i class="bi bi-cash-stack" style="color: #1848a0;"></i> Remain Amount:
+                                            {{formatCurrency(loan.remainAmount)}}
                                         </li>
                                         <li class="mr-md-4" style="color: #1848a0;">
-                                            <i class="fa fa-usd"></i> Payments: {{loan.loanPayments}}
+                                            <i class="fa fa-usd"></i> Payments: {{loan.remainPayments}}
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="job-right my-4 flex-shrink-0">
-                                <a href="#" class="btn d-block w-100 d-sm-inline-block btn-light" style="background-color: #1848a0; color: white;">Pay now</a>
+                                <a class="btn d-block w-100 d-sm-inline-block btn-light"
+                                    style="background-color: #1848a0; color: white;" data-bs-toggle="modal"
+                                    data-bs-target="#confirmModal1">Pay now</a>
                             </div>
                         </div>
                     </div>
                 </template>
+
+                <div class="modal fade" id="confirmModal1" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmModalLabel">Confirm Loan Payment</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <label for="loan-pay">Loan To Pay: </label>
+                            <select v-model="selectedLoanToPay" id="loan-pay" name="loan-type" class="selector1">
+                            <option v-for="loan in loans" :value="loan.id">{{ loan.loanName }}</option>
+                            </select><br>
+                            <label for="account">Account: </label>
+                            <select v-model="selectedAccount" id="account" name="loan-type" class="selector1">
+                                
+                             <option v-for="account in accounts" :value="account.number">
+                                <div v-if = "account.activated">
+                                    {{ account.number }}
+                                </div>
+                            </option>
+                                                            
+                            </select><br>
+                            Are you sure you want to pay the selected loan?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary" id="confirmCreate"
+                                @click="payLoan">Pay</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
                 <template v-if="canApplyForLoan">
                     <div class="filter-result">
                         <div class="job-box d-md-flex align-items-center justify-content-between mb-30 mr-50">
@@ -194,11 +248,13 @@
                                     </span>
                                 </div>
                                 <div class="job-content">
-                                    <h5 class="text-center text-md-left" style="color: #1848a0; font-weight: bolder;">Apply For a Loan</h5>                                    
+                                    <h5 class="text-center text-md-left" style="color: #1848a0; font-weight: bolder;">
+                                        Apply For a Loan</h5>
                                 </div>
                             </div>
                             <div class="job-right my-4 flex-shrink-0">
-                                <a href="./loan-application.html" class="btn d-block w-100 d-sm-inline-block btn-light" style="background-color: #1848a0; color: white;">Apply Here</a>
+                                <a href="./loan-application.html" class="btn d-block w-100 d-sm-inline-block btn-light"
+                                    style="background-color: #1848a0; color: white;">Apply Here</a>
                             </div>
                         </div>
                     </div>
@@ -259,8 +315,8 @@
                         <div class="col-md-4 mb-md-0 mb-4">
                             <h2 class="footer-heading">About</h2>
                             <ul class="list-unstyled">
-                                <li><a href= "./assets/pages/commingSoon.html" class="d-block">Out story</a></li>
-                                <li><a href= "./assets/pages/commingSoon.html" class="d-block">Awards</a></li>
+                                <li><a href="./assets/pages/commingSoon.html" class="d-block">Out story</a></li>
+                                <li><a href="./assets/pages/commingSoon.html" class="d-block">Awards</a></li>
                                 <li><a href="./assets/pages/commingSoon.html" class="d-block">Our Team</a></li>
                                 <li><a href="./assets/pages/commingSoon.html" class="d-block">Career</a></li>
                             </ul>
@@ -270,7 +326,8 @@
                             <ul class="list-unstyled">
                                 <li><a href="./assets/pages/commingSoon.html" class="d-block">FAQs</a></li>
                                 <li><a href="./assets/pages/commingSoon.html" class="d-block">Site map</a></li>
-                                <li><a href="./assets/pages/commingSoon.html" class="d-block">Financial Education</a></li>
+                                <li><a href="./assets/pages/commingSoon.html" class="d-block">Financial Education</a>
+                                </li>
                                 <li><a href="./assets/pages/commingSoon.html" class="d-block">Security</a></li>
                             </ul>
                         </div>
@@ -324,9 +381,10 @@
             </div>
         </div>
     </footer>
-    
 
-    <script title="oNlineWebFonts" src="https://db.onlinewebfonts.com/animations/icons/187921.js" type="text/javascript"></script>
+
+    <script title="oNlineWebFonts" src="https://db.onlinewebfonts.com/animations/icons/187921.js"
+        type="text/javascript"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
