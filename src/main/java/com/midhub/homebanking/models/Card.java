@@ -22,6 +22,8 @@ public class Card {
 
     private boolean activated = true;
 
+
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
     private Client client;
@@ -119,5 +121,10 @@ public class Card {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public boolean isExpired() {
+        LocalDate currentDate = LocalDate.now();
+        return fromDate != null && fromDate.isBefore(currentDate);
     }
 }

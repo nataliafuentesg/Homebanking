@@ -146,10 +146,14 @@
                                                     }}</p>
                                                 <p style="margin: 0;" style="margin: 0;">{{ formattedDate (card.fromDate) }}
                                                 </p>
+
                                             </div>
-                                            <button @click="deactivateCard(card.id)"
-                                                class="btn btn-danger">Deactivate</button>
-    
+                                            <div>
+                                                <p v-if="card.expired" style="color: red; font-weight: bold;">Expired</p>
+                                                <button 
+                                                class="btn btn-danger" @click="deactivateCard(card.id)" ><i class="bi bi-trash"></i></button>
+                                            </div>
+                                                
                                         </div>
                                     </div>
                                 </div>
@@ -157,7 +161,7 @@
                         </template>
                     </div>
 
-
+                    
                     <h2 class="GFG" style="text-align: left; color: #1848a0; font-weight: bold;">Debit Cards</h2>
                     <div class="creditCardsContainer">
                         <template v-for="card in debitCards">
@@ -178,16 +182,19 @@
                                                 <p style="font-weight: bold; font-size: medium; margin: 0%;">CVV:
                                                     {{card.cvv}}
                                                 </p>
-                                                <p style="margin: 0;">VALID TILL</p>
+                                                <p style="margin: 0;" :class="{ 'text-red': card.expired }">{{ card.expired ? 'EXPIRED' : 'VALID TILL' }}</p>
                                             </div>
                                             <div class="name">
                                                 <p style="margin: 0;">{{ uppercaseName (card.cardHolder) }}</p>
                                                 <p style="margin: 0;">{{ formattedDate (card.fromDate) }}</p>
-                                            </div>
-                                            <div>
-                                                <button @click="deactivateCard(card.id)" class="btn btn-danger">Deactivate</button>
+                                                
 
                                             </div>
+                                            <div>
+                                                <button 
+                                                class="btn btn-danger" @click="deactivateCard(card.id)" ><i class="bi bi-trash"></i></button>
+                                            </div>
+                                            
     
                                         </div>
                                     </div>

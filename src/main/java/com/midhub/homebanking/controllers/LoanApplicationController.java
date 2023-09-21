@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -84,7 +83,7 @@ public class LoanApplicationController {
         double loanAmount = loanApplication.getAmount() + ((loanApplication.getAmount() * loanApplication.getInterestRate())/100);
 
 
-        ClientLoan clientLoan = new ClientLoan(loanApplication.getAmount(), loanApplication.getInstallments(),loanApplication.getInstallments(), loanAmount, client , loan);
+        ClientLoan clientLoan = new ClientLoan(loanAmount, loanApplication.getInstallments(),loanApplication.getInstallments(), loanAmount, client , loan);
         clientLoanService.saveClientLoan(clientLoan);
 
 
@@ -92,7 +91,7 @@ public class LoanApplicationController {
         transactionService.saveTransaction(creditTransaction);
 
 
-        destinationAccount.setBalance(destinationAccount.getBalance() + loanAmount);
+        destinationAccount.setBalance(destinationAccount.getBalance() + loanApplication.getAmount());
         accountService.saveAccount(destinationAccount);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -104,7 +103,7 @@ public class LoanApplicationController {
                 !loanApplication.getDestinationAccountNumber().isBlank();
     }
 
-    @RequestMapping("/loans")
+    @GetMapping("/loans")
     public List<LoanDTO> getLoans() {
         return loanService.getLoans();
     }
@@ -151,7 +150,8 @@ public class LoanApplicationController {
         Optional<ClientLoan> clientLoanOptional = clientLoanService.findById(idLoan);
         ClientLoan clientLoan = clientLoanOptional.get();
 
-        Double payment = clientLoan.getAmount() / clientLoan.getPayments();
+        double payment = clientLoan.getAmount() / clientLoan.getPayments();
+
         if (client == null) {
             return new ResponseEntity<>("Client doesn't exist", HttpStatus.FORBIDDEN);
         }
@@ -164,7 +164,7 @@ public class LoanApplicationController {
         if (clientLoan.getRemainAmount() <= 0) {
             return new ResponseEntity<>("Fully paid loan", HttpStatus.FORBIDDEN);
         }
-        Transaction newTransaction = new Transaction(payment, LocalDateTime.now(), TransactionType.DEBIT, "Loan Payment" ,accToPay,accToPay.getBalance() - payment);
+        Transaction newTransaction = new Transaction(-payment, LocalDateTime.now(), TransactionType.DEBIT, "Loan Payment" ,accToPay,accToPay.getBalance() - payment);
         accToPay.setBalance(accToPay.getBalance() - payment);
         clientLoan.setRemainPayments(clientLoan.getRemainPayments() - 1);
         clientLoan.setRemainAmount(clientLoan.getRemainAmount() - payment);

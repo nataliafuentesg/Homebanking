@@ -261,9 +261,30 @@ a.dropdown-item:hover {
 }
 
 .btnCard {
-    padding-top: 1rem;
+
     display: flex;
     justify-content: center;
+}
+
+.btnsAccounts {
+
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+
+}
+
+.text-red {
+    color: red !important;
+    font-weight: bold;
+  }
+
+.cardsBtns {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
 }
 
 .balance {
@@ -1401,13 +1422,14 @@ h6 span {
     padding: 2rem;
     margin: 0 auto;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
 
 @media screen and (max-width: 767px) {
     .content {
-        padding-top: 300px;
+
         flex-direction: column;
     }
 }

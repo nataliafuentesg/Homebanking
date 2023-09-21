@@ -65,12 +65,14 @@ const options = {
             console.log(this.selectedLoanType)
             console.log('Calculating estimated monthly payment...');
             if (this.selectedLoanType && this.installments && this.loanAmount) {
-                const toPay = ((this.loanAmount * this.selectedLoanInterest)/100)/this.installments;                
+                const toPay = (((this.loanAmount * this.selectedLoanInterest)/100) + this.loanAmount)/this.installments;                
                 return toPay;
             } else {
                 return 0.0;
             }
         },
+
+       
 
     },
 

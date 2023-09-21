@@ -14,7 +14,9 @@ const options = {
             localTime: "",  
             canCreateAccount: false,   
             canApplyForLoan : false,   
-            accountType : ''
+            accountType : '',
+            selectedLoanToPay: null,
+            selectedAccount: null,
         }
     },
 
@@ -43,6 +45,8 @@ const options = {
 
           return `¡Welcome back, ${this.firstName}!`;
         },
+
+        
     },
 
     methods: {  
@@ -93,7 +97,40 @@ const options = {
             .catch(error => {
               console.error('Error creating account:', error);
             });
-          },
+        },
+
+        deactivateAccount(accountId) {
+            const data = `id=${(accountId)}`
+            axios.patch(`/api/clients/current/accounts/deactivate`, data, {
+                headers: {'content-type': 'application/x-www-form-urlencoded'}
+            })
+              .then(response => {
+                if (response.status === 200) {
+                    window.location.reload();
+                }
+                console.log(response);
+              })
+              .catch(error => {
+                console.log(error);
+              });
+        },
+
+        payLoan(){
+            const data = `idLoan=${(this.selectedLoanToPay)}&account=${(this.selectedAccount)}`
+            console.log(data)
+            axios.post(`/api/clients/current/loans/pay-installment`, data, {
+                headers: {'content-type': 'application/x-www-form-urlencoded'}
+            })
+              .then(response => {
+                if (response.status === 200) {
+                    window.location.reload();
+                }
+                console.log(response);
+              })
+              .catch(error => {
+                console.log(error);
+              });
+        }
 
     }
 

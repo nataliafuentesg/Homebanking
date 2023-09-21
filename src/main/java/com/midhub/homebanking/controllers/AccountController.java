@@ -4,24 +4,19 @@ import com.midhub.homebanking.models.Account;
 import com.midhub.homebanking.models.AccountType;
 import com.midhub.homebanking.models.Client;
 import com.midhub.homebanking.models.Transaction;
-import com.midhub.homebanking.repositories.AccountRepository;
-import com.midhub.homebanking.repositories.ClientRepository;
 import com.midhub.homebanking.repositories.TransactionRepository;
 import com.midhub.homebanking.services.AccountService;
 import com.midhub.homebanking.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import  com.midhub.homebanking.Utils.Utilities;
 
-import static java.util.stream.Collectors.toList;
+
 
 @RequestMapping("/api")
 @RestController
@@ -35,30 +30,30 @@ public class AccountController {
     @Autowired
     private TransactionRepository transactionRepository;
 
-    @RequestMapping("/accounts")
+    @GetMapping("/accounts")
     public List<AccountDTO> getAccounts() {
         return accountService.getAccounts();
     }
 
-    @RequestMapping("/accounts/{id}")
+    @GetMapping("/accounts/{id}")
     public AccountDTO getAccount(@PathVariable Long id) {
         return accountService.getAccount(id);
     }
 
 
-    @RequestMapping(path = "/clients/current/accounts", method = RequestMethod.POST)
+    @PostMapping(path = "/clients/current/accounts")
     public ResponseEntity<Object> newAccount(@RequestParam AccountType accountType, Authentication authentication) {
 
         Client client = clientService.findByEmail(authentication.getName());
 
-        if (client.getAccounts().size() >= 3 ) {
+        if (client.getAccounts().size() >= 3) {
             return new ResponseEntity<>("You cannot have more than three accounts", HttpStatus.FORBIDDEN);
         }
 
-        String accountNumber = generateAccountNumber();
+        String accountNumber = Utilities.generateAccountNumber();
 
-        while (accountService.findByNumber(accountNumber) !=  null) {
-            accountNumber = generateAccountNumber();
+        while (accountService.findByNumber(accountNumber) != null) {
+            accountNumber = Utilities.generateAccountNumber();
         }
 
         Account newAccount = new Account();
@@ -74,8 +69,8 @@ public class AccountController {
 
     }
 
-    @PatchMapping("/clients/current/accounts/{accountNumber}/deactivate")
-    public ResponseEntity<String> deleteAccount(Authentication authentication,@PathVariable long id) {
+    @PatchMapping("/clients/current/accounts/deactivate")
+    public ResponseEntity<String> deleteAccount(Authentication authentication, @RequestParam long id) {
 
         Client client = clientService.findByEmail(authentication.getName());
         Account account = accountService.findById(id);
@@ -102,12 +97,4 @@ public class AccountController {
     }
 
 
-private String generateAccountNumber() {
-        int accountNumber = getRandomNumberUsingNextInt(10000000, 99999999);
-        return "VIN-" + accountNumber;
-    }
-    private int getRandomNumberUsingNextInt(int min, int max) {
-        Random random = new Random();
-        return random.nextInt(max - min) + min;
-    }
 }

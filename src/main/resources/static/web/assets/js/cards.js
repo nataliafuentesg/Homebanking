@@ -75,13 +75,16 @@ const options = {
             return nameclient.toUpperCase();
         },
 
+        
+
         deactivateCard(cardId) {
-            axios
-              .post(`/api/clients/current/cards/${cardId}/deactivate`)
+            const data = `cardId=${(cardId)}`
+            axios.patch(`/api/clients/current/cards/deactivate`, data, {
+                headers: {'content-type': 'application/x-www-form-urlencoded'}
+            })
               .then(response => {
-                const cardIndex = this.cards.findIndex(card => card.id === cardId);
-                if (cardIndex !== -1) {
-                  this.cards[cardIndex].activated = false;
+                if (response.status === 200) {
+                    window.location.reload();
                 }
                 console.log(response);
               })
