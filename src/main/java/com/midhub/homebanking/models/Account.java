@@ -18,7 +18,6 @@ public class Account {
     private long id;
     private String number;
     private LocalDate creationDate;
-
     private Double balance;
     private AccountType accountType;
 
@@ -26,7 +25,6 @@ public class Account {
     @OneToMany(mappedBy="account", fetch=FetchType.EAGER)
     Set<Transaction> transactions = new HashSet<>();
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "client_id")
     private Client client;
     public Account(String number, LocalDate creationDate, Double balance, boolean activated, AccountType accountType) {
         this.number = number;
@@ -40,7 +38,6 @@ public class Account {
     }
     @JsonIgnore
     public Client getClient() {
-
         return client;
     }
     public Set<Transaction> getTransactions() {

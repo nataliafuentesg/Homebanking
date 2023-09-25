@@ -61,8 +61,8 @@ public class AccountController {
         newAccount.setCreationDate(LocalDate.now());
         newAccount.setAccountType(accountType);
         newAccount.setBalance(0.0);
-        newAccount.setClient(client);
-
+        //newAccount.setClient(client);
+        client.addAccount(newAccount);
         accountService.saveAccount(newAccount);
 
         return new ResponseEntity<>(HttpStatus.CREATED);

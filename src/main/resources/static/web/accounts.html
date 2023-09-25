@@ -109,7 +109,7 @@
                                             style="background-color: white; color: #1848a0; padding: 0.4rem;"
                                             class="btn btn-primary">View Transactions</a>
                                     </div>
-                                    <button class="btn btn-danger" @click="deactivateAccount(account.id)"><i
+                                    <button class="btn btn-danger" @click="confirmDeleteAccount(account.id)"><i
                                             class="bi bi-trash"></i></button>
                                 </div>
 
@@ -171,9 +171,11 @@
                         <div class="job-box d-md-flex align-items-center justify-content-between mb-30 mr-50">
                             <div class="job-left my-4 d-md-flex align-items-center flex-wrap">
                                 <div class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">
-                                    <span class="material-symbols-outlined" style="font-size: 40px;">
-                                        real_estate_agent
-                                    </span>
+                                    <i id="iconsLoans" :class="{
+                                        'bi bi-book': loan.loanName === 'Student',
+                                        'bi bi-house': loan.loanName === 'Mortgage',
+                                        'bi bi-person': loan.loanName === 'Personal',                                        
+                                      }" :style="{ 'font-size': '2rem'  }"></i>
                                 </div>
                                 <div class="job-content">
                                     <h5 class="text-center text-md-left" style="color: #1848a0;">{{loan.loanName}}</h5>

@@ -75,6 +75,11 @@ const options = {
             return nameclient.toUpperCase();
         },
 
+        confirmDeleteCard(cardId) {
+            if (window.confirm("Are you sure you want to delete this card?")) {
+                this.deactivateCard(cardId);
+            }
+        },
         
 
         deactivateCard(cardId) {

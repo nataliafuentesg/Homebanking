@@ -120,16 +120,16 @@
                             <tbody>
                                 <thead style="font-weight: bold;">
                                     <td>Transaction</td>
-                                    <td>Type</td>
+                                    <td id="collapsable">Type</td>
                                     <td>Amount</td>
                                     <td>Date</td>
-                                    <td>Description</td>
-                                    <td>Current Balance</td>
+                                    <td id="collapsable">Description</td>
+                                    <td id="collapsable">Current Balance</td>
                                 </thead>
                                 <tbody>
                                     <template v-for="transaction in transactions">
                                         <tr>
-                                            <td><i :class="{
+                                            <td ><i :class="{
                                                 'bi bi-arrow-up-circle': transaction.transactionType === 'CREDIT',
                                                 'bi bi-arrow-down-circle': transaction.transactionType === 'DEBIT',
                                                 [activeClass]: transaction.transactionType === 'CREDIT',
@@ -137,7 +137,7 @@
                                               }" :style="{ 'font-weight': 'bold'  }"></i>
                                             </td>
     
-                                            <td :class="{
+                                            <td id="collapsable" :class="{
                                                 [activeClass]: transaction.transactionType === 'CREDIT',
                                                 [errorClass]: transaction.transactionType === 'DEBIT'
                                               }" :style="{ 'font-weight': 'bold'  }">
@@ -146,7 +146,7 @@
                                             <td> {{formatCurrency(transaction.amount)}} </td>
                                             <td>{{ formatDate(transaction.date) }} {{ formatTime(transaction.date) }}</td>                                        
                                             <td id="collapsable"> {{ transaction.description }} </td>      
-                                            <td> {{ formatCurrency(transaction.current_balance) }} </td>                               
+                                            <td id="collapsable"> {{ formatCurrency(transaction.current_balance) }} </td>                               
                                         </tr>                          
     
                                     </template>

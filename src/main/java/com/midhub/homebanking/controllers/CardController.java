@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import  com.midhub.homebanking.Utils.Utilities;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @RequestMapping("/api")
@@ -70,6 +72,18 @@ public class CardController {
         cardService.saveCard(card);
 
         return ResponseEntity.status(HttpStatus.OK).body("Card deactivated successfully.");
+    }
+
+    @GetMapping("/clients/current/credit-cards")
+    public ResponseEntity<List<Card>> getCreditCardsForCurrentUser(Authentication authentication) {
+        Client client = clientService.findByEmail(authentication.getName());
+        List<Card> allCardsForClient = cardService.findByClient(client);
+
+        List<Card> creditCards = allCardsForClient.stream()
+                .filter(card -> card.getCardType() == CardType.CREDIT)
+                .collect(Collectors.toList());
+
+        return new ResponseEntity<>(creditCards, HttpStatus.OK);
     }
 
 

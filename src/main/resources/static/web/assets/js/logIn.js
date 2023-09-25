@@ -29,7 +29,7 @@ const options = {
             axios.post(`/api/login?${loginData}`)
                 .then(response => {
                     if (response.status === 200) {
-                        if (this.email === 'admin@mindhubbrothers.com') {
+                        if (this.email.includes('@mindhubbrothers.com')) {
                            window.location.href = '/web/manager.html';
                         } else {
                             window.location.href = '/web/accounts.html';
@@ -58,7 +58,11 @@ const options = {
                     })
                     .then(loginResponse => {
                         if (loginResponse.status === 200) {
-                            window.location.href = '/web/accounts.html';
+                            if (this.email.includes('@mindhubbrothers.com')) {
+                                window.location.href = '/web/manager.html';
+                             } else {
+                                 window.location.href = '/web/accounts.html';
+                             }
                         }
                     })
                     .catch(loginError => {

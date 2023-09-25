@@ -27,7 +27,7 @@ const options = {
                     console.log(response.data)
                     this.clients = response.data;
                     console.log(this.clients)
-                    
+
                 })
                 .catch(error => console.log(error));
         },
@@ -57,7 +57,7 @@ const options = {
                     console.log(response)
                     console.log(response.data);
                     this.clients.push(response.data);
-                    
+
                     this.firstName = '';
                     this.lastName = '';
                     this.email = '';
@@ -65,7 +65,7 @@ const options = {
                 })
                 .catch(error => console.error('Error:', error));
         },
-        
+
         logout() {
             axios.post('/api/logout')
                 .then(response => {

@@ -99,7 +99,8 @@ const options = {
               }
             })
             .catch(error => {
-              console.error('Error creating account:', error);
+              const resultMessage = error;
+              alert(`Error: ${resultMessage}`)
             });
         },
 
@@ -115,8 +116,16 @@ const options = {
                 console.log(response);
               })
               .catch(error => {
-                this.resultMessage = error.response.data ;
+                const resultMessage = error.response.data;
+                console.log(error.response.data);
+                alert(`Error: ${resultMessage}`)
               });
+        },
+
+        confirmDeleteAccount(accountId) {
+            if (window.confirm("Are you sure you want to delete this Account?")) {
+                this.deactivateAccount(accountId);
+            }
         },
 
         payLoan(){
@@ -132,7 +141,8 @@ const options = {
                 console.log(response);
               })
               .catch(error => {
-                this.resultMessage = error.response.data;
+                const resultMessage = error;
+                alert(`Error: ${resultMessage}`)
               });
         }
 

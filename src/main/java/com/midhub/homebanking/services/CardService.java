@@ -6,6 +6,7 @@ import com.midhub.homebanking.models.CardType;
 import com.midhub.homebanking.models.Client;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface CardService {
@@ -18,4 +19,5 @@ public interface CardService {
     Optional<Card> findById(Long cardId);
 
 
+    List<Card> findByClient(Client client);
 }

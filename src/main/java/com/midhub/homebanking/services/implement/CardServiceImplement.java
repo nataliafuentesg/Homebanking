@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,6 +38,11 @@ public class CardServiceImplement implements CardService {
     @Override
     public Optional<Card> findById(Long cardId) {
         return cardRepository.findById(cardId);
+    }
+
+    @Override
+    public List<Card> findByClient(Client client) {
+        return cardRepository.findByClient(client);
     }
 
 

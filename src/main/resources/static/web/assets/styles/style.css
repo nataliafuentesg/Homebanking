@@ -543,13 +543,26 @@ main {
     background: #002752;
     border-radius: 50%;
     margin: 0 auto;
-    margin-bottom: 10px;
+    margin-bottom: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .footer-10 .con-info .icon span {
     color: #fff;
-    font-size: 24px;
+    font-size: 25px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-align-last: center;
 }
+
+
 
 .footer-10 .con-info span {
     color: #002752;
@@ -1016,12 +1029,25 @@ ul {
     padding-top: 1rem;
     padding-bottom: 4rem;
 }
+#iconsLoans{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
 /* Log In Form */
 #formText {
-    font-weight: 600;
+    font-weight: 800;
     color: white;
+    text-shadow: 1px 1px 2px black;
+}
+
+#titleForm{
+    font-weight: bold;
+    font-size: 2.5rem;
+    color: var(--color1);
+    text-shadow: 3px 3px 4px rgb(112, 123, 218);
 }
 
 h6 span {
@@ -1469,6 +1495,15 @@ h6 span {
     transition: all 0.8s ease;
     background-position: 0px;
     background-size: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#iconLoanapp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .material-icons.md-18 {
@@ -1496,6 +1531,12 @@ h6 span {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 4px;
+}
+
+.cardLoan .title2 {
+    
+    color: white;
+    
 }
 
 .cardLoan .text {
@@ -1529,13 +1570,14 @@ h6 span {
 .cardLoan:hover .icon {
     background-position: -120px;
     transition: all 0.3s ease;
+    color: white;
 }
 
 .cardLoan:hover .icon i {
-    background: linear-gradient(90deg, rgba(9, 9, 121, 1) 0%, rgba(9, 9, 121, 0.835171568627451) 37%, rgba(95, 218, 241, 1) 100%);
-   
-    -webkit-text-fill-color: transparent;
-    opacity: 1;
+    /* background: linear-gradient(90deg, rgba(9, 9, 121, 1) 0%, rgba(9, 9, 121, 0.835171568627451) 37%, rgba(95, 218, 241, 1) 100%); */
+    color: white !important;
+    /* -webkit-text-fill-color: transparent; */
+    /* opacity: 1; */
     transition: all 0.3s ease;
 }
 
@@ -1687,6 +1729,11 @@ h6 span {
     .containerCard {
         align-items: center;
         padding: 0;
+    }
+
+    .px-4 {
+        padding-right: 0rem!important; 
+        padding-left: 0rem!important; 
     }
 
 
