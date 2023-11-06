@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/styles/styleDashboard.css">
+    <title>Your Profile</title>
+</head>
+
+<body>
+
+    <div class="container" id="app">
+        <!-- Sidebar Section -->
+        <aside>
+            <div class="toggle">
+                <div class="logo">
+                    <img src="./assets/images/favicon.png">
+                    <h2>Mindhub<span>Bank</span></h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">
+                        close
+                    </span>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <a href="#" class="active">
+                    <span class="material-icons-sharp">
+                        dashboard
+                    </span>
+                    <h3>Accounts</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons">
+                        credit_card
+                    </span>
+                    <h3>Cards</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons">
+                        real_estate_agent
+                    </span>
+                    <h3>Loans</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons">
+                        paid
+                    </span>
+                    <h3>Transactions</h3>
+                </a>
+
+                <a href="#">
+                    <span class="material-icons-sharp">
+                        settings
+                    </span>
+                    <h3>Settings</h3>
+                </a>
+                <a @click="logout">
+                    <span class="material-icons-sharp">
+                        logout
+                    </span>
+                    <h3>Logout</h3>
+                </a>
+            </div>
+        </aside>
+        <!-- End of Sidebar Section -->
+
+        <!-- Main Content -->
+        <main>
+            <h1>Your Accounts</h1>
+            <!-- Accounts -->
+            <div class="analyse">
+                <template v-if="accounts.length > 0" v-for="account in accounts">
+                    <div v-if="account.activated">
+
+                        <div class="sales">
+                            <div class="status">
+                                <div class="info">
+                                    <h3>Account number: <span> {{account.number}} </span></h3>
+                                    <h1>Balance: <span>{{formatCurrency(account.balance)}}</span></h1>
+                                    <div class="buttonsAccounts">
+                                        <a :href="'./accountDashboard.html?id=' + account.id">
+                                            <span class="material-icons">
+                                                visibility
+                                            </span>
+                                            Transactions
+                                        </a>
+                                        <a @click="confirmDeleteAccount(account.id)">
+                                            <span class="material-icons">
+                                                delete
+                                                </span>                                            
+                                        </a>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <template v-if="canCreateAccount">
+                        <div class="sales">
+                            <div class="status">
+                                <div class="info newAccount">
+                                    <h3>New Account</h3>
+                                    <h1>Create</h1>
+                                    <span class="material-icons">
+                                        savings
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </template>
+            </div>
+
+
+            <!-- End of Accounts -->
+
+            <!-- Loans Section -->
+            <div class="new-users">
+                <h2>Loans</h2>
+                <div class="user-list">
+                    <template v-if="loans.length > 0" v-for="loan in loans">
+                        <div class="user">
+                            <div class="loanIcons">
+                                <span v-if="loan.loanName === 'Student'" class="material-icons">import_contacts</span>
+                                <span v-else-if="loan.loanName === 'Mortgage'" class="material-icons">home</span>
+                                <span v-else-if="loan.loanName === 'Personal'" class="material-icons">person</span>
+
+                            </div>
+                            <h2>{{loan.loanName}}</h2>
+                            <p>{{formatCurrency(loan.remainAmount)}}</p>
+                            <p>Payments: {{loan.remainPayments}}</p>
+                        </div>
+                    </template>
+                    <template v-if="canApplyForLoan">
+                        <div class="user">
+                            <div class="loanIcons">
+                                <span class="material-icons">
+                                    add
+                                </span>
+                            </div>
+                            <h2>New Loan</h2>
+                            <p>Apply now</p>
+                        </div>
+                    </template>
+                </div>
+            </div>
+            <!-- End of New Users Section -->
+
+            <!-- Recent Orders Table -->
+            <div class="recent-orders">
+                <h2>Recent Transactions</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Ammount</th>
+                            <th>Date</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <a href="#">Show All</a>
+            </div>
+            <!-- End of Recent Orders -->
+
+        </main>
+        <!-- End of Main Content -->
+
+        <!-- Right Section -->
+        <div class="right-section">
+            <div class="nav">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">
+                        menu
+                    </span>
+                </button>
+                <div class="dark-mode">
+                    <span class="material-icons-sharp active">
+                        light_mode
+                    </span>
+                    <span class="material-icons-sharp">
+                        dark_mode
+                    </span>
+                </div>
+
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>{{ welcomeMessage }}</b></p>
+                        <small class="text-muted">Admin</small>
+                    </div>
+                    <div class="profile-photo">
+                        <img src="images/profile-1.jpg">
+                    </div>
+                </div>
+
+            </div>
+            <!-- End of Nav -->
+
+            <div class="user-profile">
+                <div class="logo">
+                    <img src="images/logo.png">
+                    <h2>Natalia Fuentes</h2>
+                    <p>Fullstack Web Developer</p>
+                </div>
+            </div>
+
+            <div class="reminders">
+                <div class="header">
+                    <h2>Reminders</h2>
+                    <span class="material-icons-sharp">
+                        notifications_none
+                    </span>
+                </div>
+
+                <div class="notification">
+                    <div class="icon">
+                        <span class="material-icons-sharp">
+                            volume_up
+                        </span>
+                    </div>
+                    <div class="content">
+                        <div class="info">
+                            <h3>Workshop</h3>
+                            <small class="text_muted">
+                                08:00 AM - 12:00 PM
+                            </small>
+                        </div>
+                        <span class="material-icons-sharp">
+                            more_vert
+                        </span>
+                    </div>
+                </div>
+
+                <div class="notification deactive">
+                    <div class="icon">
+                        <span class="material-icons-sharp">
+                            edit
+                        </span>
+                    </div>
+                    <div class="content">
+                        <div class="info">
+                            <h3>Workshop</h3>
+                            <small class="text_muted">
+                                08:00 AM - 12:00 PM
+                            </small>
+                        </div>
+                        <span class="material-icons-sharp">
+                            more_vert
+                        </span>
+                    </div>
+                </div>
+
+                <div class="notification add-reminder">
+                    <div>
+                        <span class="material-icons-sharp">
+                            add
+                        </span>
+                        <h3>Add Reminder</h3>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <!-- <script src="orders.js"></script>
+    <script src="index.js"></script> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./assets/js/accounts.js"></script>
+    <script src="./assets/js/darkMode.js"></script>
+</body>
+
+</html>

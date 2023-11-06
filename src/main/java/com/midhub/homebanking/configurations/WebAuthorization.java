@@ -33,10 +33,13 @@ public class WebAuthorization {
                 .antMatchers("/web/assets/pages/**", "/web/assets/images/**").permitAll()
                 .antMatchers("/web/assets/styles/**").permitAll()
                 .antMatchers("/web/assets/js/**").permitAll()
+                .antMatchers("/web/dashboard.html", "/web/accountDashboard.html", "/web/cardDashboard.html",
+                        "/web/create-cardsDash.html", "/web/loanApplicationDash.html", "/web/transferMoney.html").hasAuthority("CLIENT")
 
                 .antMatchers(HttpMethod.GET, "/api/clients", "/api/accounts").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.GET, "/api/loans").hasAnyAuthority("ADMIN", "CLIENT")
-                .antMatchers("/web/manager.html", "/web/manager.js", "/web/createLoanType.html").hasAuthority("ADMIN")
+                .antMatchers("/web/manager.html", "/web/manager.js", "/web/createLoanType.html", "/web/adminDashboard.html"
+                , "/web/createLoanTypeAdmin.html").hasAuthority("ADMIN")
                 .antMatchers("/h2-console/**").hasAuthority("ADMIN")
                 .antMatchers("/rest/**").hasAuthority("ADMIN")
                 .antMatchers("/web/accounts.html").hasAuthority("CLIENT")
