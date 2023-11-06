@@ -43,8 +43,7 @@ const options = {
 
     computed: {
         welcomeMessage() {
-
-          return `¡Welcome back, ${this.firstName}!`;
+          return `${this.firstName}`;
         },
     },
 
