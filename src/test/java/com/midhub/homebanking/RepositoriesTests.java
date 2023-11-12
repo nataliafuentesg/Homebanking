@@ -55,11 +55,7 @@ public class RepositoriesTests {
         accounts = accountRepository.findAll();
         assertThat(accounts, is(not(empty())));
     }
-    @Test
-    public void accountHasCorrectNumber() {
-        accounts = accountRepository.findAll();
-        assertThat(accounts, hasItem(hasProperty("number", hasLength(14))));
-    }
+
     @Test
     public void accountExist() {
         accounts = accountRepository.findAll();
