@@ -25,25 +25,25 @@
             </div>
 
             <div class="sidebar">
-                <a href="#" class="active">
+                <a href="./dashboard.html" >
                     <span class="material-icons-sharp">
                         dashboard
                     </span>
                     <h3>Accounts</h3>
                 </a>
-                <a href="#">
+                <a href="./cardDashboard.html">
                     <span class="material-icons">
                         credit_card
                     </span>
                     <h3>Cards</h3>
                 </a>
-                <a href="#">
+                <a href="#" class="active">
                     <span class="material-icons">
                         real_estate_agent
                     </span>
                     <h3>Loans</h3>
                 </a>
-                <a href="#">
+                <a href="./transferMoney.html">
                     <span class="material-icons">
                         paid
                     </span>
@@ -68,8 +68,9 @@
 
         <!-- Main Content -->
         <main>
-            <h1>Your Accounts</h1>
-            <!-- Accounts -->
+            <h1>Apply for a new loan</h1>
+            
+            <!-- Accounts
             <div class="analyse">
                 <template v-if="accounts.length > 0" v-for="account in accounts">
                     <div v-if="account.activated">
@@ -112,14 +113,14 @@
                         </div>
                     </template>
                 </template>
-            </div>
+            </div> -->
 
 
             <!-- End of Accounts -->
 
             <!-- Loans Section -->
             <div class="new-users">
-                <h2>Loans</h2>
+                <h2>Your Active Loans</h2>
                 <div class="user-list">
                     <template v-if="loans.length > 0" v-for="loan in loans">
                         <div class="user">
@@ -134,34 +135,32 @@
                             <p>Payments: {{loan.remainPayments}}</p>
                         </div>
                     </template>
-                    <template v-if="canApplyForLoan">
-                        <div class="user">
-                            <div class="loanIcons">
-                                <span class="material-icons">
-                                    add
-                                </span>
-                            </div>
-                            <h2>New Loan</h2>
-                            <p>Apply now</p>
-                        </div>
-                    </template>
+                    
                 </div>
             </div>
             <!-- End of New Users Section -->
 
             <!-- Recent Orders Table -->
             <div class="recent-orders">
-                <h2>Recent Transactions</h2>
+                <h2>Types of Loans</h2>
                 <table>
                     <thead>
                         <tr>
-                            <th>Type</th>
-                            <th>Ammount</th>
-                            <th>Date</th>
-                            <th>Description</th>
+                            <th>Name</th>
+                            <th>Max. Ammount</th>                            
+                            <th>Installments</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        <template v-for="loanType in loanTypes">
+                            <tr>
+                                <td> {{ loanType.name }} </td>
+                                <td> {{formatCurrency(loanType.maxAmount)}} </td>
+                                <td> {{loanType.payments}} </td>        
+                                                             
+                            </tr>
+                        </template>                         
+                    </tbody>
                 </table>
                 <a href="#">Show All</a>
             </div>
@@ -272,6 +271,6 @@
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="./assets/js/account.js"></script>
+    <script src="./assets/js/loan-application.js"></script>
 </body>
 </html>

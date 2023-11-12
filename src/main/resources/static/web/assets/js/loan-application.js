@@ -14,6 +14,7 @@ const options = {
             accounts: [],
             resultMessage: '',
             firstName: '',
+            loans: [],
 
 
         }
@@ -27,6 +28,8 @@ const options = {
                 console.log(this.firstName)
                 this.accounts = response.data.accounts
                 console.log(this.accounts)
+                this.loans = response.data.loans
+                console.log(this.loans)
 
             })
             .catch(error => console.log(error));
