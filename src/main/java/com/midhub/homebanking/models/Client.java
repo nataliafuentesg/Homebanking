@@ -1,9 +1,14 @@
 package com.midhub.homebanking.models;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
+
 
 @Entity
 
@@ -18,9 +23,49 @@ public class Client {
     private String lastName;
 
     private String email;
+
+    private String password;
     @OneToMany(mappedBy="client", fetch=FetchType.EAGER)
-    @JsonManagedReference
-    Set<Account> accounts = new HashSet<>();
+    private Set<Account> accounts = new HashSet<>();
+
+    @OneToMany(mappedBy = "client", fetch=FetchType.EAGER)
+    private Set<ClientLoan> clientLoans = new HashSet<>();
+
+    @OneToMany(mappedBy = "client", fetch=FetchType.EAGER)
+    private Set<Card> cards = new HashSet<>();
+
+    public Client() { }
+
+    public Client(String first, String last, String mail, String password) {
+        this.firstName = first;
+        this.lastName = last;
+        this.email = mail;
+        this.password = password;
+    }
+
+    public Client(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
+
+
+    public void addLoan(ClientLoan clientLoan) {
+        clientLoan.setClient(this);
+        clientLoans.add(clientLoan);
+    }
+
+    public void addAccount(Account account) {
+        account.setClient(this);
+        accounts.add(account);
+    }
+    @JsonIgnore
+    public Set<ClientLoan> getClientLoans() {
+        return clientLoans;
+    }
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
 
     public long getId() {
         return id;
@@ -28,32 +73,6 @@ public class Client {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public Set<Account> getAccounts() {
-        return accounts;
-    }
-
-
-    public void addAccount(Account account) {
-        account.setClient(this);
-        accounts.add(account);
-    }
-
-    public Client() { }
-
-    public Client(String first, String last, String mail) {
-
-        this.firstName = first;
-        this.lastName = last;
-        this.email = mail;
-    }
-
-    public Client(String firstName, String lastName, String email, Set<Account> accounts) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.accounts = accounts;
     }
 
     public String getFirstName() {
@@ -86,6 +105,26 @@ public class Client {
 
     public void setAccounts(Set<Account> accounts) {
         this.accounts = accounts;
+    }
+
+    public void setClientLoans(Set<ClientLoan> clientLoans) {
+        this.clientLoans = clientLoans;
+    }
+
+    public Set<Card> getCards() {
+        return cards;
+    }
+
+    public void setCards(Set<Card> cards) {
+        this.cards = cards;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 

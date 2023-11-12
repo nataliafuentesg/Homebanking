@@ -1,5 +1,7 @@
 let { createApp } = Vue
 
+console.log("manager")
+
 const options = {
     data() {
         return {
@@ -19,13 +21,13 @@ const options = {
     methods: {
 
         loadData() {
-            axios.get("http://localhost:8080/rest/clients")
+            axios.get("http://localhost:8080/api/clients")
                 .then(response => {
                     console.log(response)
                     console.log(response.data)
-                    this.clients = response.data._embedded.clients;
+                    this.clients = response.data;
                     console.log(this.clients)
-                    this.jsonData = JSON.stringify(response.data, null, 1);
+
                 })
                 .catch(error => console.log(error));
         },
@@ -50,12 +52,12 @@ const options = {
                 email: this.email,
             };
 
-            axios.post('http://localhost:8080/rest/clients', newClient)
+            axios.post('http://localhost:8080/api/clients', newClient)
                 .then(response => {
                     console.log(response)
                     console.log(response.data);
                     this.clients.push(response.data);
-                    
+
                     this.firstName = '';
                     this.lastName = '';
                     this.email = '';
@@ -63,6 +65,18 @@ const options = {
                 })
                 .catch(error => console.error('Error:', error));
         },
+
+        logout() {
+            axios.post('/api/logout')
+                .then(response => {
+                    if (response.status === 200) {
+                        window.location.href = '/web/assets/pages/index.html';
+                    }
+                })
+                .catch(error => {
+                    console.error('Logout failed:', error);
+                });
+        }
 
     }
 }

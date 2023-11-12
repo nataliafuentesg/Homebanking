@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+    <link rel="stylesheet" href="../styles/style.css">
+    <title>LogIn | MindHub Brothers Bank</title>
+
+</head>
+
+<body>
+
+    <header>
+        <div class="header-blue">
+            <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
+                <div class="container"><a class="navbar-brand" href="./index.html">MINDHUB BROTHERS</a><button
+                        class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span
+                            class="sr-only"></span><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navcol-1">
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item" role="presentation"><a class="nav-link active" href="./personal.html"
+                                    style="color: white !important;">Personal</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link active" href="./business.html"
+                                    style="color: white !important;;">Business</a></li>
+
+                        </ul>
+                        <span class="navbar-text"> <a href="./login.html" class="login">Log In</a></span><a
+                            class="btn btn-light action-button" role="button" href="./signUp.html">Sign Up</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main id="app">
+
+        <div class="section">
+            <div class="container">
+                <div class="row full-height justify-content-center">
+                    <div class="col-12 text-center align-self-center py-5">
+                        <div class="section pb-5 pt-5 pt-sm-2 text-center">
+                            <h6 class="mb-0 pb-3" id="titleForm"><span id="titleForm">Log In </span><span id="titleForm">Sign Up</span></h6>
+                            <input class="checkbox" type="checkbox" id="reg-log" name="reg-log" />
+                            <label for="reg-log"></label>
+                            <div class="card-3d-wrap mx-auto">
+                                <div class="card-3d-wrapper">
+                                    <div class="card-front">
+                                        <div class="center-wrap">
+                                            <div class="section text-center">
+                                                <form @submit.prevent="login">
+                                                    <h4 id="formText" class="mb-4 pb-3">Log In</h4>
+                                                    <div class="form-group">
+                                                        <input type="email" class="form-style" placeholder="Email"
+                                                            v-model="email" required>
+                                                        <i class="input-icon bi bi-envelope"></i>
+                                                    </div>
+                                                    <div class="form-group mt-2">
+                                                        <input type="password" class="form-style" placeholder="Password"
+                                                            v-model="password" required>
+                                                        <i class="input-icon bi bi-lock"></i>
+                                                    </div>
+                                                    <button type="submit" class="btn btnlogin mt-4">Login</button>
+                                                    <p class="mb-0 mt-4 text-center"><a href="#" class="link"
+                                                            style="color: #ffffff;">Forgot your password?</a></p>
+                                                </form>
+                                                <p v-if="errorMessage" style="color: #ffffff;">{{ errorMessage }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-back">
+                                        <div class="center-wrap">
+                                            <div class="section text-center">
+                                                <form @submit.prevent="register">
+                                                    <h4 id="formText" class="mb-3 pb-3">Sign Up</h4>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-style" placeholder="First Name" v-model="firstName" required>
+                                                        <i class=" input-icon bi bi-person-circle"></i>
+                                                    </div>
+                                                    <div class="form-group mt-2">
+                                                        <input type="text" class="form-style" placeholder="Last Name" v-model="lastName" required>
+                                                        <i class=" input-icon bi bi-person-circle"></i>
+                                                    </div>
+                                                    <div class="form-group mt-2">
+                                                        <input type="email" class="form-style" placeholder="Email" v-model="email" required>
+                                                        <i class="input-icon bi bi-envelope"></i>
+                                                    </div>
+                                                    <div class="form-group mt-2">
+                                                        <input type="password" class="form-style" placeholder="Password" v-model="password" required>
+                                                        <i class="input-icon bi bi-lock"></i>
+                                                    </div>
+                                                    
+                                                    <button type="submit"
+                                                        class="btn btnlogin mt-4">Register</button>
+                                                    
+                                                </form>
+                                                <p v-if="registrationError" style="color: #ffffff; font-weight: bold; padding-top: 0.5rem;">{{ registrationError }}</p>                                         
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+
+    <footer class="footer-10">
+        <div class="container">
+            <div class="row mb-5 pb-3 no-gutters">
+                <div class="col-md-4 mb-md-0 mb-4 d-flex">
+                    <div class="con con-1 w-100 py-5">
+                        <div class="con-info w-100 text-center">
+                            <div class="icon d-flex justify-content-center">
+                                <span><i class="bi bi-telephone"></i></span>
+                            </div>
+                            <div class="text">
+                                <span>(+00) 1234 5678</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-md-0 mb-4 d-flex">
+                    <div class="con con-2 w-100 py-5">
+                        <div class="con-info w-100 text-center">
+                            <div class="icon d-flex justify-content-center">
+                                <span><i class="bi bi-envelope"></i></span>
+                            </div>
+                            <div class="text">
+                                <span>info@mindhubbrothers.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-md-0 mb-4 d-flex">
+                    <div class="con con-3 w-100 py-5">
+                        <div class="con-info w-100 text-center">
+                            <div class="icon d-flex justify-content-center">
+                                <span><i class="bi bi-geo-alt"></i></span>
+                            </div>
+                            <div class="text">
+                                <span>203 Fake St. Mountain View, San Francisco, California, USA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-4 mb-md-0 mb-4">
+                            <h2 class="footer-heading">About</h2>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="d-block">Our story</a></li>
+                                <li><a href="#" class="d-block">Awards</a></li>
+                                <li><a href="#" class="d-block">Our Team</a></li>
+                                <li><a href="#" class="d-block">Career</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 mb-md-0 mb-4">
+                            <h2 class="footer-heading">Support</h2>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="d-block">FAQs</a></li>
+                                <li><a href="#" class="d-block">Site map</a></li>
+                                <li><a href="#" class="d-block">Financial Education</a></li>
+                                <li><a href="#" class="d-block">Security</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 mb-md-0 mb-4">
+                            <h2 class="footer-heading">Resources</h2>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="d-block">Blog</a></li>
+                                <li><a href="#" class="d-block">Newsletter</a></li>
+                                <li><a href="#" class="d-block">Privacy Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 mb-md-0 mb-4">
+                    <h2 class="footer-heading">Subscribe</h2>
+                    <form action="#" class="subscribe-form">
+                        <div class="form-group d-flex">
+                            <input type="text" class="form-control rounded-left" placeholder="Enter email address">
+                            <button type="submit" class="form-control submit rounded-right">Subscribe</button>
+                        </div>
+                        <span class="subheading">Get the latest financial updates in your mailbox</span>
+                    </form>
+                </div>
+            </div>
+            <div class="row mt-5 pt-4 border-top">
+                <div class="col-md-6 col-lg-8 mb-md-0 mb-4">
+                    <p class="copyright mb-0">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved. | Mindhub
+                        Brothers
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
+                <div class="col-md-6 col-lg-4 text-md-right">
+                    <div class="ftco-footer-social p-0" style="list-style: none;">
+                        <div><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span
+                                    style="font-size: 25px; color: #ffffff;"><i class="bi bi-instagram"></i></span></a>
+                        </div>
+                        <div><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span
+                                    style="font-size: 25px; color: #ffffff;"><i class="bi bi-facebook"></i></span></a>
+                        </div>
+                        <div><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span
+                                    style="font-size: 25px; color: #ffffff;"><i class="bi bi-twitter"></i></span></a>
+                        </div>
+                        <div><a href="#" data-toggle="tooltip" data-placement="top" title="LinkedIn"><span
+                                    style="font-size: 25px; color: #ffffff;"><i class="bi bi-linkedin"></i></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="../js/logIn.js"></script>
+</body>
+
+</html>
