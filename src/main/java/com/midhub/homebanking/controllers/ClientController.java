@@ -1,9 +1,11 @@
 package com.midhub.homebanking.controllers;
 import com.midhub.homebanking.dtos.ClientDTO;
+
 import com.midhub.homebanking.models.Account;
 import com.midhub.homebanking.models.AccountType;
 import com.midhub.homebanking.models.Client;
 import com.midhub.homebanking.repositories.AccountRepository;
+
 import com.midhub.homebanking.repositories.ClientRepository;
 import com.midhub.homebanking.services.AccountService;
 import com.midhub.homebanking.services.ClientService;
@@ -24,6 +26,7 @@ import static java.util.stream.Collectors.toList;
 @RequestMapping("/api")
 @RestController
 public class ClientController {
+
     @Autowired
     private ClientService clientService;
 
@@ -32,6 +35,7 @@ public class ClientController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
 
 
     @GetMapping("/clients")
@@ -85,6 +89,7 @@ public class ClientController {
 
     }
 
+
     private String generateAccountNumber() {
         int accountNumber = getRandomNumberUsingNextInt(10000000, 99999999);
         return "VIN-" + accountNumber;
@@ -93,6 +98,7 @@ public class ClientController {
         Random random = new Random();
         return random.nextInt(max - min) + min;
     }
+
 
 }
 

@@ -1,4 +1,7 @@
 package com.midhub.homebanking.dtos;
+
+import com.midhub.homebanking.models.Account;
+
 import com.midhub.homebanking.models.Client;
 import java.util.Set;
 import java.util.stream.Collectors;

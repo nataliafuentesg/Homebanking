@@ -23,11 +23,17 @@ const options = {
     created() {
         axios.get("http://localhost:8080/api/clients/current")
         .then(response => {
+
             console.log(response)            
             this.accounts = response.data.accounts.sort((a, b) => extractAccountNumber(a.number) - extractAccountNumber(b.number));
             console.log(this.accounts)
             this.loans = response.data.loans
             console.log(this.loans)           
+
+            console.log(response)
+            this.accounts = response.data.accounts.sort((a, b) => extractAccountNumber(a.number) - extractAccountNumber(b.number));
+            console.log(this.accounts)           
+
             this.firstName =response.data.firstName; 
             console.log(this.firstName)   
             
