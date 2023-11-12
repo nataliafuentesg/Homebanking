@@ -1,4 +1,5 @@
 package com.midhub.homebanking.dtos;
+
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.midhub.homebanking.models.Account;
 import com.midhub.homebanking.models.AccountType;
@@ -6,6 +7,10 @@ import com.midhub.homebanking.models.AccountType;
 import java.time.LocalDate;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+
+import com.midhub.homebanking.models.Account;
+import java.time.LocalDate;
 
 
 public class AccountDTO {
