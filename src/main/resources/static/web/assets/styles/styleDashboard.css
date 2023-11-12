@@ -122,7 +122,8 @@ b{
 }
 
 aside{
-    height: 100vh;
+    height: 100vh;    
+    
 }
 
 aside .toggle{
@@ -157,6 +158,7 @@ aside .sidebar{
     position: relative;
     top: 1.5rem;
     transition: all 0.3s ease;
+    overflow: hidden;
 }
 
 aside .sidebar:hover{
@@ -560,6 +562,57 @@ main .recent-orders a{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.GOLD {
+    border-radius: 1rem;
+    background-image: linear-gradient(to right,
+            #462523 0,
+            #cb9b51 22%,
+            #f6e27a 45%,
+            #f6f2c0 50%,
+            #f6e27a 55%,
+            #cb9b51 78%,
+            #462523 100%);
+    color: black;
+}
+
+.TITANIUM {
+    border-radius: 1rem;
+    background-image:
+        linear-gradient(to right,
+            #555564 0,
+            #707070 22%,
+            #b4b4b8 45%,
+            #cacac9 50%,
+            #b4b4b8 55%,
+            #707070 78%,
+            #555564 100%);
+}
+
+.SILVER {
+    border-radius: 1rem;
+    background:
+        linear-gradient(-72deg,
+            #dedede,
+            #ffffff 16%,
+            #dedede 21%,
+            #ffffff 24%,
+            #454545 27%,
+            #dedede 36%,
+            #ffffff 45%,
+            #ffffff 60%,
+            #dedede 72%,
+            #ffffff 80%,
+            #dedede 84%,
+            #a1a1a1);
+}
+
+.cardMain{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 @media screen and (max-width: 1200px) {

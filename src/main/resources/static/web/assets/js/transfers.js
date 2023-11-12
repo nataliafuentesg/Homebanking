@@ -35,7 +35,7 @@ const options = {
 
     computed: {
         welcomeMessage() {
-            return `¡Welcome back, ${this.firstName}!`;
+            return `${this.firstName}`;
         },
         activeAccounts() {
             return this.accounts.filter(account => account.activated);
@@ -45,6 +45,10 @@ const options = {
     },
 
     methods: {
+        formatCurrency(balance) {
+
+            return balance.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+        },
 
 
         updateLocalTime() {

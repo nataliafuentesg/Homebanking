@@ -27,25 +27,25 @@
             </div>
 
             <div class="sidebar">
-                <a href="#" class="active">
+                <a href="./dashboard.html">
                     <span class="material-icons-sharp">
                         dashboard
                     </span>
                     <h3>Accounts</h3>
                 </a>
-                <a href="#">
+                <a href="#" class="active">
                     <span class="material-icons">
                         credit_card
                     </span>
                     <h3>Cards</h3>
                 </a>
-                <a href="#">
+                <a href="./loanApplicationDash.html">
                     <span class="material-icons">
                         real_estate_agent
                     </span>
                     <h3>Loans</h3>
                 </a>
-                <a href="#">
+                <a href="./transferMoney.html">
                     <span class="material-icons">
                         paid
                     </span>
@@ -69,22 +69,26 @@
         <!-- End of Sidebar Section -->
 
         <!-- Main Content -->
-        <main>
+        <main class="cardMain">
             <h1>Cards</h1>
-            <h1>CREDIT</h1>
+            <template v-if="cards.length > 0">
+                <h1>CREDIT</h1>
+            </template>
             <!-- Accounts -->
             <div class="analyse">
                 <template v-if="cards.length > 0">
                     <template v-for="card in creditCards">
-                        <div class="sales">
+                        <div v-if="card.activated" :class="card.cardColor">
+
                             <div class="status">
                                 <div class="info">
                                     <h3><span> {{ card.number }} </span></h3>
                                     <h1><span>{{ uppercaseName (card.cardHolder)}}</span></h1>
-                                    <p>{{card.cvv}}</p>                                   
+                                    <p>{{card.cvv}}</p>
                                     <p>{{ formattedDate (card.fromDate) }}</p>
                                 </div>
                             </div>
+
                         </div>
                     </template>
                 </template>
@@ -104,19 +108,23 @@
             </div>
             <h1>DEBIT</h1>
             <div class="analyse">
-                
+
                 <template v-if="cards.length > 0">
                     <template v-for="card in debitCards">
-                        <div class="sales">
-                            <div class="status">
-                                <div class="info">
-                                    <h3><span> {{ card.number }} </span></h3>
-                                    <h1><span>{{ uppercaseName (card.cardHolder)}}</span></h1>
-                                    <p>{{card.cvv}}</p>                                   
-                                    <p>{{ formattedDate (card.fromDate) }}</p>
+
+                        <div v-if="card.activated" :class="card.cardColor">
+                            <div class="sales">
+                                <div class="status">
+                                    <div class="info">
+                                        <h3><span> {{ card.number }} </span></h3>
+                                        <h1><span>{{ uppercaseName (card.cardHolder)}}</span></h1>
+                                        <p>{{card.cvv}}</p>
+                                        <p>{{ formattedDate (card.fromDate) }}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </template>
                 </template>
                 <template v-if="canCreateCard">
@@ -134,7 +142,7 @@
                 </template>
             </div>
 
-            <!-- End of Accounts -->           
+            <!-- End of Accounts -->
 
         </main>
         <!-- End of Main Content -->
@@ -242,6 +250,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="./assets/js/cards.js"></script>
+    <script src="./assets/js/darkMode.js"></script>
 </body>
 
 </html>
