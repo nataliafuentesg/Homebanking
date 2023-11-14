@@ -15,6 +15,8 @@ const options = {
             resultMessage: '',
             firstName: '',
             loans: [],
+            canApplyForLoan : false,
+            showModal: false,
 
 
         }
@@ -30,6 +32,7 @@ const options = {
                 console.log(this.accounts)
                 this.loans = response.data.loans
                 console.log(this.loans)
+                this.canApplyForLoan = response.data.loans.length < 3;
 
             })
             .catch(error => console.log(error));
@@ -90,6 +93,13 @@ const options = {
             return balance.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
         },
 
+        openLoanModal() {
+            this.showModal = true;
+          },
+          closeLoanModal() {
+            this.showModal = false;
+          },
+
         updateLocalTime() {
             const now = new Date();
             const hours = now.getHours().toString().padStart(2, "0");
@@ -137,7 +147,7 @@ const options = {
                 .catch(error => {
                     console.error('Logout failed:', error);
                 });
-        }
+        },
 
     }
 

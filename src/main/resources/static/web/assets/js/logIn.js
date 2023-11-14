@@ -32,7 +32,7 @@ const options = {
                         if (this.email.includes('@mindhubbrothers.com')) {
                            window.location.href = '/web/manager.html';
                         } else {
-                            window.location.href = '/web/accounts.html';
+                            window.location.href = '/web/dashboard.html';
                         }
                     }
                     
@@ -61,7 +61,7 @@ const options = {
                             if (this.email.includes('@mindhubbrothers.com')) {
                                 window.location.href = '/web/manager.html';
                              } else {
-                                 window.location.href = '/web/accounts.html';
+                                 window.location.href = '/web/dashboard.html';
                              }
                         }
                     })

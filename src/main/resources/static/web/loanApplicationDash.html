@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="./assets/styles/styleDashboard.css">
     <title>Loan Apply</title>
 </head>
+
 <body>
     <div class="container" id="app">
         <!-- Sidebar Section -->
@@ -25,7 +27,7 @@
             </div>
 
             <div class="sidebar">
-                <a href="./dashboard.html" >
+                <a href="./dashboard.html">
                     <span class="material-icons-sharp">
                         dashboard
                     </span>
@@ -69,7 +71,7 @@
         <!-- Main Content -->
         <main>
             <h1>Apply for a new loan</h1>
-            
+
             <!-- Accounts
             <div class="analyse">
                 <template v-if="accounts.length > 0" v-for="account in accounts">
@@ -135,9 +137,67 @@
                             <p>Payments: {{loan.remainPayments}}</p>
                         </div>
                     </template>
-                    
+                    <template v-if="canApplyForLoan">
+                        <div>
+                            <div class="user" @click="openLoanModal">
+                                <div class="loanIcons">
+                                    <span class="material-icons">
+                                        add
+                                    </span>
+                                </div>
+                                <h2>New Loan</h2>
+                                <p>Apply now</p>
+                            </div>
+                            <!-- Modal -->
+                            <div v-if="showModal" class="modal-overlay">
+                                <div class="modal">
+                                    <span class="modal-close" @click="closeLoanModal">&times;</span>
+                                    <h2>Loan Application</h2>
+                                    <div class="transferForm">
+                                        <label for="loan-type">Loan Type: </label>
+                                        <select v-model="selectedLoanType" id="loan-type" name="loan-type"
+                                            class="selector1">
+                                            <option v-for="loanType in loanTypes" :value="loanType.id">{{ loanType.name
+                                                }}</option>
+                                        </select><br>
+
+                                        <label for="loan-installments">Installments: </label>
+                                        <select v-model.number="installments" name="loan-installments"
+                                            class="selector1">
+                                            <option v-for="installment in getInstallments(selectedLoanType)"
+                                                :value="installment">{{
+                                                installment
+                                                }}</option>
+                                        </select><br>
+
+                                        <label for="loan-amount">Loan Amount: </label>
+                                        <input v-model.number="loanAmount" type="number" id="loan-amount"
+                                            name="loan-amount" class="selector1" required><br>
+
+                                        <label for="destination-account">Destination Account: </label>
+                                        <select v-model="selectedDestinationAccount" id="destination-account"
+                                            name="destination-account" class="selector1">
+                                            <option v-for="account in activeAccounts" :value="account.number">{{
+                                                account.number }}</option>
+                                        </select><br>
+                                        <p>Interest Rate: <span>{{ selectedLoanInterest }}</span></p>
+
+                                        <p>Estimated Monthly Payment: <span id="monthly-payment">{{
+                                                formatCurrency(estimatedMonthlyPayment)
+                                                }}</span></p>
+
+                                        <div class="btnCreateCard">
+                                            <button data-bs-toggle="modal"
+                                                data-bs-target="#confirmModal">Apply</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </template>
+
                 </div>
             </div>
+
             <!-- End of New Users Section -->
 
             <!-- Recent Orders Table -->
@@ -147,7 +207,7 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Max. Ammount</th>                            
+                            <th>Max. Ammount</th>
                             <th>Installments</th>
                         </tr>
                     </thead>
@@ -156,10 +216,10 @@
                             <tr>
                                 <td> {{ loanType.name }} </td>
                                 <td> {{formatCurrency(loanType.maxAmount)}} </td>
-                                <td> {{loanType.payments}} </td>        
-                                                             
+                                <td> {{loanType.payments}} </td>
+
                             </tr>
-                        </template>                         
+                        </template>
                     </tbody>
                 </table>
                 <a href="#">Show All</a>
@@ -273,4 +333,5 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="./assets/js/loan-application.js"></script>
 </body>
+
 </html>
