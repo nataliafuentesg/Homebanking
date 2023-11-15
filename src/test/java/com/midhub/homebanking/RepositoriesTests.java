@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/*
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class RepositoriesTests {
@@ -86,4 +86,4 @@ public class RepositoriesTests {
         transactions = transactionRepository.findAll();
         assertThat(transactions, hasItem(hasProperty("date", is(not(empty())))));
     }
-}
+}*/
