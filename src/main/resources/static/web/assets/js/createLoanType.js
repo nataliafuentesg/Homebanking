@@ -14,7 +14,7 @@ const options = {
     },
 
     created() {
-        axios.get("http://localhost:8080/api/loans")
+        axios.get("/api/loans")
             .then(response => {
                 console.log(response)
                 this.loans = response.data;

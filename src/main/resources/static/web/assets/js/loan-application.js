@@ -23,7 +23,7 @@ const options = {
     },
 
     created() {
-        axios.get("http://localhost:8080/api/clients/current")
+        axios.get("/api/clients/current")
             .then(response => {
                 console.log(response)
                 this.firstName = response.data.firstName;
@@ -37,7 +37,7 @@ const options = {
             })
             .catch(error => console.log(error));
 
-        axios.get("http://localhost:8080/api/loans")
+        axios.get("/api/loans")
             .then(response => {
                 console.log(response)
                 this.loanTypes = response.data;
