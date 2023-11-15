@@ -48,10 +48,10 @@ public class HomebankingApplication {
 			clientRepository.save(quioneGalvis);
 			clientRepository.save(admin);
 
-			Account account1 = new Account("VIN-00000001", LocalDate.now(), 5000.0, true, AccountType.SAVINGS);
-			Account account2 = new Account("VIN-00000002", LocalDate.now().plusDays(1), 7500.0, true, AccountType.SAVINGS);
-			Account account3 = new Account("VIN-00000003", LocalDate.now().minusDays(2), 3000.0, true, AccountType.SAVINGS);
-			Account account4 = new Account("VIN-00000004", LocalDate.now().minusDays(3), 6000.0, true, AccountType.SAVINGS);
+			Account account1 = new Account("VIN001", LocalDate.now(), 5000.0, true, AccountType.SAVINGS);
+			Account account2 = new Account("VIN002", LocalDate.now().plusDays(1), 7500.0, true, AccountType.SAVINGS);
+			Account account3 = new Account("VIN003", LocalDate.now().minusDays(2), 3000.0, true, AccountType.SAVINGS);
+			Account account4 = new Account("VIN004", LocalDate.now().minusDays(3), 6000.0, true, AccountType.SAVINGS);
 
 			melbaMorel.addAccount(account1);
 			melbaMorel.addAccount(account2);
