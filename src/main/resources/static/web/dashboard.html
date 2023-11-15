@@ -100,20 +100,20 @@
                             </div>
                         </div>
 
-                    </div>
-                    <template v-if="canCreateAccount">
-                        <div class="sales">
-                            <div class="status">
-                                <div class="info newAccount">
-                                    <h3>New Account</h3>
-                                    <h1>Create</h1>
-                                    <span class="material-icons">
-                                        savings
-                                    </span>
-                                </div>
+                    </div>                    
+                </template>
+                <template v-if="canCreateAccount">
+                    <div class="sales">
+                        <div class="status">
+                            <div class="info newAccount">
+                                <h3>New Account</h3>
+                                <h1>Create</h1>
+                                <span class="material-icons">
+                                    savings
+                                </span>
                             </div>
                         </div>
-                    </template>
+                    </div>
                 </template>
             </div>
 
@@ -122,7 +122,7 @@
 
             <!-- Loans Section -->
             <div class="new-users">
-                <h2>Loans</h2>
+                <h1>Loans</h1>
                 <div class="user-list">
                     <template v-if="loans.length > 0" v-for="loan in loans">
                         <div class="user">
@@ -153,7 +153,7 @@
             <!-- End of New Users Section -->
 
             <!-- Recent Orders Table -->
-            <div class="recent-orders">
+            <!-- <div class="recent-orders">
                 <h2>Recent Transactions</h2>
                 <table>
                     <thead>
@@ -167,7 +167,7 @@
                     <tbody></tbody>
                 </table>
                 <a href="#">Show All</a>
-            </div>
+            </div> -->
             <!-- End of Recent Orders -->
 
         </main>
