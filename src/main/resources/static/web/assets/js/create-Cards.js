@@ -30,7 +30,7 @@ const options = {
 
     computed: {
         welcomeMessage() {
-            return `¡Welcome back, ${this.firstName}!`;
+            return `${this.firstName}`;
         }
         
         
@@ -71,7 +71,7 @@ const options = {
             axios.post('/api/logout')
                 .then(response => {
                     if (response.status === 200) {
-                        window.location.href = '/web/assets/pages/index.html';
+                        window.location.href = '/web/assets/pages/register.html';
                     }
                 })
                 .catch(error => {
